@@ -40,20 +40,24 @@ jobs:
     - name: Install dependencies
       run: |
         set -euo pipefail
+        echo "[WF] Installing pip packages…"
         python -m pip install --upgrade pip
         pip install aiohttp beautifulsoup4 lxml icalendar python-dateutil pytz aiosqlite
+        echo "[WF] Pip packages installed."
 
     - name: Prepare data dir and optionally clear cache
       run: |
+        echo "[WF] Preparing data dir…"
         mkdir -p data
         if [ "${{ github.event.inputs.CLEAR_CACHE }}" = "true" ]; then
-          echo "Clearing cache.sqlite by request"
+          echo "[WF] Clearing cache.sqlite by request"
           rm -f data/cache.sqlite || true
         fi
-        if [ -f data/cache.sqlite ]; then echo "CACHE_PRESENT"; else echo "CACHE_ABSENT"; fi
+        if [ -f data/cache.sqlite ]; then echo "[WF] CACHE_PRESENT"; else echo "[WF] CACHE_ABSENT"; fi
 
     - name: Sanity check (imports & required functions)
       run: |
+        echo "[WF] Running sanity check…"
         python - <<'PY'
         import importlib, sys
         sys.path.insert(0, '.')
@@ -62,10 +66,10 @@ jobs:
         missing = [x for x in required if not hasattr(m, x)]
         if missing:
           raise SystemExit(f"Missing required functions: {missing}")
-        print('Sanity OK')
+        print('[WF] Sanity OK: simple_scraper loads and required functions found')
         PY
 
-    - name: Run scraper (TTL=15 days)
+    - name: Run scraper (TTL=15 days) with stage logs
       env:
         PYTHONPATH: .
         MOVIE_SCRAPER_LOG_LEVEL: INFO
@@ -77,13 +81,42 @@ jobs:
         KINOPOISK_API_KEY: ${{ secrets.KINOPOISK_API_KEY }}
       run: |
         set -euo pipefail
+        echo "[WF] Compiling Python…"
         python -m py_compile movie_scraper/simple_scraper.py
+        echo "[WF] Starting scraper main()…"
         python - <<'PY'
-        import asyncio, sys
+        import asyncio, sys, time
         sys.path.insert(0, '.')
-        from movie_scraper.simple_scraper import main
-        asyncio.run(main())
+        from movie_scraper.simple_scraper import scrape, write_ics, write_index, write_diag, BASE
+        from pathlib import Path
+        from datetime import date
+        from urllib.parse import urljoin
+
+        async def run():
+          docs = Path('docs'); docs.mkdir(exist_ok=True)
+          diag = []
+          print('[STAGE] BOOT')
+          t0 = time.time()
+          films, stats = await scrape()
+          print(f"[STAGE] SCRAPE_DONE candidates={len(films)} elapsed={time.time()-t0:.1f}s")
+          preview = []
+          for f in films[:10]:
+            preview.append(f"%s | %s | %s | %s | %s" % (f.title, f.next_date, f.country, f.age_limit or '', urljoin(BASE, f"/prm/schedule_cinema_product/{f.slug}/")))
+          print('[STAGE] WRITE_ICS start')
+          ics_path = write_ics(films, docs)
+          print(f"[STAGE] WRITE_ICS done path={ics_path} size={ics_path.stat().st_size if ics_path.exists() else 0}")
+          print('[STAGE] WRITE_INDEX start')
+          write_index(docs, len(films), preview, stats)
+          print('[STAGE] WRITE_INDEX done')
+          print('[STAGE] WRITE_DIAG start')
+          diag.append(f"SUMMARY candidates_processed={len(films)}")
+          diag.append('=== DIAG COPY START ===')
+          diag.append(f"limit={{{}}} foreign_films={len(films)} 429={stats['429']} 403={stats['403']} cache_hits={stats['cache_hits']} cache_misses={stats['cache_misses']} sleep_total={stats['sleep_total']:.1f}".format('${{ env.MOVIE_SCRAPER_MAX_FILMS }}'))
+          write_diag(docs, diag)
+          print('[STAGE] WRITE_DIAG done')
+        asyncio.run(run())
         PY
+        echo "[WF] Scraper finished."
 
     - name: Show DIAG COPY block
       if: always()
