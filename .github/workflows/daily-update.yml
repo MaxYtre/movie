@@ -31,13 +31,16 @@ jobs:
         pip install -e . || true
         pip install aiohttp beautifulsoup4 lxml icalendar python-dateutil pytz aiosqlite pydantic pydantic-settings structlog tenacity httpx
 
-    - name: Ensure docs dir exists
-      run: mkdir -p docs
+    - name: Ensure docs and data dir exist
+      run: |
+        mkdir -p docs
+        mkdir -p data
 
-    - name: Run scraper and generate calendar (diagnostic mode)
+    - name: Run scraper and generate calendar (diagnostic mode, limit=10)
       env:
         PYTHONPATH: .
         MOVIE_SCRAPER_LOG_LEVEL: DEBUG
+        MOVIE_SCRAPER_MAX_FILMS: "10"
       run: |
         set -euo pipefail
         python -c "
@@ -51,8 +54,15 @@ jobs:
       if: always()
       run: |
         echo "--- DIAG COPY ---"
-        if [ -f docs/diag.txt ]; then tail -n 100 docs/diag.txt; else echo "no diag.txt"; fi
+        if [ -f docs/diag.txt ]; then tail -n 200 docs/diag.txt; else echo "no diag.txt"; fi
         echo "--- END DIAG ---"
+
+    - name: List docs artifacts
+      if: always()
+      run: |
+        ls -la docs || true
+        test -f docs/calendar.ics && echo "ICS_OK" || echo "ICS_MISS"
+        test -f docs/index.html && echo "INDEX_OK" || echo "INDEX_MISS"
 
     - name: Deploy to GitHub Pages (main/docs)
       if: github.ref == 'refs/heads/main'
