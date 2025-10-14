@@ -1,0 +1,10 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Perm Foreign Films//perm-cinema//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALDESC:Иностранные фильмы\, идущие в кин
+ отеатрах Перми. Обновляется ежедневно.
+X-WR-CALNAME:Зарубежные фильмы в кинотеатрах 
+ Перми
+END:VCALENDAR
