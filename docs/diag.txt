@@ -1,2 +1,56 @@
 BOOT py=3.11.13 ua=Mozilla/5.0 (Windows NT 10.0; … proxy=off
-FAIL AT=main exception=OperationalError msg=no such column: imdb_rating
+SUMMARY candidates_processed=26
+=== DIAG COPY START ===
+limit=50 foreign_films=26 429=0 403=0 cache_hits=50 cache_misses=0 sleep_total=276.7
+REGION avgust-308206 date_url=https://www.afisha.ru/prm/schedule_cinema_product/avgust-308206/
+REGION perviy-na-olimpe-307551 date_url=https://www.afisha.ru/prm/schedule_cinema_product/perviy-na-olimpe-307551/
+REGION drakula-1000812 date_url=https://www.afisha.ru/prm/schedule_cinema_product/drakula-1000812/
+REGION dolgaya-progulka-1001088 date_url=https://www.afisha.ru/prm/schedule_cinema_product/dolgaya-progulka-1001088/
+REGION ne-iskusstvenniy-intellekt-307884 date_url=https://www.afisha.ru/prm/schedule_cinema_product/ne-iskusstvenniy-intellekt-307884/
+REGION cheburashka-2-295278 date_url=https://www.afisha.ru/prm/schedule_cinema_product/cheburashka-2-295278/
+REGION mir-v-ogne-206394 date_url=https://www.afisha.ru/prm/schedule_cinema_product/mir-v-ogne-206394/
+REGION vyhod-8-1000762 date_url=https://www.afisha.ru/prm/schedule_cinema_product/vyhod-8-1000762/
+REGION zveropoezd-1001045 date_url=https://www.afisha.ru/prm/schedule_cinema_product/zveropoezd-1001045/
+REGION doktor-dinozavrov-294927 date_url=https://www.afisha.ru/prm/schedule_cinema_product/doktor-dinozavrov-294927/
+NEW-SELECTORS avgust-308206 country=cache age=cache desc=cache date=cache
+NEW-SELECTORS perviy-na-olimpe-307551 country=cache age=cache desc=cache date=cache
+NEW-SELECTORS drakula-1000812 country=cache age=cache desc=cache date=cache
+NEW-SELECTORS dolgaya-progulka-1001088 country=cache age=cache desc=cache date=cache
+NEW-SELECTORS ne-iskusstvenniy-intellekt-307884 country=cache age=cache desc=cache date=cache
+NEW-SELECTORS cheburashka-2-295278 country=cache age=cache desc=cache date=cache
+NEW-SELECTORS mir-v-ogne-206394 country=cache age=cache desc=cache date=cache
+NEW-SELECTORS vyhod-8-1000762 country=cache age=cache desc=cache date=cache
+NEW-SELECTORS zveropoezd-1001045 country=cache age=cache desc=cache date=cache
+NEW-SELECTORS doktor-dinozavrov-294927 country=cache age=cache desc=cache date=cache-miss-date
+REASON avgust-308206 NOT_FOREIGN
+REASON perviy-na-olimpe-307551 NOT_FOREIGN
+REASON ne-iskusstvenniy-intellekt-307884 NOT_FOREIGN
+REASON cheburashka-2-295278 NOT_FOREIGN
+REASON doktor-dinozavrov-294927 NOT_FOREIGN
+REASON na-derevnyu-dedushke-308610 NOT_FOREIGN
+REASON semeyniy-prizrak-307147 NOT_FOREIGN
+REASON alisa-v-strane-chudes-308954 NOT_FOREIGN
+REASON lermontov-308328 NOT_FOREIGN
+REASON nahimovcy-yantarniy-bereg-307476 NOT_FOREIGN
+REASON serdceed-1001685 NOT_FOREIGN
+REASON gorynych-306463 NOT_FOREIGN
+REASON muzhskie-pravila-moego-deda-1001688 NOT_FOREIGN
+REASON svodish-s-uma-1000887 NOT_FOREIGN
+REASON moy-drug-kot-i-pushkin-1001696 NOT_FOREIGN
+REASON serafima-1001519 NOT_FOREIGN
+REASON te-eshche-kanikuly-ili-otpusk-na-vse-sto-308329 NO_DATE
+REASON finnik-2-306500 NOT_FOREIGN
+REASON mult-v-kino-vypusk-187-komanda-chudes-1001820 NOT_FOREIGN
+REASON buratino-295155 NOT_FOREIGN
+PREVIEW Дракула | 2025-10-15 | Великобритания | 18+ | https://www.afisha.ru/prm/schedule_cinema_product/drakula-1000812/
+PREVIEW Долгая прогулка | 2025-10-15 | США | 18+ | https://www.afisha.ru/prm/schedule_cinema_product/dolgaya-progulka-1001088/
+PREVIEW Мир в огне | 2025-10-15 | США | 18+ | https://www.afisha.ru/prm/schedule_cinema_product/mir-v-ogne-206394/
+PREVIEW Выход 8 | 2025-10-15 | Япония | 16+ | https://www.afisha.ru/prm/schedule_cinema_product/vyhod-8-1000762/
+PREVIEW Зверопоезд | 2025-10-15 | Франция | 6+ | https://www.afisha.ru/prm/schedule_cinema_product/zveropoezd-1001045/
+PREVIEW Грабитель с крыши | 2025-10-15 | США | 16+ | https://www.afisha.ru/prm/schedule_cinema_product/grabitel-s-kryshi-308410/
+PREVIEW Изумительная Мокси | 2025-10-15 | Нидерланды | 6+ | https://www.afisha.ru/prm/schedule_cinema_product/izumitelnaya-moksi-1001083/
+PREVIEW Иллюзия обмана-3 | 2025-11-14 | США | 12+ | https://www.afisha.ru/prm/schedule_cinema_product/illyuziya-obmana-3-308835/
+PREVIEW Глазами пса | 2025-10-16 | США | 16+ | https://www.afisha.ru/prm/schedule_cinema_product/glazami-psa-1001734/
+PREVIEW Ужастики. Ожившие рисунки | 2025-10-15 | США | 12+ | https://www.afisha.ru/prm/schedule_cinema_product/uzhastiki-ozhivshie-risunki-1001302/
+ICS path=docs/calendar.ics exists=True size=28122
+=== DIAG COPY END ===
