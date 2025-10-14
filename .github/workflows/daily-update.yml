@@ -72,17 +72,22 @@ jobs:
         test -f docs/index.html && echo "INDEX_OK" || echo "INDEX_MISS"
         test -f data/cache.sqlite && echo "CACHE_OK" || echo "CACHE_MISS"
 
-    - name: Commit and push docs and cache to main
+    - name: Commit and push docs and cache to main (rebase-safe)
       if: github.ref == 'refs/heads/main'
       run: |
         set -euo pipefail
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
-        git pull --ff-only
         git add docs/ data/cache.sqlite
         if git diff --staged --quiet; then
           echo "No changes to commit"
         else
           git commit -m "Update docs & cache.sqlite (TTL=15d)"
+          git fetch origin main
+          if ! git rebase origin/main; then
+            echo "Rebase failed; using 'ours' to keep local docs/data"
+            git rebase --abort || true
+            git merge -s ours -m "Resolve conflicts by keeping workflow artifacts" origin/main
+          fi
           git push origin HEAD:main
         fi
