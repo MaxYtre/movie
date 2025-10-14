@@ -340,10 +340,10 @@ def write_ics(films: List[Film], docs_dir: Path) -> Path:
         title = f.title + (f" ({f.age_limit})" if f.age_limit else "")
         ev.add('summary', title)
         desc_parts = []
-        if f.country: desc_parts.append("Страна: " + f.country)
-        if f.description: desc_parts.append("\nОписание: " + f.description)
+        if f.country: desc_parts.append("Страна " + f.country)
+        if f.description: desc_parts.append("\n" + f.description)
         more_url = urljoin(BASE, f"/prm/schedule_cinema_product/{f.slug}/")
-        desc_parts.append("\nПодробнее: " + more_url)
+        desc_parts.append("\n" + more_url)
         ev.add('description', "\n".join(desc_parts))
         ev.add('url', more_url)
         ev.add('categories', ['ЗАРУБЕЖНЫЕ-ФИЛЬМЫ','КИНО','ПЕРМЬ'])
