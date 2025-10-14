@@ -1,16 +1,17 @@
 BOOT py=3.11.13 ua=Mozilla/5.0 (Windows NT 10.0; … proxy=off
-SUMMARY candidates_processed=28
+SUMMARY candidates_processed=7
 === DIAG COPY START ===
 limit=200 foreign_films=28 429=0 403=0 cache_hits=82 cache_misses=0 sleep_total=483.3
 429_backoffs=30.0s,60.0s,30.0s,30.0s
 REGION avgust-308206 date_url=https://www.afisha.ru/prm/schedule_cinema_product/avgust-308206/
+REGION cheburashka-2-295278 date_url=https://www.afisha.ru/prm/schedule_cinema_product/cheburashka-2-295278/
 REGION illyuziya-obmana-3-308835 date_url=https://www.afisha.ru/prm/schedule_cinema_product/illyuziya-obmana-3-308835/
 REGION cheburashka-2-295278 date_url=https://www.afisha.ru/prm/schedule_cinema_product/cheburashka-2-295278/
 REGION alisa-v-strane-chudes-308954 date_url=https://www.afisha.ru/prm/schedule_cinema_product/alisa-v-strane-chudes-308954/
 REGION buratino-295155 date_url=https://www.afisha.ru/prm/schedule_cinema_product/buratino-295155/
 REGION finnik-2-306500 date_url=https://www.afisha.ru/prm/schedule_cinema_product/finnik-2-306500/
 REGION dolgaya-progulka-1001088 date_url=https://www.afisha.ru/prm/schedule_cinema_product/dolgaya-progulka-1001088/
-REGION svodish-s-uma-1000887 date_url=https://www.afisha.ru/prm/schedule_cinema_product/svodish-s-uma-1000887/
+REGION punkt-naznacheniya-smertelnaya-igra-1001008 date_url=https://www.afisha.ru/prm/schedule_cinema_product/punkt-naznacheniya-smertelnaya-igra-1001008/
 REGION mazhor-v-dubae-308075 date_url=https://www.afisha.ru/prm/schedule_cinema_product/mazhor-v-dubae-308075/
 REGION gorynych-306463 date_url=https://www.afisha.ru/prm/schedule_cinema_product/gorynych-306463/
 NEW-SELECTORS avgust-308206 country=cache age=cache desc=cache date=cache
@@ -28,11 +29,11 @@ REASON cheburashka-2-295278 NOT_FOREIGN
 REASON alisa-v-strane-chudes-308954 NOT_FOREIGN
 REASON buratino-295155 NOT_FOREIGN
 REASON finnik-2-306500 NOT_FOREIGN
-REASON svodish-s-uma-1000887 NOT_FOREIGN
 REASON mazhor-v-dubae-308075 NOT_FOREIGN
 REASON gorynych-306463 NOT_FOREIGN
+REASON perviy-na-olimpe-307551 NOT_FOREIGN
 REASON papiny-dochki-mama-vernulas-1001721 NOT_FOREIGN
-REASON na-derevnyu-dedushke-308610 NOT_FOREIGN
+REASON svodish-s-uma-1000887 NOT_FOREIGN
 REASON muzhskie-pravila-moego-deda-1001688 NOT_FOREIGN
 REASON perviy-na-olimpe-307551 NOT_FOREIGN
 REASON ne-iskusstvenniy-intellekt-307884 NOT_FOREIGN

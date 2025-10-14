@@ -1,0 +1,20 @@
+"""
+Wire enrichment into scraper in development branch.
+"""
+
+# PSEUDO-PATCH: insert into movie_scraper/simple_scraper.py in development
+# 1) Add at top:
+# from movie_scraper.patches.enrichment import enrich_film, build_description, ensure_columns
+
+# 2) After creating db = CacheDB(CACHE_DB): ensure new columns exist
+# await ensure_columns(db.conn)  # if function made async; else call without await
+
+# 3) In the HTTP branch after parsing detail and date soups, enrich the film:
+# await ensure_columns(db.conn)
+# await enrich_film(session, f, soup, date_soup)
+# db.upsert_film(..., imdb_rating=f.imdb_rating, kp_rating=f.kp_rating, trailer_url=f.trailer_url, poster_url=f.poster_url, year=f.year)
+
+# 4) In write_ics(), replace description generation with build_description(f)
+# desc = build_description(f)
+# ev.add('description', desc)
+
