@@ -337,10 +337,11 @@ def write_ics(films: List[Film], docs_dir: Path) -> Path:
         ev.add('dtstart', dt); ev['dtstart'].params['VALUE'] = 'DATE'
         ev.add('dtend', dt);   ev['dtend'].params['VALUE'] = 'DATE'
         ev.add('dtstamp', datetime.utcnow())
-        title = ("🎬" + f.title) + (f" ({f.age_limit})" if f.age_limit else "")
+        title = ("🎬 " + f.title)
         ev.add('summary', title)
         desc_parts = []
-        if f.country: desc_parts.append("Страна " + f.country)
+        if f.age_limit: desc_parts.append (f.age_limit)
+        if f.country: desc_parts.append("\n" + f.country)
         if f.description: desc_parts.append("\n" + f.description)
         more_url = urljoin(BASE, f"/prm/schedule_cinema_product/{f.slug}/")
         desc_parts.append("\n" + more_url)
