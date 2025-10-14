@@ -8,22 +8,22 @@ X-WR-CALDESC:Иностранные фильмы\, идущие в кин
 X-WR-CALNAME:Зарубежные фильмы в кинотеатрах 
  Перми
 BEGIN:VEVENT
-SUMMARY:Билеты (18+)
-DTSTART;VALUE=DATE:20251015
-DTEND;VALUE=DATE:20251015
-DTSTAMP:20251014T034210Z
-UID:drakula-1000812-2025-10-15@perm-cinema
+SUMMARY:Иллюзия обмана-3 (12+)
+DTSTART;VALUE=DATE:20251114
+DTEND;VALUE=DATE:20251114
+DTSTAMP:20251014T034824Z
+UID:illyuziya-obmana-3-308835-2025-11-14@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
-DESCRIPTION:Страна: Великобритания\n\nОписание
- : О фильме Принц Влад II\, граф Дракула\, жи
- вет ради любви к своей жене\, принцессе Е
- лизавете. Несравненная по красоте и добр
- оте\, она — его воздух\, его кровь\, единст
- венный смысл его существования. Вернувш
- ись с победоносной войны\, которую он вел
-  во имя церкви\, принц узнает о смерти Ели
- заветы. Убитый горем...\n\nПодробнее: https://ww
- w.afisha.ru/prm/schedule_cinema_product/drakula-1000812/
-URL:https://www.afisha.ru/prm/schedule_cinema_product/drakula-1000812/
+DESCRIPTION:Страна: США\n\nОписание: Карты\, фок
+ усы и деньги Триквел «Иллюзии обмана» — 
+ кажется\, не самое очевидное продолжение
+  сезона. За постановку взялся Рубен Флей
+ шер. По сюжету группа мошенников-иллюзио
+ нистов снова выходит на арену. За сценар
+ ий в ответе Сет Грэм-Сит («Гордость и пре
+ дубеждение и зомби»).\n\nПодробнее: https://www.
+ afisha.ru/prm/schedule_cinema_product/illyuziya-obmana-3-308835/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/illyuziya-obmana-3-3
+ 08835/
 END:VEVENT
 END:VCALENDAR
