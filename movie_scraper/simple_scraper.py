@@ -8,7 +8,7 @@ import logging
 import os
 import re
 import hashlib
-from datetime import date, datetime, timedelta
+from datetime import date, datetime
 from pathlib import Path
 from typing import List, Optional
 from urllib.parse import urljoin, urlparse
@@ -157,7 +157,7 @@ def parse_next_date(soup: BeautifulSoup) -> Optional[date]:
 
 
 async def scrape() -> List[Film]:
-    logger.info(f"[BOOT] py={os.sys.version.split()[0]} aiohttp={aiohttp.__version__} bs4={BeautifulSoup.__module__.split('.')[0]} icalendar={Calendar.__module__.split('.')[0]}")
+    logger.info(f"[BOOT] py={os.sys.version.split()[0]} ua={USER_AGENT[:20]}… proxy={'on' if PROXY_URL else 'off'}")
     films: List[Film] = []
     timeout = aiohttp.ClientTimeout(total=30)
     connector = aiohttp.TCPConnector(limit=10)
@@ -171,10 +171,9 @@ async def scrape() -> List[Film]:
                 break
             soup = BeautifulSoup(html, 'lxml')
             cards = soup.select('a[href*="/schedule_cinema_product/"]')
-            if not cards:
-                logger.info(f"[LIST] page={page} films_found=0; stop")
-                break
             logger.info(f"[LIST] page={page} films_found={len(cards)}")
+            if not cards:
+                break
             for a in cards:
                 href = a.get('href')
                 if not href:
@@ -265,18 +264,18 @@ def write_ics(films: List[Film], docs_dir: Path) -> Path:
 
 
 def write_index(docs_dir: Path, films_count: int):
-    # Use str.format to avoid f-string with braces in CSS/JS
-    html = """
-<!doctype html><html lang="ru"><meta charset="utf-8"><title>Календарь фильмов</title>
-<body style="font-family:Arial,sans-serif;max-width:800px;margin:20px auto;">
-<h1>Календарь зарубежных фильмов (Пермь)</h1>
-<p>Фильм(ов) в календаре: <strong>{films_count}</strong></p>
-<p><a href="calendar.ics">Скачать календарь (.ics)</a></p>
-<hr>
-<pre id="diag" style="background:#f7f7f7;padding:10px;border:1px solid #ddd;white-space:pre-wrap;"></pre>
-<script>fetch('diag.txt').then(r=>r.text()).then(t=>document.getElementById('diag').textContent=t).catch(()=>{});</script>
-</body></html>
-""".format(films_count=films_count)
+    # Use double braces to escape in f-string
+    html = (
+        f"<!doctype html><html lang=\"ru\"><meta charset=\"utf-8\"><title>Календарь фильмов</title>\n"
+        f"<body style=\"font-family:Arial,sans-serif;max-width:800px;margin:20px auto;\">\n"
+        f"<h1>Календарь зарубежных фильмов (Пермь)</h1>\n"
+        f"<p>Фильм(ов) в календаре: <strong>{films_count}</strong></p>\n"
+        f"<p><a href=\"calendar.ics\">Скачать календарь (.ics)</a></p>\n"
+        f"<hr>\n"
+        f"<pre id=\"diag\" style=\"background:#f7f7f7;padding:10px;border:1px solid #ddd;white-space:pre-wrap;\"></pre>\n"
+        f"<script>fetch('diag.txt').then(r=>r.text()).then(t=>document.getElementById('diag').textContent=t).catch(()=>{{}});</script>\n"
+        f"</body></html>\n"
+    )
     with open(docs_dir / "index.html", "w", encoding="utf-8") as f:
         f.write(html)
 
