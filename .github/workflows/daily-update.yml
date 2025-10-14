@@ -36,7 +36,7 @@ jobs:
         mkdir -p docs
         mkdir -p data
 
-    - name: Run scraper and generate calendar (super-gentle, limit=5)
+    - name: Run scraper and generate calendar (limit=5)
       env:
         PYTHONPATH: .
         MOVIE_SCRAPER_LOG_LEVEL: DEBUG
@@ -66,9 +66,16 @@ jobs:
         test -f docs/calendar.ics && echo "ICS_OK" || echo "ICS_MISS"
         test -f docs/index.html && echo "INDEX_OK" || echo "INDEX_MISS"
 
-    - name: Deploy to GitHub Pages (main/docs)
+    - name: Commit and push docs to main (for Pages main/docs)
       if: github.ref == 'refs/heads/main'
-      uses: peaceiris/actions-gh-pages@v4
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./docs
+      run: |
+        set -euo pipefail
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git add docs/
+        if git diff --staged --quiet; then
+          echo "No changes in docs to commit"
+        else
+          git commit -m "Update cinema calendar docs (index.html, calendar.ics, diag.txt)"
+          git push
+        fi
