@@ -1,2 +1,164 @@
 BOOT py=3.11.13 ua=Mozilla/5.0 (Windows NT 10.0; … proxy=off
-FAIL AT=main exception=NameError msg=name 'parse_item_name' is not defined
+SUMMARY candidates_processed=12
+=== DIAG COPY START ===
+limit=20 foreign_films=12 429=0 403=0 cache_hits=0 cache_misses=20 sleep_total=116.7
+429_backoffs=30.0s,30.0s,30.0s,30.0s,60.0s,30.0s,60.0s,30.0s,60.0s,30.0s,30.0s,30.0s,60.0s
+REGION avgust-308206 date_url=https://www.afisha.ru/prm/schedule_cinema_product/avgust-308206/
+REGION perviy-na-olimpe-307551 date_url=https://www.afisha.ru/prm/schedule_cinema_product/perviy-na-olimpe-307551/
+REGION drakula-1000812 date_url=https://www.afisha.ru/prm/schedule_cinema_product/drakula-1000812/
+REGION svodish-s-uma-1000887 date_url=https://www.afisha.ru/prm/schedule_cinema_product/svodish-s-uma-1000887/
+REGION nahimovcy-yantarniy-bereg-307476 date_url=https://www.afisha.ru/prm/schedule_cinema_product/nahimovcy-yantarniy-bereg-307476/
+REGION dolgaya-progulka-1001088 date_url=https://www.afisha.ru/prm/schedule_cinema_product/dolgaya-progulka-1001088/
+REGION grabitel-s-kryshi-308410 date_url=https://www.afisha.ru/prm/schedule_cinema_product/grabitel-s-kryshi-308410/
+REGION ne-iskusstvenniy-intellekt-307884 date_url=https://www.afisha.ru/prm/schedule_cinema_product/ne-iskusstvenniy-intellekt-307884/
+REGION zveropoezd-1001045 date_url=https://www.afisha.ru/prm/schedule_cinema_product/zveropoezd-1001045/
+REGION edem-1000775 date_url=https://www.afisha.ru/prm/schedule_cinema_product/edem-1000775/
+NEW-SELECTORS avgust-308206 country=item-meta age=table desc=object-desc date=calendar-all
+NEW-SELECTORS perviy-na-olimpe-307551 country=item-meta age=table desc=object-desc date=calendar-all
+NEW-SELECTORS drakula-1000812 country=item-meta age=table desc=object-desc date=calendar-all
+NEW-SELECTORS svodish-s-uma-1000887 country=item-meta age=table desc=object-desc date=calendar-all
+NEW-SELECTORS nahimovcy-yantarniy-bereg-307476 country=item-meta age=table desc=object-desc date=calendar-all
+NEW-SELECTORS dolgaya-progulka-1001088 country=item-meta age=table desc=object-desc date=calendar-all
+NEW-SELECTORS grabitel-s-kryshi-308410 country=item-meta age=table desc=object-desc date=calendar-all
+NEW-SELECTORS ne-iskusstvenniy-intellekt-307884 country=item-meta age=table desc=object-desc date=calendar-all
+NEW-SELECTORS zveropoezd-1001045 country=item-meta age=table desc=object-desc date=calendar-all
+NEW-SELECTORS edem-1000775 country=item-meta age=table desc=object-desc date=calendar-all
+REASON avgust-308206 NOT_FOREIGN
+REASON perviy-na-olimpe-307551 NOT_FOREIGN
+REASON svodish-s-uma-1000887 NOT_FOREIGN
+REASON nahimovcy-yantarniy-bereg-307476 NOT_FOREIGN
+REASON ne-iskusstvenniy-intellekt-307884 NOT_FOREIGN
+REASON muzhskie-pravila-moego-deda-1001688 NOT_FOREIGN
+REASON lermontov-308328 NOT_FOREIGN
+REASON finnik-2-306500 NOT_FOREIGN
+PREVIEW Дракула | 2025-10-15 | Великобритания | 18+ | https://www.afisha.ru/prm/schedule_cinema_product/drakula-1000812/
+PREVIEW Долгая прогулка | 2025-10-15 | США | 18+ | https://www.afisha.ru/prm/schedule_cinema_product/dolgaya-progulka-1001088/
+PREVIEW Грабитель с крыши | 2025-10-15 | США | 16+ | https://www.afisha.ru/prm/schedule_cinema_product/grabitel-s-kryshi-308410/
+PREVIEW Зверопоезд | 2025-10-15 | Франция | 6+ | https://www.afisha.ru/prm/schedule_cinema_product/zveropoezd-1001045/
+PREVIEW Эдем | 2025-10-15 | США | 18+ | https://www.afisha.ru/prm/schedule_cinema_product/edem-1000775/
+PREVIEW Дом ада: Спуск к дьяволу | 2025-10-15 | США | 18+ | https://www.afisha.ru/prm/schedule_cinema_product/dom-ada-spusk-k-dyavolu-1001202/
+PREVIEW Мир в огне | 2025-10-15 | США | 18+ | https://www.afisha.ru/prm/schedule_cinema_product/mir-v-ogne-206394/
+PREVIEW Ужастики. Ожившие рисунки | 2025-10-15 | США | 12+ | https://www.afisha.ru/prm/schedule_cinema_product/uzhastiki-ozhivshie-risunki-1001302/
+PREVIEW Выход 8 | 2025-10-15 | Япония | 16+ | https://www.afisha.ru/prm/schedule_cinema_product/vyhod-8-1000762/
+PREVIEW Астрал. Зеркала | 2025-10-15 | Индонезия | 18+ | https://www.afisha.ru/prm/schedule_cinema_product/astral-zerkala-308646/
+[POSTER] url=-
+[TRAILER] afisha=0 url=-
+[API] YT q='Август трейлер 2025' status=200 videoId=igxOUTTOeTI t=0.37s
+[API] OMDb title='Август' year=2025 status=200 imdb=- t=0.17s
+[API] KP title='Август' status=401 kp=- t=0.82s
+[PRICE] found=70 avg=404
+[POSTER] url=-
+[TRAILER] afisha=0 url=-
+[API] YT q='Первый на Олимпе трейлер 2025' status=200 videoId=FQRPdpwMqsg t=0.33s
+[API] OMDb title='Первый на Олимпе' year=2025 status=200 imdb=- t=0.05s
+[API] KP title='Первый на Олимпе' status=401 kp=- t=0.79s
+[PRICE] found=76 avg=400
+[POSTER] url=https://img16.rl0.ru/afisha/e904x406p0x44f2667x1198q85i/s4.afisha.ru/mediastorage/5f/e1/0251b96a05df49359bf8e090e15f.jpg
+[TRAILER] afisha=1 url=https://s.afisha.ru/mediastorage/33/c0/7863f3624b3a44b6ae8f56fac033.mp4#t=0.1
+[API] OMDb title='Дракула' year=2025 status=200 imdb=- t=0.05s
+[API] KP title='Дракула' status=401 kp=- t=0.85s
+[PRICE] found=46 avg=424
+[POSTER] url=-
+[TRAILER] afisha=0 url=-
+[API] YT q='Сводишь с ума трейлер 2025' status=200 videoId=39T_q4gt7HE t=0.43s
+[API] OMDb title='Сводишь с ума' year=2025 status=200 imdb=- t=0.09s
+[API] KP title='Сводишь с ума' status=401 kp=- t=0.61s
+[PRICE] found=24 avg=426
+[POSTER] url=-
+[TRAILER] afisha=0 url=-
+[API] YT q='Нахимовцы. Янтарный берег трейлер 2025' status=200 videoId=OZwM5wvMgJw t=0.40s
+[API] OMDb title='Нахимовцы. Янтарный берег' year=2025 status=200 imdb=- t=0.06s
+[API] KP title='Нахимовцы. Янтарный берег' status=401 kp=- t=1.25s
+[PRICE] found=40 avg=350
+[POSTER] url=-
+[TRAILER] afisha=0 url=-
+[API] YT q='Долгая прогулка трейлер 2025' status=200 videoId=DjCaptM49-o t=0.50s
+[API] OMDb title='Долгая прогулка' year=2025 status=200 imdb=- t=0.05s
+[API] KP title='Долгая прогулка' status=401 kp=- t=0.82s
+[PRICE] found=38 avg=390
+[POSTER] url=-
+[TRAILER] afisha=0 url=-
+[API] YT q='Грабитель с крыши трейлер 2025' status=200 videoId=q91tD4ISnds t=0.34s
+[API] OMDb title='Грабитель с крыши' year=2025 status=200 imdb=- t=0.11s
+[API] KP title='Грабитель с крыши' status=401 kp=- t=0.81s
+[PRICE] found=40 avg=394
+[POSTER] url=-
+[TRAILER] afisha=0 url=-
+[API] YT q='(Не)искусственный интеллект трейлер 2025' status=200 videoId=yGNIiYbh5I4 t=0.42s
+[API] OMDb title='(Не)искусственный интеллект' year=2025 status=200 imdb=- t=0.05s
+[API] KP title='(Не)искусственный интеллект' status=401 kp=- t=0.60s
+[PRICE] found=16 avg=300
+[POSTER] url=-
+[TRAILER] afisha=0 url=-
+[API] YT q='Зверопоезд трейлер 2025' status=200 videoId=3X7fdTCQqHE t=0.39s
+[API] OMDb title='Зверопоезд' year=2025 status=200 imdb=- t=0.05s
+[API] KP title='Зверопоезд' status=401 kp=- t=0.84s
+[PRICE] found=16 avg=460
+[POSTER] url=-
+[TRAILER] afisha=0 url=-
+[API] YT q='Эдем трейлер 2024' status=200 videoId=BQdqTkkg21c t=0.50s
+[API] OMDb title='Эдем' year=2024 status=200 imdb=- t=0.05s
+[API] KP title='Эдем' status=401 kp=- t=0.80s
+[PRICE] found=34 avg=379
+[POSTER] url=-
+[TRAILER] afisha=0 url=-
+[API] YT q='Мужские правила моего деда трейлер 2025' status=200 videoId=99juhMioF6s t=0.46s
+[API] OMDb title='Мужские правила моего деда' year=2025 status=200 imdb=- t=0.11s
+[API] KP title='Мужские правила моего деда' status=401 kp=- t=0.80s
+[PRICE] found=16 avg=300
+[POSTER] url=-
+[TRAILER] afisha=0 url=-
+[API] YT q='Дом ада: Спуск к дьяволу трейлер 2025' status=200 videoId=-SAjYh0cvc4 t=0.40s
+[API] OMDb title='Дом ада: Спуск к дьяволу' year=2025 status=200 imdb=- t=0.05s
+[API] KP title='Дом ада: Спуск к дьяволу' status=401 kp=- t=0.80s
+[PRICE] found=34 avg=427
+[POSTER] url=-
+[TRAILER] afisha=0 url=-
+[API] YT q='Мир в огне трейлер 2025' status=200 videoId=TQLad-3CH-A t=0.43s
+[API] OMDb title='Мир в огне' year=2025 status=200 imdb=- t=0.06s
+[API] KP title='Мир в огне' status=401 kp=- t=0.78s
+[PRICE] found=28 avg=385
+[POSTER] url=-
+[TRAILER] afisha=0 url=-
+[API] YT q='Ужастики. Ожившие рисунки трейлер 2024' status=200 videoId=J46sWjNg0oo t=0.35s
+[API] OMDb title='Ужастики. Ожившие рисунки' year=2024 status=200 imdb=- t=0.05s
+[API] KP title='Ужастики. Ожившие рисунки' status=401 kp=- t=1.00s
+[PRICE] found=28 avg=246
+[POSTER] url=-
+[TRAILER] afisha=0 url=-
+[API] YT q='Выход 8 трейлер 2025' status=200 videoId=7lmdc5n8CWE t=0.40s
+[API] OMDb title='Выход 8' year=2025 status=200 imdb=4.4 t=0.10s
+[API] KP title='Выход 8' status=401 kp=- t=0.68s
+[PRICE] found=16 avg=380
+[POSTER] url=-
+[TRAILER] afisha=0 url=-
+[API] YT q='Астрал. Зеркала трейлер 2024' status=200 videoId=pPnXjtp0HmA t=0.46s
+[API] OMDb title='Астрал. Зеркала' year=2024 status=200 imdb=- t=0.13s
+[API] KP title='Астрал. Зеркала' status=401 kp=- t=1.62s
+[PRICE] found=16 avg=420
+[POSTER] url=-
+[TRAILER] afisha=0 url=-
+[API] YT q='Лермонтов трейлер 2025' status=200 videoId=Wgu7701WYbg t=0.48s
+[API] OMDb title='Лермонтов' year=2025 status=200 imdb=- t=0.06s
+[API] KP title='Лермонтов' status=401 kp=- t=0.77s
+[PRICE] found=16 avg=450
+[POSTER] url=-
+[TRAILER] afisha=0 url=-
+[API] YT q='Ночь трейлер 1961' status=200 videoId=yEEmVghrypo t=0.40s
+[API] OMDb title='Ночь' year=1961 status=200 imdb=- t=0.05s
+[API] KP title='Ночь' status=401 kp=- t=0.77s
+[PRICE] found=16 avg=300
+[POSTER] url=-
+[TRAILER] afisha=0 url=-
+[API] YT q='Изумительная Мокси трейлер 2025' status=200 videoId=o4eLgZ7nsn4 t=0.37s
+[API] OMDb title='Изумительная Мокси' year=2025 status=200 imdb=- t=0.06s
+[API] KP title='Изумительная Мокси' status=401 kp=- t=1.13s
+[PRICE] found=16 avg=250
+[POSTER] url=-
+[TRAILER] afisha=0 url=-
+[API] YT q='Финник-2 трейлер 2025' status=200 videoId=rBfuzRNckPo t=0.40s
+[API] OMDb title='Финник-2' year=2025 status=200 imdb=- t=0.06s
+[API] KP title='Финник-2' status=401 kp=- t=0.81s
+[PRICE] found=86 avg=478
+ICS path=docs/calendar.ics exists=True size=14328
+=== DIAG COPY END ===
