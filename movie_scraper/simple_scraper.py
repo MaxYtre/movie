@@ -337,7 +337,7 @@ def write_ics(films: List[Film], docs_dir: Path) -> Path:
         ev.add('dtstart', dt); ev['dtstart'].params['VALUE'] = 'DATE'
         ev.add('dtend', dt);   ev['dtend'].params['VALUE'] = 'DATE'
         ev.add('dtstamp', datetime.utcnow())
-        title = f.title + (f" ({f.age_limit})" if f.age_limit else "")
+        title = ("🎬" + f.title) + (f" ({f.age_limit})" if f.age_limit else "")
         ev.add('summary', title)
         desc_parts = []
         if f.country: desc_parts.append("Страна " + f.country)
