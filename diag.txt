@@ -1,3 +1,6 @@
 BOOT py=3.11.13 ua=Mozilla/5.0 (Windows NT 10.0; … proxy=off
 SUMMARY candidates_processed=0
-FAIL AT=main exception=IndexError msg=Replacement index 0 out of range for positional args tuple
+=== DIAG COPY START ===
+pages_scraped=~ films_discovered=~ foreign_films=0
+ICS path=docs/calendar.ics exists=True size=365
+=== DIAG COPY END ===
