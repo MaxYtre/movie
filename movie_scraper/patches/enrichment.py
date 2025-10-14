@@ -1,10 +1,9 @@
 """
-Add ratings (IMDb/Kinopoisk via APIs), average price parsing, trailer and poster links.
-Stores new fields in films table; uses env API keys. Safe rate limiting and caching.
+Enrichment module: add detailed DIAG logging for API calls, prices, poster, trailer.
 """
 
-import os, re, asyncio, json
-from datetime import date, datetime, timedelta
+import os, re, asyncio, json, time
+from datetime import date
 from typing import Optional
 from urllib.parse import urlencode, urljoin
 
@@ -14,111 +13,100 @@ from bs4 import BeautifulSoup
 OMDB_API_KEY = os.getenv("OMDB_API_KEY")
 YOUTUBE_API_KEY = os.getenv("YOUTUBE_API_KEY")
 KINOPOISK_API_KEY = os.getenv("KINOPOISK_API_KEY")
-API_COOLDOWN = float(os.getenv("API_COOLDOWN", "10.0"))  # seconds between external API calls
+API_COOLDOWN = float(os.getenv("API_COOLDOWN", "10.0"))
 BASE = "https://www.afisha.ru"
 
-# ---- DB helpers patch (to be merged into CacheDB) ----
-DDL = """
-ALTER TABLE films ADD COLUMN imdb_rating REAL;
-ALTER TABLE films ADD COLUMN kp_rating REAL;
-ALTER TABLE films ADD COLUMN trailer_url TEXT;
-ALTER TABLE films ADD COLUMN poster_url TEXT;
-ALTER TABLE films ADD COLUMN year INTEGER;
-"""
+MONTHS_RU = {
+    'января': 1, 'февраля': 2, 'марта': 3, 'апреля': 4,
+    'мая': 5, 'июня': 6, 'июля': 7, 'августа': 8,
+    'сентября': 9, 'октября': 10, 'ноября': 11, 'декабря': 12
+}
 
-async def ensure_columns(db_conn):
-    # Add columns if not exist (best-effort)
-    cur = db_conn.execute("PRAGMA table_info(films)")
-    cols = {row[1] for row in cur.fetchall()}
-    missing = []
-    if 'imdb_rating' not in cols: missing.append('imdb_rating REAL')
-    if 'kp_rating' not in cols: missing.append('kp_rating REAL')
-    if 'trailer_url' not in cols: missing.append('trailer_url TEXT')
-    if 'poster_url' not in cols: missing.append('poster_url TEXT')
-    if 'year' not in cols: missing.append('year INTEGER')
-    if missing:
-        db_conn.execute(f"ALTER TABLE films ADD COLUMN {missing[0]}")
-        for col in missing[1:]:
-            db_conn.execute(f"ALTER TABLE films ADD COLUMN {col}")
-        db_conn.commit()
-
-# ---- Parsers ----
+def _log(diag: list, msg: str):
+    # push into diag list if provided
+    if diag is not None:
+        diag.append(msg)
 
 def parse_poster(soup: BeautifulSoup) -> Optional[str]:
     img = soup.select_one('img[alt*="постер" i], img[alt*="poster" i], [class*="poster"] img, img[data-src]')
     if img:
         return img.get('src') or img.get('data-src')
-    # hero video poster attribute
     video = soup.select_one('video[poster]')
     if video:
         return video.get('poster')
     return None
 
 async def fetch_json(session, url, headers=None):
-    async with session.get(url, headers=headers) as resp:
-        if resp.status != 200:
-            return None
-        try:
-            return await resp.json()
-        except Exception:
-            return None
+    t0 = time.perf_counter()
+    try:
+        async with session.get(url, headers=headers) as resp:
+            status = resp.status
+            data = None
+            try:
+                data = await resp.json()
+            except Exception:
+                data = None
+            dt = time.perf_counter() - t0
+            return status, data, dt
+    except Exception:
+        dt = time.perf_counter() - t0
+        return -1, None, dt
 
-async def find_trailer_youtube(session, title: str, year: Optional[int]):
+async def find_trailer_youtube(session, title: str, year: Optional[int], diag=None):
     if not YOUTUBE_API_KEY:
         return None
     q = f"{title} трейлер"
     if year: q += f" {year}"
-    params = urlencode({
-        'part': 'snippet',
-        'q': q,
-        'type': 'video',
-        'maxResults': 1,
-        'key': YOUTUBE_API_KEY,
-        'safeSearch': 'none'
-    })
+    params = urlencode({'part':'snippet','q':q,'type':'video','maxResults':1,'key':YOUTUBE_API_KEY,'safeSearch':'none'})
     url = f"https://www.googleapis.com/youtube/v3/search?{params}"
-    data = await fetch_json(session, url)
+    status, data, dt = await fetch_json(session, url)
     await asyncio.sleep(API_COOLDOWN)
-    if not data or not data.get('items'):
-        return None
-    vid = data['items'][0]['id'].get('videoId')
+    vid = None
+    if data and data.get('items'):
+        vid = data['items'][0]['id'].get('videoId')
+    _log(diag, f"[API] YT q='{q}' status={status} videoId={vid or '-'} t={dt:.2f}s")
     return f"https://www.youtube.com/watch?v={vid}" if vid else None
 
-async def get_imdb_rating(session, title: str, year: Optional[int]):
+async def get_imdb_rating(session, title: str, year: Optional[int], diag=None):
     if not OMDB_API_KEY:
         return None
     params = urlencode({'apikey': OMDB_API_KEY, 't': title, **({'y': year} if year else {})})
     url = f"http://www.omdbapi.com/?{params}"
-    data = await fetch_json(session, url)
+    status, data, dt = await fetch_json(session, url)
     await asyncio.sleep(API_COOLDOWN)
+    rating = None
     try:
-        rating = data and data.get('imdbRating')
-        return float(rating) if rating and rating != 'N/A' else None
+        r = data and data.get('imdbRating')
+        rating = float(r) if r and r != 'N/A' else None
     except Exception:
-        return None
+        rating = None
+    _log(diag, f"[API] OMDb title='{title}' year={year or '-'} status={status} imdb={rating or '-'} t={dt:.2f}s")
+    return rating
 
-async def get_kp_rating(session, title: str):
+async def get_kp_rating(session, title: str, diag=None):
     if not KINOPOISK_API_KEY:
         return None
     headers = { 'X-API-KEY': KINOPOISK_API_KEY }
     url = f"https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword={title}"
-    data = await fetch_json(session, url, headers=headers)
+    status, data, dt = await fetch_json(session, url, headers=headers)
     await asyncio.sleep(API_COOLDOWN)
+    rating = None
     try:
         films = data and data.get('films') or []
-        if not films:
-            return None
-        rating = films[0].get('rating')
-        return float(rating) if rating not in (None, 'null', 'N/A', '—') else None
+        if films:
+            r = films[0].get('rating')
+            rating = float(r) if r not in (None, 'null', 'N/A', '—') else None
     except Exception:
-        return None
+        rating = None
+    _log(diag, f"[API] KP title='{title}' status={status} kp={rating or '-'} t={dt:.2f}s")
+    return rating
 
 def parse_year(soup: BeautifulSoup) -> Optional[int]:
     meta = soup.get_text(" ", strip=True)
     m = re.search(r"\b(19|20)\d{2}\b", meta)
     return int(m.group(0)) if m else None
 
-def parse_prices(soup: BeautifulSoup) -> Optional[int]:
+def parse_prices(soup: BeautifulSoup, diag=None) -> Optional[int]:
     prices = []
     for el in soup.select('a,span,div'):
         txt = el.get_text(" ", strip=True)
@@ -132,26 +120,25 @@ def parse_prices(soup: BeautifulSoup) -> Optional[int]:
                     prices.append(val)
             except ValueError:
                 pass
-    return int(sum(prices)/len(prices)) if prices else None
+    avg = int(sum(prices)/len(prices)) if prices else None
+    _log(diag, f"[PRICE] found={len(prices)} avg={avg or '-'}")
+    return avg
 
-async def enrich_film(session: aiohttp.ClientSession, film, detail_soup: BeautifulSoup, date_soup: BeautifulSoup):
-    # Poster
+async def enrich_film(session: aiohttp.ClientSession, film, detail_soup: BeautifulSoup, date_soup: BeautifulSoup, diag: list=None):
     film.poster_url = parse_poster(detail_soup)
-    # Year
+    _log(diag, f"[POSTER] url={film.poster_url or '-'}")
     film.year = parse_year(detail_soup)
-    # Trailer: prefer on-page video
-    vid = detail_soup.select_one('video[src]')
-    film.trailer_url = (vid and vid.get('src')) or None
+    afisha_tr = detail_soup.select_one('video[src]')
+    film.trailer_url = (afisha_tr and afisha_tr.get('src')) or None
+    _log(diag, f"[TRAILER] afisha={'1' if film.trailer_url else '0'} url={film.trailer_url or '-'}")
     if not film.trailer_url:
-        film.trailer_url = await find_trailer_youtube(session, film.title, film.year)
-    # Ratings
-    film.imdb_rating = await get_imdb_rating(session, film.title, film.year)
-    film.kp_rating = await get_kp_rating(session, film.title)
-    # Average price
-    film.avg_price = parse_prices(date_soup)
+        film.trailer_url = await find_trailer_youtube(session, film.title, film.year, diag)
+    film.imdb_rating = await get_imdb_rating(session, film.title, film.year, diag)
+    film.kp_rating = await get_kp_rating(session, film.title, diag)
+    film.avg_price = parse_prices(date_soup, diag)
     return film
 
-# ---- ICS extension (snippet idea) ----
+from urllib.parse import urljoin as _u
 
 def build_description(f):
     parts = []
@@ -163,6 +150,6 @@ def build_description(f):
     if f.description: parts.append("\n" + f.description)
     if f.trailer_url: parts.append("\nТрейлер: " + f.trailer_url)
     if f.poster_url: parts.append("\nПостер: " + f.poster_url)
-    more_url = urljoin(BASE, f"/prm/schedule_cinema_product/{f.slug}/")
+    more_url = _u(BASE, f"/prm/schedule_cinema_product/{f.slug}/")
     parts.append("\nПодробнее: " + more_url)
     return "\n".join(parts)
