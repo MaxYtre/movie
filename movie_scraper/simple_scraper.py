@@ -19,6 +19,7 @@ from icalendar import Calendar, Event
 
 from movie_scraper.patches.enrichment import enrich_film, build_description
 from movie_scraper.patches.parse_first_day_new_fix import parse_first_day_new
+from movie_scraper.patches.migration import ensure_enrichment_columns
 
 LOG_LEVEL = os.getenv("MOVIE_SCRAPER_LOG_LEVEL", "DEBUG").upper()
 USER_AGENT_BASE = os.getenv("MOVIE_SCRAPER_USER_AGENT", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0 Safari/537.36")
@@ -226,6 +227,7 @@ async def scrape() -> Tuple[List['Film'], dict]:
 
         processed: List[Film] = []
         db = CacheDB(CACHE_DB)
+        ensure_enrichment_columns(db.conn)
         for i, f in enumerate(films, 1):
             date_url = urljoin(BASE, f"/prm/schedule_cinema_product/{f.slug}/")
             stats["region"].append((f.slug, date_url))
