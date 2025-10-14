@@ -85,7 +85,7 @@ jobs:
         python -m py_compile movie_scraper/simple_scraper.py
         echo "[WF] Starting scraper main()…"
         python - <<'PY'
-        import asyncio, sys, time
+        import asyncio, sys, time, os
         sys.path.insert(0, '.')
         from movie_scraper.simple_scraper import scrape, write_ics, write_index, write_diag, BASE
         from pathlib import Path
@@ -111,7 +111,9 @@ jobs:
           print('[STAGE] WRITE_DIAG start')
           diag.append(f"SUMMARY candidates_processed={len(films)}")
           diag.append('=== DIAG COPY START ===')
-          diag.append(f"limit={{{}}} foreign_films={len(films)} 429={stats['429']} 403={stats['403']} cache_hits={stats['cache_hits']} cache_misses={stats['cache_misses']} sleep_total={stats['sleep_total']:.1f}".format('${{ env.MOVIE_SCRAPER_MAX_FILMS }}'))
+          max_films = os.getenv('MOVIE_SCRAPER_MAX_FILMS','200')
+          diag.append("limit=%s foreign_films=%d 429=%d 403=%d cache_hits=%d cache_misses=%d sleep_total=%.1f" % (
+            max_films, len(films), stats['429'], stats['403'], stats['cache_hits'], stats['cache_misses'], stats['sleep_total']))
           write_diag(docs, diag)
           print('[STAGE] WRITE_DIAG done')
         asyncio.run(run())
