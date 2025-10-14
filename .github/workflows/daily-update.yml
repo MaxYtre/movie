@@ -4,6 +4,15 @@ on:
   schedule:
     - cron: '0 6 * * *'
   workflow_dispatch:
+    inputs:
+      CLEAR_CACHE:
+        description: 'Delete data/cache.sqlite before run'
+        required: false
+        default: 'false'
+      MAX_FILMS:
+        description: 'Limit number of films to scan'
+        required: false
+        default: '200'
   push:
     branches: [ main ]
     paths:
@@ -28,10 +37,27 @@ jobs:
       with:
         python-version: '3.11'
 
-    - name: Ensure data dir and show cache status
+    - name: Prepare data dir and optionally clear cache
       run: |
         mkdir -p data
+        if [ "${{ github.event.inputs.CLEAR_CACHE }}" = "true" ]; then
+          echo "Clearing cache.sqlite by request"
+          rm -f data/cache.sqlite || true
+        fi
         if [ -f data/cache.sqlite ]; then echo "CACHE_PRESENT"; else echo "CACHE_ABSENT"; fi
+
+    - name: Sanity check (imports & required functions)
+      run: |
+        python - <<'PY'
+        import importlib, sys
+        sys.path.insert(0, '.')
+        m = importlib.import_module('movie_scraper.simple_scraper')
+        required = ['parse_item_name']
+        missing = [x for x in required if not hasattr(m, x)]
+        if missing:
+          raise SystemExit(f"Missing required functions: {missing}")
+        print('Sanity OK')
+        PY
 
     - name: Install dependencies
       run: |
@@ -42,25 +68,28 @@ jobs:
     - name: Run scraper (TTL=15 days)
       env:
         PYTHONPATH: .
-        MOVIE_SCRAPER_LOG_LEVEL: DEBUG
-        MOVIE_SCRAPER_MAX_FILMS: "200"
+        MOVIE_SCRAPER_LOG_LEVEL: INFO
+        MOVIE_SCRAPER_MAX_FILMS: "${{ github.event.inputs.MAX_FILMS || '200' }}"
         MOVIE_SCRAPER_RATE_LIMIT: "5.0"
         MOVIE_SCRAPER_CACHE_TTL_DAYS: "15"
+        OMDB_API_KEY: ${{ secrets.OMDB_API_KEY }}
+        YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        KINOPOISK_API_KEY: ${{ secrets.KINOPOISK_API_KEY }}
       run: |
         set -euo pipefail
         python -m py_compile movie_scraper/simple_scraper.py
-        python -c "
+        python - <<'PY'
         import asyncio, sys
         sys.path.insert(0, '.')
         from movie_scraper.simple_scraper import main
         asyncio.run(main())
-        "
+        PY
 
     - name: Show DIAG COPY block
       if: always()
       run: |
-        echo "--- DIAG COPY ---"
-        if [ -f docs/diag.txt ]; then tail -n 200 docs/diag.txt; else echo "no diag.txt"; fi
+        echo "--- DIAG COPY (main) ---"
+        if [ -f docs/diag.txt ]; then tail -n 300 docs/diag.txt; else echo "no diag.txt"; fi
         echo "--- END DIAG ---"
 
     - name: List artifacts and cache
