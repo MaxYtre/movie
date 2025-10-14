@@ -1,11 +1,11 @@
 """
-Enrichment module: add detailed DIAG logging for API calls, prices, poster, trailer.
+Enrichment module: update Kinopoisk to api.kinopoisk.dev v1.4 search endpoint; keep detailed DIAG logging.
 """
 
 import os, re, asyncio, json, time
 from datetime import date
 from typing import Optional
-from urllib.parse import urlencode, urljoin
+from urllib.parse import urlencode, urljoin, quote_plus
 
 import aiohttp
 from bs4 import BeautifulSoup
@@ -23,7 +23,6 @@ MONTHS_RU = {
 }
 
 def _log(diag: list, msg: str):
-    # push into diag list if provided
     if diag is not None:
         diag.append(msg)
 
@@ -87,18 +86,21 @@ async def get_kp_rating(session, title: str, diag=None):
     if not KINOPOISK_API_KEY:
         return None
     headers = { 'X-API-KEY': KINOPOISK_API_KEY }
-    url = f"https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword={title}"
+    q = quote_plus(title)
+    # Новый официальный endpoint kinopoisk.dev v1.4
+    url = f"https://api.kinopoisk.dev/v1.4/movie/search?page=1&limit=3&query={q}"
     status, data, dt = await fetch_json(session, url, headers=headers)
     await asyncio.sleep(API_COOLDOWN)
     rating = None
     try:
-        films = data and data.get('films') or []
-        if films:
-            r = films[0].get('rating')
-            rating = float(r) if r not in (None, 'null', 'N/A', '—') else None
+        docs = data and data.get('docs') or []
+        if docs:
+            r = docs[0].get('rating') or {}
+            kp = r.get('kp')
+            rating = float(kp) if kp not in (None, 'null', 'N/A', '—') else None
     except Exception:
         rating = None
-    _log(diag, f"[API] KP title='{title}' status={status} kp={rating or '-'} t={dt:.2f}s")
+    _log(diag, f"[API] KP.dev title='{title}' status={status} kp={rating or '-'} t={dt:.2f}s")
     return rating
 
 def parse_year(soup: BeautifulSoup) -> Optional[int]:
