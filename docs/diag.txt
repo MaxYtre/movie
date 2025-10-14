@@ -1,16 +1,16 @@
 BOOT py=3.11.13 ua=Mozilla/5.0 (Windows NT 10.0; … proxy=off
 SUMMARY candidates_processed=1
 === DIAG COPY START ===
-limit=5 foreign_films=1 429=0 403=0 cache_hits=0 cache_misses=0 sleep_total=33.1
-429_backoffs=31.7s,61.9s,30.8s,31.8s,61.9s
-REGION illyuziya-obmana-3-308835 date_url=https://www.afisha.ru/prm/schedule_cinema_product/illyuziya-obmana-3-308835/
+limit=5 foreign_films=1 429=0 403=0 cache_hits=0 cache_misses=0 sleep_total=33.4
+429_backoffs=30.8s,31.2s,30.5s,31.0s,31.8s
 REGION cheburashka-2-295278 date_url=https://www.afisha.ru/prm/schedule_cinema_product/cheburashka-2-295278/
 REGION alisa-v-strane-chudes-308954 date_url=https://www.afisha.ru/prm/schedule_cinema_product/alisa-v-strane-chudes-308954/
+REGION illyuziya-obmana-3-308835 date_url=https://www.afisha.ru/prm/schedule_cinema_product/illyuziya-obmana-3-308835/
 REGION avgust-308206 date_url=https://www.afisha.ru/prm/schedule_cinema_product/avgust-308206/
 REGION buratino-295155 date_url=https://www.afisha.ru/prm/schedule_cinema_product/buratino-295155/
-NEW-SELECTORS illyuziya-obmana-3-308835 country=item-meta age=table desc=object-desc date=calendar
 NEW-SELECTORS cheburashka-2-295278 country=item-meta age=table desc=object-desc date=calendar
 NEW-SELECTORS alisa-v-strane-chudes-308954 country=item-meta age=table desc=object-desc date=calendar
+NEW-SELECTORS illyuziya-obmana-3-308835 country=item-meta age=table desc=object-desc date=calendar
 NEW-SELECTORS avgust-308206 country=item-meta age=table desc=object-desc date=calendar
 NEW-SELECTORS buratino-295155 country=item-meta age=table desc=object-desc date=calendar
 REASON cheburashka-2-295278 NOT_FOREIGN
