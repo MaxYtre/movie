@@ -28,24 +28,24 @@ jobs:
       with:
         python-version: '3.11'
 
-    - name: Restore cache.sqlite from Git cache (if present)
+    - name: Ensure data dir and show cache status
       run: |
         mkdir -p data
-        if [ -f data/cache.sqlite ]; then echo "cache.sqlite already present"; else echo "no cache yet"; fi
+        if [ -f data/cache.sqlite ]; then echo "CACHE_PRESENT"; else echo "CACHE_ABSENT"; fi
 
-    - name: Install project with deps
+    - name: Install dependencies
       run: |
         set -euo pipefail
         python -m pip install --upgrade pip
-        pip install aiohttp beautifulsoup4 lxml icalendar python-dateutil pytz aiosqlite pydantic pydantic-settings
+        pip install aiohttp beautifulsoup4 lxml icalendar python-dateutil pytz aiosqlite
 
-    - name: Run scraper and generate calendar (with cache)
+    - name: Run scraper (TTL=15 days)
       env:
         PYTHONPATH: .
         MOVIE_SCRAPER_LOG_LEVEL: DEBUG
         MOVIE_SCRAPER_MAX_FILMS: "5"
         MOVIE_SCRAPER_RATE_LIMIT: "5.0"
-        MOVIE_SCRAPER_CACHE_TTL_DAYS: "3"
+        MOVIE_SCRAPER_CACHE_TTL_DAYS: "15"
       run: |
         set -euo pipefail
         python -m py_compile movie_scraper/simple_scraper.py
@@ -83,6 +83,6 @@ jobs:
         if git diff --staged --quiet; then
           echo "No changes to commit"
         else
-          git commit -m "Update docs (index, .ics, diag) and cache.sqlite"
+          git commit -m "Update docs & cache.sqlite (TTL=15d)"
           git push origin HEAD:main
         fi
