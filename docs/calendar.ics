@@ -7,4 +7,23 @@ X-WR-CALDESC:Иностранные фильмы\, идущие в кин
  отеатрах Перми. Обновляется ежедневно.
 X-WR-CALNAME:Зарубежные фильмы в кинотеатрах 
  Перми
+BEGIN:VEVENT
+SUMMARY:Иллюзия обмана-3 (12+)
+DTSTART;VALUE=DATE:20251114
+DTEND;VALUE=DATE:20251114
+DTSTAMP:20251014T041801Z
+UID:illyuziya-obmana-3-308835-2025-11-14@perm-cinema
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+DESCRIPTION:Страна: США\n\nОписание: Карты\, фок
+ усы и деньги Триквел «Иллюзии обмана» — 
+ кажется\, не самое очевидное продолжение
+  сезона. За постановку взялся Рубен Флей
+ шер. По сюжету группа мошенников-иллюзио
+ нистов снова выходит на арену. За сценар
+ ий в ответе Сет Грэм-Сит («Гордость и пре
+ дубеждение и зомби»).\n\nПодробнее: https://www.
+ afisha.ru/prm/schedule_cinema_product/illyuziya-obmana-3-308835/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/illyuziya-obmana-3-3
+ 08835/
+END:VEVENT
 END:VCALENDAR
