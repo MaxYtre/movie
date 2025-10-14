@@ -1,0 +1,17 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Perm Foreign Films//perm-cinema//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Зарубежные фильмы в кинотеатрах Перми
+X-WR-CALDESC:Иностранные фильмыь идущие в кинотеатрах Перми. Обновляется ежедневно.
+BEGIN:VEVENT
+UID:test-film-20251015@perm-cinema
+DTSTART;VALUE=DATE:20251015
+DTEND;VALUE=DATE:20251015
+DTSTAMP:20251014T064200Z
+SUMMARY:Тестовый иностранный фильм
+DESCRIPTION:Страна: США\nОписание: Это тестовое событие для проверки работы календаря. Календарь будет обновляться автоматически каждый день.
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+END:VEVENT
+END:VCALENDAR
