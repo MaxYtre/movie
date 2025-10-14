@@ -28,24 +28,24 @@ jobs:
       with:
         python-version: '3.11'
 
+    - name: Restore cache.sqlite from Git cache (if present)
+      run: |
+        mkdir -p data
+        if [ -f data/cache.sqlite ]; then echo "cache.sqlite already present"; else echo "no cache yet"; fi
+
     - name: Install project with deps
       run: |
         set -euo pipefail
         python -m pip install --upgrade pip
-        pip install -e . || true
-        pip install aiohttp beautifulsoup4 lxml icalendar python-dateutil pytz aiosqlite pydantic pydantic-settings structlog tenacity httpx
+        pip install aiohttp beautifulsoup4 lxml icalendar python-dateutil pytz aiosqlite pydantic pydantic-settings
 
-    - name: Ensure docs and data dir exist
-      run: |
-        mkdir -p docs
-        mkdir -p data
-
-    - name: Run scraper and generate calendar (limit=5)
+    - name: Run scraper and generate calendar (with cache)
       env:
         PYTHONPATH: .
         MOVIE_SCRAPER_LOG_LEVEL: DEBUG
         MOVIE_SCRAPER_MAX_FILMS: "5"
         MOVIE_SCRAPER_RATE_LIMIT: "5.0"
+        MOVIE_SCRAPER_CACHE_TTL_DAYS: "3"
       run: |
         set -euo pipefail
         python -m py_compile movie_scraper/simple_scraper.py
@@ -63,24 +63,26 @@ jobs:
         if [ -f docs/diag.txt ]; then tail -n 200 docs/diag.txt; else echo "no diag.txt"; fi
         echo "--- END DIAG ---"
 
-    - name: List docs artifacts
+    - name: List artifacts and cache
       if: always()
       run: |
         ls -la docs || true
+        ls -la data || true
         test -f docs/calendar.ics && echo "ICS_OK" || echo "ICS_MISS"
         test -f docs/index.html && echo "INDEX_OK" || echo "INDEX_MISS"
+        test -f data/cache.sqlite && echo "CACHE_OK" || echo "CACHE_MISS"
 
-    - name: Commit and push docs to main (for Pages main/docs)
+    - name: Commit and push docs and cache to main
       if: github.ref == 'refs/heads/main'
       run: |
         set -euo pipefail
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
         git pull --ff-only
-        git add docs/
+        git add docs/ data/cache.sqlite
         if git diff --staged --quiet; then
-          echo "No changes in docs to commit"
+          echo "No changes to commit"
         else
-          git commit -m "Update cinema calendar docs (index.html, calendar.ics, diag.txt)"
+          git commit -m "Update docs (index, .ics, diag) and cache.sqlite"
           git push origin HEAD:main
         fi
