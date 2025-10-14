@@ -1,0 +1,75 @@
+name: Daily Cinema Calendar Update
+
+on:
+  schedule:
+    # Запуск каждый день в 06:00 UTC (11:00 по времени Перми)
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+    # Возможность запуска вручную
+  push:
+    branches: [ main ]
+    paths:
+      - 'movie_scraper/**'
+      - '.github/workflows/**'
+
+jobs:
+  update-calendar:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Python 3.11
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install aiohttp beautifulsoup4 icalendar python-dateutil pytz aiosqlite
+        
+    - name: Create data directory
+      run: mkdir -p docs
+      
+    - name: Run scraper and generate calendar
+      env:
+        PYTHONPATH: .
+      run: |
+        python -c "
+        import asyncio
+        import sys
+        import os
+        sys.path.insert(0, '.')
+        
+        from movie_scraper.simple_scraper import main
+        
+        asyncio.run(main())
+        "
+        
+    - name: Commit and push if calendar changed
+      run: |
+        git config --local user.email '151587717+MaxYtre@users.noreply.github.com'
+        git config --local user.name 'MaxYtre'
+        
+        if [ -f docs/calendar.ics ]; then
+          git add docs/calendar.ics
+          
+          if git diff --staged --quiet; then
+            echo "No changes to calendar"
+          else
+            git commit -m "Update cinema calendar - $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+            git push
+          fi
+        else
+          echo "No calendar file generated"
+        fi
+        
+    - name: Deploy to GitHub Pages
+      if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs
+        cname: false
