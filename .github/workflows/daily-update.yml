@@ -44,7 +44,7 @@ jobs:
       env:
         PYTHONPATH: .
         MOVIE_SCRAPER_LOG_LEVEL: DEBUG
-        MOVIE_SCRAPER_MAX_FILMS: "500"
+        MOVIE_SCRAPER_MAX_FILMS: "5"
         MOVIE_SCRAPER_RATE_LIMIT: "5.0"
       run: |
         set -euo pipefail
