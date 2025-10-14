@@ -13,6 +13,8 @@ on:
 jobs:
   update-calendar:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
@@ -24,18 +26,20 @@ jobs:
 
     - name: Install project with deps
       run: |
+        set -euo pipefail
         python -m pip install --upgrade pip
-        pip install -e .
-        # Fallback: install runtime deps explicitly (in case editable fails)
-        pip install aiohttp beautifulsoup4 icalendar python-dateutil pytz aiosqlite pydantic pydantic-settings structlog tenacity lxml httpx
+        pip install -e . || true
+        pip install aiohttp beautifulsoup4 lxml icalendar python-dateutil pytz aiosqlite pydantic pydantic-settings structlog tenacity httpx
 
-    - name: Create docs directory
+    - name: Ensure docs dir exists
       run: mkdir -p docs
 
-    - name: Run scraper and generate calendar
+    - name: Run scraper and generate calendar (diagnostic mode)
       env:
         PYTHONPATH: .
+        MOVIE_SCRAPER_LOG_LEVEL: DEBUG
       run: |
+        set -euo pipefail
         python -c "
         import asyncio, sys
         sys.path.insert(0, '.')
@@ -43,26 +47,16 @@ jobs:
         asyncio.run(main())
         "
 
-    - name: Commit and push if calendar changed
+    - name: Show DIAG COPY block
+      if: always()
       run: |
-        git config --local user.email '151587717+MaxYtre@users.noreply.github.com'
-        git config --local user.name 'MaxYtre'
-        if [ -f docs/calendar.ics ]; then
-          git add docs/calendar.ics docs/index.html || true
-          if git diff --staged --quiet; then
-            echo "No changes to calendar"
-          else
-            git commit -m "Update cinema calendar - $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
-            git push
-          fi
-        else
-          echo "No calendar file generated"
-        fi
+        echo "--- DIAG COPY ---"
+        if [ -f docs/diag.txt ]; then tail -n 100 docs/diag.txt; else echo "no diag.txt"; fi
+        echo "--- END DIAG ---"
 
-    - name: Deploy to GitHub Pages
-      if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
-      uses: peaceiris/actions-gh-pages@v3
+    - name: Deploy to GitHub Pages (main/docs)
+      if: github.ref == 'refs/heads/main'
+      uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./docs
-        cname: false
