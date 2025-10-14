@@ -8,29 +8,29 @@ X-WR-CALDESC:Иностранные фильмы\, идущие в кин
 X-WR-CALNAME:Зарубежные фильмы в кинотеатрах 
  Перми
 BEGIN:VEVENT
-SUMMARY:Иллюзия обмана-3 (12+)
-DTSTART;VALUE=DATE:20251114
-DTEND;VALUE=DATE:20251114
-DTSTAMP:20251014T061834Z
-UID:illyuziya-obmana-3-308835-2025-11-14@perm-cinema
+SUMMARY:Дракула (18+)
+DTSTART;VALUE=DATE:20251015
+DTEND;VALUE=DATE:20251015
+DTSTAMP:20251014T070932Z
+UID:drakula-1000812-2025-10-15@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
-DESCRIPTION:Страна: США\n\nОписание: Карты\, фок
- усы и деньги Триквел «Иллюзии обмана» — 
- кажется\, не самое очевидное продолжение
-  сезона. За постановку взялся Рубен Флей
- шер. По сюжету группа мошенников-иллюзио
- нистов снова выходит на арену. За сценар
- ий в ответе Сет Грэм-Сит («Гордость и пре
- дубеждение и зомби»).\n\nПодробнее: https://www.
- afisha.ru/prm/schedule_cinema_product/illyuziya-obmana-3-308835/
-URL:https://www.afisha.ru/prm/schedule_cinema_product/illyuziya-obmana-3-3
- 08835/
+DESCRIPTION:Страна: Великобритания\n\nОписание
+ : О фильме Принц Влад II\, граф Дракула\, жи
+ вет ради любви к своей жене\, принцессе Е
+ лизавете. Несравненная по красоте и добр
+ оте\, она — его воздух\, его кровь\, единст
+ венный смысл его существования. Вернувш
+ ись с победоносной войны\, которую он вел
+  во имя церкви\, принц узнает о смерти Ели
+ заветы. Убитый горем...\n\nПодробнее: https://ww
+ w.afisha.ru/prm/schedule_cinema_product/drakula-1000812/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/drakula-1000812/
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:Долгая прогулка (18+)
 DTSTART;VALUE=DATE:20251015
 DTEND;VALUE=DATE:20251015
-DTSTAMP:20251014T061834Z
+DTSTAMP:20251014T070932Z
 UID:dolgaya-progulka-1001088-2025-10-15@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:Страна: США\n\nОписание: О фильме Бу
@@ -47,10 +47,68 @@ URL:https://www.afisha.ru/prm/schedule_cinema_product/dolgaya-progulka-100
  1088/
 END:VEVENT
 BEGIN:VEVENT
+SUMMARY:Грабитель с крыши (16+)
+DTSTART;VALUE=DATE:20251015
+DTEND;VALUE=DATE:20251015
+DTSTAMP:20251014T070932Z
+UID:grabitel-s-kryshi-308410-2025-10-15@perm-cinema
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+DESCRIPTION:Страна: США\n\nОписание: О фильме Дж
+ еффри Манчестер\, прозванный за свои дер
+ зкие ограбления McDonald's «Грабитель с крыш
+ и»\, обнаруживает неожиданное убежище в 
+ магазине игрушек. Здесь\, казалось бы\, он
+  получает шанс перевести дух и залечь на 
+ дно. Но события начинают развиваться неп
+ редсказуемым образом\, когда Джефф влюбл
+ яется в...\n\nПодробнее: https://www.afisha.ru/prm/schedule
+ _cinema_product/grabitel-s-kryshi-308410/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/grabitel-s-kryshi-30
+ 8410/
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Зверопоезд (6+)
+DTSTART;VALUE=DATE:20251015
+DTEND;VALUE=DATE:20251015
+DTSTAMP:20251014T070932Z
+UID:zveropoezd-1001045-2025-10-15@perm-cinema
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+DESCRIPTION:Страна: Франция\n\nОписание: О филь
+ ме Команда животных оказывается в ловуш
+ ке\, когда высокоскоростной поезд неожид
+ анно трогается с места без людей на борт
+ у. Пока экспресс мчится на всех парах\, пи
+ томцы выясняют\, что произошедшее — дело
+  лапок злопамятного барсука Ханса. Тепер
+ ь у зверей остается последняя надежда пр
+ едотвратить ката...\n\nПодробнее: https://www.afis
+ ha.ru/prm/schedule_cinema_product/zveropoezd-1001045/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/zveropoezd-1001045/
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Эдем (18+)
+DTSTART;VALUE=DATE:20251015
+DTEND;VALUE=DATE:20251015
+DTSTAMP:20251014T070932Z
+UID:edem-1000775-2025-10-15@perm-cinema
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+DESCRIPTION:Страна: США\n\nОписание: О фильме В 1
+ 939 году один из Галапагосских островов с
+ тал пристанищем для горстки людей\, кото
+ рые больше не хотели жить в цивилизации. 
+ Но тонкий баланс был нарушен\, когда к ко
+ ммуне присоединилась скандальная Барон
+ есса. Ее интриги и жажда власти превраща
+ ют райскую обитель в остров страданий и 
+ заговоров...\n\nПодробнее: https://www.afisha.ru/prm/sch
+ edule_cinema_product/edem-1000775/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/edem-1000775/
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:Дом ада: Спуск к дьяволу (18+)
 DTSTART;VALUE=DATE:20251015
 DTEND;VALUE=DATE:20251015
-DTSTAMP:20251014T061834Z
+DTSTAMP:20251014T070932Z
 UID:dom-ada-spusk-k-dyavolu-1001202-2025-10-15@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:Страна: США\n\nОписание: О фильме Ва
@@ -67,11 +125,165 @@ URL:https://www.afisha.ru/prm/schedule_cinema_product/dom-ada-spusk-k-dyav
  olu-1001202/
 END:VEVENT
 BEGIN:VEVENT
+SUMMARY:Мир в огне (18+)
+DTSTART;VALUE=DATE:20251015
+DTEND;VALUE=DATE:20251015
+DTSTAMP:20251014T070932Z
+UID:mir-v-ogne-206394-2025-10-15@perm-cinema
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+DESCRIPTION:Страна: США\n\nОписание: Охотник за 
+ сокровищами отправляется на самое дерзк
+ ое ограбление своей жизни — ему предсто
+ ит украсть «Мону Лизу» Научно-фантастич
+ еское кино про приключения компании ава
+ нтюристов\, которые охотятся на постапок
+ алиптической Земле за уцелевшими шедевр
+ ами вроде «Моны Лизы» и Розеттского камн
+ я\, попутно разб...\n\nПодробнее: https://www.afisha.
+ ru/prm/schedule_cinema_product/mir-v-ogne-206394/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/mir-v-ogne-206394/
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Ужастики. Ожившие рисунки (12+)
+DTSTART;VALUE=DATE:20251015
+DTEND;VALUE=DATE:20251015
+DTSTAMP:20251014T070932Z
+UID:uzhastiki-ozhivshie-risunki-1001302-2025-10-15@perm-cinema
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+DESCRIPTION:Страна: США\n\nОписание: О фильме Ал
+ ьбом с рисунками 10-летней Эмбер случайно
+  падает в магический пруд с живой водой\, 
+ и все ее творения вдруг оживают. Но есть 
+ нюанс — Эмбер обожает рисовать всяких с
+ трашных монстров. Когда город начинают а
+ таковать ужастики всех мастей\, Эмбер и е
+ е семья должны объединиться и понять\, ка
+ к остан...\n\nПодробнее: https://www.afisha.ru/prm/schedule
+ _cinema_product/uzhastiki-ozhivshie-risunki-1001302/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/uzhastiki-ozhivshie-
+ risunki-1001302/
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Выход 8 (16+)
+DTSTART;VALUE=DATE:20251015
+DTEND;VALUE=DATE:20251015
+DTSTAMP:20251014T070932Z
+UID:vyhod-8-1000762-2025-10-15@perm-cinema
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+DESCRIPTION:Страна: Япония\n\nОписание: О фильм
+ е Главный герой оказывается заперт в бес
+ конечных переходах метро\, которые посте
+ пенно начинают сводить его с ума. Чтобы в
+ ыбраться из этого пугающего лабиринта\, 
+ ему нужно строго следовать правилам. Каж
+ дая ошибка отбрасывает его в самое начал
+ о пути. Выход откроется\, если ты сможешь 
+ сделать прави...\n\nПодробнее: https://www.afisha.ru/
+ prm/schedule_cinema_product/vyhod-8-1000762/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/vyhod-8-1000762/
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Астрал. Зеркала (18+)
+DTSTART;VALUE=DATE:20251015
+DTEND;VALUE=DATE:20251015
+DTSTAMP:20251014T070932Z
+UID:astral-zerkala-308646-2025-10-15@perm-cinema
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+DESCRIPTION:Страна: Индонезия\n\nОписание: О фи
+ льме Майя пытается связаться с умершим о
+ тцом\, проведя древний обряд с помощью ро
+ дового зеркала\, открывающего врата в по
+ тусторонний мир. Но общение с мертвыми и
+ меет свою цену...\n\nПодробнее: https://www.afisha.ru
+ /prm/schedule_cinema_product/astral-zerkala-308646/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/astral-zerkala-30864
+ 6/
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Изумительная Мокси (6+)
+DTSTART;VALUE=DATE:20251015
+DTEND;VALUE=DATE:20251015
+DTSTAMP:20251014T070932Z
+UID:izumitelnaya-moksi-1001083-2025-10-15@perm-cinema
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+DESCRIPTION:Страна: Нидерланды\n\nОписание: О ф
+ ильме Самоуверенная домашняя кошка Мокс
+ и осталась совсем одна в глуши на юге Фра
+ нции. Теперь ей надо найти дорогу домой к
+  хозяйке. Ее спутниками становятся те\, к
+ ого она раньше на дух не переносила: глуп
+ оватый пес и ворчливая птица. Их путешес
+ твие\, полное приключений\, помогает Мокс
+ и увидеть мир и ...\n\nПодробнее: https://www.afisha.
+ ru/prm/schedule_cinema_product/izumitelnaya-moksi-1001083/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/izumitelnaya-moksi-1
+ 001083/
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Ночь (16+)
+DTSTART;VALUE=DATE:20251015
+DTEND;VALUE=DATE:20251015
+DTSTAMP:20251014T070932Z
+UID:noch-172736-2025-10-15@perm-cinema
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+DESCRIPTION:Страна: Франция\n\nОписание: Двадца
+ ть четыре часа распадающихся семейных о
+ тношений Двадцать четыре часа распадающ
+ ихся семейных отношений: хроника чувств\
+ , эмоций\, сильных\, но туманных порывов. О
+ н — модный писатель\, переживающий творч
+ еский кризис. Она — светская дама\, тягот
+ имая грузом экзистенциальных проблем.\n\n
+ Подробнее: https://www.afisha.ru/prm/schedule_cinema_product/noch
+ -172736/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/noch-172736/
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Тафити. Приключения на краю света (6+)
+DTSTART;VALUE=DATE:20251015
+DTEND;VALUE=DATE:20251015
+DTSTAMP:20251014T070932Z
+UID:tafiti-priklyucheniya-na-krayu-sveta-1000678-2025-10-15@perm-cinema
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+DESCRIPTION:Страна: Германия\n\nОписание: О фил
+ ьме Беспечному и любознательному сурика
+ ту Тафити дедушка запрещает общаться с д
+ ругими животными и всегда повторяет: «Ми
+ р полон опасности. Держись своих!» Но слу
+ чай сводит Тафити с неуклюжей и болтливо
+ й свинкой Кисточкой. Мало того что сурик
+ ат свинье не товарищ\, так еще и Кисточка 
+ невольно стано...\n\nПодробнее: https://www.afisha.r
+ u/prm/schedule_cinema_product/tafiti-priklyucheniya-na-krayu-sveta-1000678
+ /
+URL:https://www.afisha.ru/prm/schedule_cinema_product/tafiti-priklyucheniy
+ a-na-krayu-sveta-1000678/
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Иллюзия обмана-3 (12+)
+DTSTART;VALUE=DATE:20251114
+DTEND;VALUE=DATE:20251114
+DTSTAMP:20251014T070932Z
+UID:illyuziya-obmana-3-308835-2025-11-14@perm-cinema
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+DESCRIPTION:Страна: США\n\nОписание: Карты\, фок
+ усы и деньги Триквел «Иллюзии обмана» — 
+ кажется\, не самое очевидное продолжение
+  сезона. За постановку взялся Рубен Флей
+ шер. По сюжету группа мошенников-иллюзио
+ нистов снова выходит на арену. За сценар
+ ий в ответе Сет Грэм-Сит («Гордость и пре
+ дубеждение и зомби»).\n\nПодробнее: https://www.
+ afisha.ru/prm/schedule_cinema_product/illyuziya-obmana-3-308835/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/illyuziya-obmana-3-3
+ 08835/
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:Пункт назначения: Смертельная игра (
  18+)
 DTSTART;VALUE=DATE:20251015
 DTEND;VALUE=DATE:20251015
-DTSTAMP:20251014T061834Z
+DTSTAMP:20251014T070932Z
 UID:punkt-naznacheniya-smertelnaya-igra-1001008-2025-10-15@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:Страна: Новая Зеландия\n\nОписание:
@@ -89,61 +301,238 @@ URL:https://www.afisha.ru/prm/schedule_cinema_product/punkt-naznacheniya-s
  mertelnaya-igra-1001008/
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Выход 8 (16+)
+SUMMARY:Неизвестный Джон Леннон (18+)
 DTSTART;VALUE=DATE:20251015
 DTEND;VALUE=DATE:20251015
-DTSTAMP:20251014T061834Z
-UID:vyhod-8-1000762-2025-10-15@perm-cinema
+DTSTAMP:20251014T070932Z
+UID:neizvestniy-dzhon-lennon-1000104-2025-10-15@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
-DESCRIPTION:Страна: Япония\n\nОписание: О фильм
- е Главный герой оказывается заперт в бес
- конечных переходах метро\, которые посте
- пенно начинают сводить его с ума. Чтобы в
- ыбраться из этого пугающего лабиринта\, 
- ему нужно строго следовать правилам. Каж
- дая ошибка отбрасывает его в самое начал
- о пути. Выход откроется\, если ты сможешь 
- сделать прави...\n\nПодробнее: https://www.afisha.ru/
- prm/schedule_cinema_product/vyhod-8-1000762/
-URL:https://www.afisha.ru/prm/schedule_cinema_product/vyhod-8-1000762/
+DESCRIPTION:Страна: Великобритания\n\nОписание
+ : О фильме Взгляд на жизнь основателя «Би
+ тлз» Джона Леннона\, символа целого поко
+ ления и одного из самых влиятельных деят
+ елей поп-культуры всех времен. Уникальны
+ е кадры и интервью\, открывающие детали н
+ еизвестной жизни кумира миллионов\, и по
+ дробности мирового тура воссоединения «
+ Битлз»\, который так и не...\n\nПодробнее: htt
+ ps://www.afisha.ru/prm/schedule_cinema_product/neizvestniy-dzhon-lennon-10
+ 00104/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/neizvestniy-dzhon-le
+ nnon-1000104/
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Мир в огне (18+)
+SUMMARY:Звонок. Последняя сессия (18+)
 DTSTART;VALUE=DATE:20251015
 DTEND;VALUE=DATE:20251015
-DTSTAMP:20251014T061834Z
-UID:mir-v-ogne-206394-2025-10-15@perm-cinema
+DTSTAMP:20251014T070932Z
+UID:zvonok-poslednyaya-sessiya-1001168-2025-10-15@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
-DESCRIPTION:Страна: США\n\nОписание: Охотник за 
- сокровищами отправляется на самое дерзк
- ое ограбление своей жизни — ему предсто
- ит украсть «Мону Лизу» Научно-фантастич
- еское кино про приключения компании ава
- нтюристов\, которые охотятся на постапок
- алиптической Земле за уцелевшими шедевр
- ами вроде «Моны Лизы» и Розеттского камн
- я\, попутно разб...\n\nПодробнее: https://www.afisha.
- ru/prm/schedule_cinema_product/mir-v-ogne-206394/
-URL:https://www.afisha.ru/prm/schedule_cinema_product/mir-v-ogne-206394/
+DESCRIPTION:Страна: Южная Корея\n\nОписание: О ф
+ ильме Не блещущая оценками старшеклассн
+ ица Чи-ён случайно посмотрела кассету 1998
+  года\, где ее предшественницы играют в ш
+ коле в прятки с призраком. Девушка выясн
+ яет\, что все они получили высший балл на 
+ экзамене\, а также что раз она видела зап
+ ись\, теперь ей нужно сыграть с призраком
+  или он будет е...\n\nПодробнее: https://www.afisha.ru
+ /prm/schedule_cinema_product/zvonok-poslednyaya-sessiya-1001168/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/zvonok-poslednyaya-s
+ essiya-1001168/
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Грабитель с крыши (16+)
+SUMMARY:Глазами пса (16+)
+DTSTART;VALUE=DATE:20251016
+DTEND;VALUE=DATE:20251016
+DTSTAMP:20251014T070932Z
+UID:glazami-psa-1001734-2025-10-16@perm-cinema
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+DESCRIPTION:Страна: США\n\nОписание: О фильме Пр
+ еданный пес Инди переезжает вместе со св
+ оим хозяином Тоддом в старый загородный 
+ дом\, в тенях которого вскоре проступают 
+ зловещие сверхъестественные силы. Когда
+  они начинают угрожать Тодду\, отважный И
+ нди вступает в схватку со злом\, чтобы за
+ щитить самого дорогого человека на свет
+ е.\n\nПодробнее: https://www.afisha.ru/prm/schedule_cinema_produ
+ ct/glazami-psa-1001734/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/glazami-psa-1001734/
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Кролик Момо: Большая погоня (6+)
 DTSTART;VALUE=DATE:20251015
 DTEND;VALUE=DATE:20251015
-DTSTAMP:20251014T061834Z
-UID:grabitel-s-kryshi-308410-2025-10-15@perm-cinema
+DTSTAMP:20251014T070932Z
+UID:krolik-momo-bolshaya-pogonya-1001785-2025-10-15@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
-DESCRIPTION:Страна: США\n\nОписание: О фильме Дж
- еффри Манчестер\, прозванный за свои дер
- зкие ограбления McDonald's «Грабитель с крыш
- и»\, обнаруживает неожиданное убежище в 
- магазине игрушек. Здесь\, казалось бы\, он
-  получает шанс перевести дух и залечь на 
- дно. Но события начинают развиваться неп
- редсказуемым образом\, когда Джефф влюбл
- яется в...\n\nПодробнее: https://www.afisha.ru/prm/schedule
- _cinema_product/grabitel-s-kryshi-308410/
-URL:https://www.afisha.ru/prm/schedule_cinema_product/grabitel-s-kryshi-30
- 8410/
+DESCRIPTION:Страна: Турция\n\nОписание: О фильм
+ е Когда торговцы экзотическими животным
+ и похищают талантливую скрипачку Юми\, м
+ ир Поющего леса рушится. Ее верный друг 
+ — умный и отважный кролик Момо — отправ
+ ляется на поиски в большой город\, полный
+  опасностей и неожиданных союзников. Там
+  Момо знакомится с уличным котенком Тень
+ ком\, и вместе он...\n\nПодробнее: https://www.afisha
+ .ru/prm/schedule_cinema_product/krolik-momo-bolshaya-pogonya-1001785/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/krolik-momo-bolshaya
+ -pogonya-1001785/
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Эддингтон (18+)
+DTSTART;VALUE=DATE:20251017
+DTEND;VALUE=DATE:20251017
+DTSTAMP:20251014T070932Z
+UID:eddington-1000802-2025-10-17@perm-cinema
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+DESCRIPTION:Страна: США\n\nОписание: О фильме Ма
+ й 2020 года. В тихом провинциальном Эддинг
+ тоне вспыхивает жесткое противостояние 
+ между городским шерифом Джо Кроссом (Хоа
+ кин Феникс) и мэром Тэдом Гарсиа (Педро П
+ аскаль)\, задумавшим грандиозный проект 
+ — возведение масштабного центра по обра
+ ботке данных на базе искусственного инт
+ еллекта. Н...\n\nПодробнее: https://www.afisha.ru/prm/sch
+ edule_cinema_product/eddington-1000802/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/eddington-1000802/
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Опасные связи (18+)
+DTSTART;VALUE=DATE:20251016
+DTEND;VALUE=DATE:20251016
+DTSTAMP:20251014T070932Z
+UID:opasnye-svyazi-1001085-2025-10-16@perm-cinema
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+DESCRIPTION:Страна: США\n\nОписание: О фильме Дв
+ е молодые пары по ошибке забронировали о
+ дин загородный особняк на уикенд. Чтобы 
+ не отменять кратковременный отпуск\, они
+  решают провести его под одной крышей с н
+ езнакомцами. Когда гости открывают пота
+ йную комнату и находят в ней массу рекви
+ зита для взрослых игр\, новое знакомство 
+ превращает...\n\nПодробнее: https://www.afisha.ru/prm/s
+ chedule_cinema_product/opasnye-svyazi-1001085/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/opasnye-svyazi-10010
+ 85/
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:На посошок (18+)
+DTSTART;VALUE=DATE:20251015
+DTEND;VALUE=DATE:20251015
+DTSTAMP:20251014T070932Z
+UID:na-pososhok-1000934-2025-10-15@perm-cinema
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+DESCRIPTION:Страна: Италия\n\nОписание: О фильм
+ е Двое друзей отправляются в алкотур по 
+ окрестностям Венеции\, вспоминают о бурн
+ ой юности и разговаривают по душам. Они с
+ талкиваются с молодым застенчивым студе
+ нтом-архитек�тором и решают научить его
+  веселиться так\, чтобы было\, о чем расск
+ азать.\n\nПодробнее: https://www.afisha.ru/prm/schedule_cine
+ ma_product/na-pososhok-1000934/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/na-pososhok-1000934/
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Астрал. Свеча ведьмы (18+)
+DTSTART;VALUE=DATE:20251017
+DTEND;VALUE=DATE:20251017
+DTSTAMP:20251014T070932Z
+UID:astral-svecha-vedmy-1001541-2025-10-17@perm-cinema
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+DESCRIPTION:Страна: США\n\nОписание: О фильме Ри
+ туальная свеча студентки-парапсихолога 
+ запускает смертельную игру в двадцать в
+ опросов. Пока воск тает\, она пытается вы
+ жить\, узнавая\, что некоторые тайны долж
+ ны оставаться нераскрытыми.\n\nПодробнее:
+  https://www.afisha.ru/prm/schedule_cinema_product/astral-svecha-vedmy-100
+ 1541/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/astral-svecha-vedmy-
+ 1001541/
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Пила. Наследие (18+)
+DTSTART;VALUE=DATE:20251015
+DTEND;VALUE=DATE:20251015
+DTSTAMP:20251014T070932Z
+UID:pila-nasledie-1001061-2025-10-15@perm-cinema
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+DESCRIPTION:Страна: США\n\nОписание: О фильме Ли
+ за готовится к поступлению в ФБР и строи
+ т планы по борьбе преступниками\, когда н
+ елепая авария уносит жизни ее родителей\
+ , а она сама оказывается прикованной к ин
+ валидному креслу. О работе приходится за
+ быть\, единственные ее развлечения — еже
+ дневная физиотерапия и троллинг онлайн-
+ блогеров. О...\n\nПодробнее: https://www.afisha.ru/prm/s
+ chedule_cinema_product/pila-nasledie-1001061/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/pila-nasledie-100106
+ 1/
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:TheatreHD: Эгон Шиле. Автопортрет (18+)
+DTSTART;VALUE=DATE:20251022
+DTEND;VALUE=DATE:20251022
+DTSTAMP:20251014T070932Z
+UID:theatrehd-egon-shile-avtoportret-1001772-2025-10-22@perm-cinema
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+DESCRIPTION:Страна: Чехия\n\nОписание: О фильме 
+ Палитра жизни. Танцевальная фантазия по 
+ мотивам биографии и творчества великого
+  художника.\nВеликий экспрессионист\, худ
+ ожник Эгон Шиле прожил всего 28 лет. Но за 
+ свои неполные тридцать Шиле успел много
+ е: и жил страстно\, и творил страстно. Сти
+ ль его творчества\, фрагменты его биогра
+ фии\, мир и ...\n\nПодробнее: https://www.afisha.ru/prm/sc
+ hedule_cinema_product/theatrehd-egon-shile-avtoportret-1001772/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/theatrehd-egon-shile
+ -avtoportret-1001772/
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Бэмби: Лесной кошмар (18+)
+DTSTART;VALUE=DATE:20251017
+DTEND;VALUE=DATE:20251017
+DTSTAMP:20251014T070932Z
+UID:bembi-lesnoy-koshmar-1001646-2025-10-17@perm-cinema
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+DESCRIPTION:Страна: Великобритания\n\nОписание
+ : О фильме Направляясь в гости к бабушке\,
+  Ханна и семилетний Джордж попадают в ст
+ рашную автокатастрофу в лесу. Виной авар
+ ии становится мутировавший олень — Бэмб
+ и — идущий по кровавому следу\, чтобы ото
+ мстить людям за смерть матери. С этого мо
+ мента начинается смертельная игра на вы
+ живание.\n\nПодробнее: https://www.afisha.ru/prm/schedule_
+ cinema_product/bembi-lesnoy-koshmar-1001646/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/bembi-lesnoy-koshmar
+ -1001646/
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Ледяной предел (18+)
+DTSTART;VALUE=DATE:20251017
+DTEND;VALUE=DATE:20251017
+DTSTAMP:20251014T070932Z
+UID:ledyanoy-predel-1001447-2025-10-17@perm-cinema
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+DESCRIPTION:Страна: Болгария\n\nОписание: О фил
+ ьме Харлан уже много лет бежит от своего 
+ прошлого и самого себя. В попытках оград
+ иться от мира он поселился в резервации 
+ и стал настоящим отшельником. Но однажды
+  он находит самолет\, потерпевший крушен
+ ие\, а в нем — миллионы долларов. Чтобы ос
+ таться в живых с таким сокровищем\, Харла
+ ну придется пр...\n\nПодробнее: https://www.afisha.ru
+ /prm/schedule_cinema_product/ledyanoy-predel-1001447/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/ledyanoy-predel-1001
+ 447/
 END:VEVENT
 END:VCALENDAR
