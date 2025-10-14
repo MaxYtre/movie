@@ -2,6 +2,15 @@ name: Development Calendar Update
 
 on:
   workflow_dispatch:
+    inputs:
+      CLEAR_CACHE:
+        description: 'Delete data/cache.sqlite before run'
+        required: false
+        default: 'false'
+      MAX_FILMS:
+        description: 'Limit number of films to scan'
+        required: false
+        default: '50'
   push:
     branches: [ development ]
     paths:
@@ -26,9 +35,13 @@ jobs:
       with:
         python-version: '3.11'
 
-    - name: Ensure data dir and show cache status
+    - name: Prepare data dir and optionally clear cache
       run: |
         mkdir -p data
+        if [ "${{ github.event.inputs.CLEAR_CACHE }}" = "true" ]; then
+          echo "Clearing cache.sqlite by request"
+          rm -f data/cache.sqlite || true
+        fi
         if [ -f data/cache.sqlite ]; then echo "CACHE_PRESENT"; else echo "CACHE_ABSENT"; fi
 
     - name: Install dependencies
@@ -41,7 +54,7 @@ jobs:
       env:
         PYTHONPATH: .
         MOVIE_SCRAPER_LOG_LEVEL: DEBUG
-        MOVIE_SCRAPER_MAX_FILMS: "20"
+        MOVIE_SCRAPER_MAX_FILMS: "${{ github.event.inputs.MAX_FILMS || '50' }}"
         MOVIE_SCRAPER_RATE_LIMIT: "5.0"
         MOVIE_SCRAPER_CACHE_TTL_DAYS: "15"
         OMDB_API_KEY: ${{ secrets.OMDB_API_KEY }}
@@ -57,11 +70,11 @@ jobs:
         asyncio.run(main())
         "
 
-    - name: Show DIAG COPY block
+    - name: Show extended DIAG
       if: always()
       run: |
         echo "--- DIAG COPY (dev) ---"
-        if [ -f docs/diag.txt ]; then tail -n 200 docs/diag.txt; else echo "no diag.txt"; fi
+        if [ -f docs/diag.txt ]; then tail -n 500 docs/diag.txt; else echo "no diag.txt"; fi
         echo "--- END DIAG ---"
 
     - name: Commit and push docs and cache to development (rebase-safe)
@@ -74,7 +87,7 @@ jobs:
         if git diff --staged --quiet; then
           echo "No changes to commit"
         else
-          git commit -m "[dev] Update docs & cache with enrichment"
+          git commit -m "[dev] Update docs & cache with enrichment (CLEAR_CACHE=${{ github.event.inputs.CLEAR_CACHE || 'false' }})"
           git fetch origin development
           if ! git rebase origin/development; then
             git rebase --abort || true
