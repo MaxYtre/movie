@@ -57,10 +57,8 @@ class Film:
 
 
 def normalize_detail_url(u: str) -> str:
-    # Drop fragment and query params
     p = urlparse(u)
     path = p.path
-    # Remove trailing date segment like /DD-MM-YYYY
     if re.search(r"/\d{2}-\d{2}-\d{4}$", path):
         path = re.sub(r"/\d{2}-\d{2}-\d{4}$", "", path)
     return urljoin(BASE, path.rstrip('/') + '/')
@@ -90,22 +88,18 @@ async def fetch(session: aiohttp.ClientSession, url: str, attempt: int) -> Optio
 
 
 def parse_country(soup: BeautifulSoup) -> Optional[str]:
-    # 1) dt/dd pattern
     for dt in soup.select('dt'):
         if 'страна' in dt.get_text(strip=True).lower():
             dd = dt.find_next('dd')
             if dd:
                 return dd.get_text(" ", strip=True)
-    # 2) common classes
     for sel in ['.film-info .country', '.movie-info .country', '.film-meta .country', '[data-country]']:
         el = soup.select_one(sel)
         if el:
             return el.get_text(" ", strip=True)
-    # 3) microdata
     el = soup.select_one('[itemprop="countryOfOrigin"]')
     if el:
         return el.get_text(" ", strip=True)
-    # 4) regex fallback
     txt = soup.get_text(" ", strip=True)
     m = re.search(r"Страна\s*[:\-]?\s*([^\n,|]+(?:[,/;|][^\n,|]+)*)", txt, re.IGNORECASE)
     if m:
@@ -141,7 +135,6 @@ def parse_next_date(soup: BeautifulSoup) -> Optional[date]:
     today = date.today()
     txt = soup.get_text(" ", strip=True)
     dates: List[date] = []
-    # 1) DD monthname
     for m in re.finditer(r"(\d{1,2})\s+(января|февраля|марта|апреля|мая|июня|июля|августа|сентября|октября|ноября|декабря)", txt, re.IGNORECASE):
         d = int(m.group(1)); mon = MONTHS_RU[m.group(2).lower()]
         try:
@@ -150,7 +143,6 @@ def parse_next_date(soup: BeautifulSoup) -> Optional[date]:
                 dates.append(cand)
         except ValueError:
             pass
-    # 2) DD.MM.YYYY
     for m in re.finditer(r"(\d{2})\.(\d{2})\.(\d{4})", txt):
         d, mon, y = int(m.group(1)), int(m.group(2)), int(m.group(3))
         try:
@@ -170,7 +162,6 @@ async def scrape() -> List[Film]:
     timeout = aiohttp.ClientTimeout(total=30)
     connector = aiohttp.TCPConnector(limit=10)
     async with aiohttp.ClientSession(timeout=timeout, connector=connector) as session:
-        # paginate (safe cap 10 pages)
         page = 1
         while page <= 10:
             url = LIST_URL if page == 1 else f"{LIST_URL}page{page}/"
@@ -194,11 +185,9 @@ async def scrape() -> List[Film]:
             page += 1
             await asyncio.sleep(RATE_MIN)
 
-        # limit to 20 for safety in CI
         films = films[:20]
         logger.info(f"[LIST] total_candidates={len(films)}")
 
-        # process details
         processed: List[Film] = []
         for i, f in enumerate(films, 1):
             logger.info(f"[DETAIL] {i}/{len(films)} url={f.url}")
@@ -255,10 +244,10 @@ def write_ics(films: List[Film], docs_dir: Path) -> Path:
             title += f" ({f.age_limit})"
         ev.add('summary', title)
         desc_parts = []
-        if f.country: desc_parts.append(f"Страна: {f.country}")
-        if f.rating:  desc_parts.append(f"Рейтинг: {f.rating}")
-        if f.description: desc_parts.append(f"\nОписание: {f.description}")
-        if f.url: desc_parts.append(f"\nПодробнее: {f.url}")
+        if f.country: desc_parts.append("Страна: " + f.country)
+        if f.rating:  desc_parts.append("Рейтинг: " + str(f.rating))
+        if f.description: desc_parts.append("\nОписание: " + f.description)
+        if f.url: desc_parts.append("\nПодробнее: " + f.url)
         ev.add('description', "\n".join(desc_parts))
         if f.url:
             ev.add('url', f.url)
@@ -276,7 +265,8 @@ def write_ics(films: List[Film], docs_dir: Path) -> Path:
 
 
 def write_index(docs_dir: Path, films_count: int):
-    html = f"""
+    # Use str.format to avoid f-string with braces in CSS/JS
+    html = """
 <!doctype html><html lang="ru"><meta charset="utf-8"><title>Календарь фильмов</title>
 <body style="font-family:Arial,sans-serif;max-width:800px;margin:20px auto;">
 <h1>Календарь зарубежных фильмов (Пермь)</h1>
@@ -286,7 +276,7 @@ def write_index(docs_dir: Path, films_count: int):
 <pre id="diag" style="background:#f7f7f7;padding:10px;border:1px solid #ddd;white-space:pre-wrap;"></pre>
 <script>fetch('diag.txt').then(r=>r.text()).then(t=>document.getElementById('diag').textContent=t).catch(()=>{});</script>
 </body></html>
-"""
+""".format(films_count=films_count)
     with open(docs_dir / "index.html", "w", encoding="utf-8") as f:
         f.write(html)
 
@@ -298,25 +288,28 @@ def write_diag(docs_dir: Path, lines: List[str]):
 
 async def main():
     docs = Path("docs")
+    docs.mkdir(exist_ok=True)
     diag: List[str] = []
-    diag.append(f"BOOT py={os.sys.version.split()[0]} ua={USER_AGENT[:30]}… proxy={'on' if PROXY_URL else 'off'}")
-    films = await scrape()
-    foreign = films
-    diag.append(f"SUMMARY candidates_processed={len(foreign)}")
+    try:
+        diag.append(f"BOOT py={os.sys.version.split()[0]} ua={USER_AGENT[:30]}… proxy={'on' if PROXY_URL else 'off'}")
+        films = await scrape()
+        foreign = films
+        diag.append(f"SUMMARY candidates_processed={len(foreign)}")
 
-    # Always produce ICS and index (even if 0 films)
-    ics_path = write_ics(foreign, docs)
-    write_index(docs, len(foreign))
+        ics_path = write_ics(foreign, docs)
+        write_index(docs, len(foreign))
 
-    # DIAG COPY block
-    diag.append("=== DIAG COPY START ===")
-    diag.append(f"pages_scraped=~ films_discovered=~ foreign_films={len(foreign)}")
-    for f in foreign[:5]:
-        diag.append(f"FILM title='{f.title[:40]}' country='{f.country}' next='{f.next_date}' url='{f.url}'")
-    diag.append(f"ICS path={ics_path} exists={ics_path.exists()} size={ics_path.stat().st_size if ics_path.exists() else 0}")
-    diag.append("=== DIAG COPY END ===")
-    write_diag(docs, diag)
-    logger.info("\n" + "\n".join(diag))
+        diag.append("=== DIAG COPY START ===")
+        diag.append(f"pages_scraped=~ films_discovered=~ foreign_films={len(foreign)}")
+        for f in foreign[:5]:
+            diag.append(f"FILM title='{f.title[:40]}' country='{f.country}' next='{f.next_date}' url='{f.url}'")
+        diag.append(f"ICS path={ics_path} exists={ics_path.exists()} size={ics_path.stat().st_size if ics_path.exists() else 0}")
+        diag.append("=== DIAG COPY END ===")
+    except Exception as e:
+        diag.append(f"FAIL AT=main exception={type(e).__name__} msg={e}")
+    finally:
+        write_diag(docs, diag)
+        logger.info("\n" + "\n".join(diag))
 
 if __name__ == "__main__":
     asyncio.run(main())
