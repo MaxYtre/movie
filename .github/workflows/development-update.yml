@@ -46,6 +46,7 @@ jobs:
     - name: Run scraper (development, no cache)
       env:
         PYTHONPATH: .
+        DISABLE_CACHE: "true"
         MOVIE_SCRAPER_LOG_LEVEL: DEBUG
         MOVIE_SCRAPER_MAX_FILMS: "${{ github.event.inputs.MAX_FILMS || '50' }}"
         MOVIE_SCRAPER_RATE_LIMIT: "5.0"
