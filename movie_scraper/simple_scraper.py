@@ -141,6 +141,18 @@ class Film:
                 return False
         return True
 
+def parse_item_name(soup: BeautifulSoup) -> Optional[str]:
+    name = soup.select_one('[data-test="ITEM-NAME"]')
+    if name:
+        return name.get_text(" ", strip=True)
+    h = soup.find('h1')
+    if h:
+        return h.get_text(" ", strip=True)
+    og = soup.find('meta', attrs={'property': 'og:title'})
+    if og and og.get('content'):
+        return og['content'].strip()
+    return None
+
 async def fetch(session: aiohttp.ClientSession, url: str, attempt: int, backoffs: List[float]) -> Tuple[Optional[str], int]:
     headers = {
         'User-Agent': USER_AGENT_BASE,
@@ -233,7 +245,7 @@ async def scrape() -> Tuple[List['Film'], dict]:
             stats["region"].append((f.slug, date_url))
 
             cached_ok = False
-            if db.is_fresh(f.slug, CACHE_TTL_DAYS):
+            if CACHE_TTL_DAYS > 0 and db.is_fresh(f.slug, CACHE_TTL_DAYS):
                 row = db.get_film_row(f.slug)
                 next_dt = db.get_session(f.slug)
                 if row:
@@ -282,9 +294,9 @@ async def scrape() -> Tuple[List['Film'], dict]:
             try:
                 if date_soup is None:
                     date_soup = BeautifulSoup(date_html or "", 'lxml')
-                await enrich_film(session, f, soup, date_soup)
-            except Exception:
-                pass
+                await enrich_film(session, f, soup, date_soup, diag=stats.setdefault('diag_ext', []))
+            except Exception as e:
+                stats.setdefault('diag_ext', []).append(f"[ENRICH] error slug={f.slug} {type(e).__name__}: {e}")
 
             stats["selectors"].append((f.slug, c_via, a_via, d_via, n_via))
 
@@ -340,6 +352,9 @@ def write_index(docs_dir: Path, films_count: int, preview: List[str], stats: dic
     preview_html = "".join(f"<li>{p}</li>" for p in preview)
     region_html = "".join(f"<li>{slug}: {url}</li>" for slug, url in stats.get('region', [])[:10])
     sel_html = "".join(f"<li>{slug}: country={c}, age={a}, desc={d}, date={n}</li>" for slug, c, a, d, n in stats.get('selectors', [])[:10])
+    # Extended DIAG block (API logs)
+    diag_ext = stats.get('diag_ext', [])
+    diag_ext_html = "".join(f"<li>{line}</li>" for line in diag_ext[:50])
     reasons_html = "".join(f"<li>{slug}: {reason}</li>" for slug, reason in stats.get('reasons', [])[:20])
     html = (
         f"<!doctype html><html lang=\"ru\"><meta charset=\"utf-8\"><title>Календарь фильмов</title>\n"
@@ -350,6 +365,7 @@ def write_index(docs_dir: Path, films_count: int, preview: List[str], stats: dic
         f"<h3>Пример событий</h3><ul>{preview_html}</ul>\n"
         f"<details><summary>REGION date URLs</summary><ul>{region_html}</ul></details>\n"
         f"<details><summary>Новые селекторы</summary><ul>{sel_html}</ul></details>\n"
+        f"<details><summary>API/Парсинг</summary><ul>{diag_ext_html}</ul></details>\n"
         f"<details><summary>Причины исключений</summary><ul>{reasons_html}</ul></details>\n"
         f"<hr>\n"
         f"<pre id=\"diag\" style=\"background:#f7f7f7;padding:10px;border:1px solid #ddd;white-space:pre-wrap;\"></pre>\n"
@@ -383,6 +399,7 @@ async def main():
         for slug, c,a,d,n in stats.get('selectors', [])[:10]: diag.append(f"NEW-SELECTORS {slug} country={c} age={a} desc={d} date={n}")
         for slug, why in stats.get('reasons', [])[:20]: diag.append(f"REASON {slug} {why}")
         for p in preview: diag.append("PREVIEW " + p)
+        diag.extend(stats.get('diag_ext', [])[:200])
         diag.append(f"ICS path={ics_path} exists={ics_path.exists()} size={ics_path.stat().st_size if ics_path.exists() else 0}")
         diag.append("=== DIAG COPY END ===")
     except Exception as e:
