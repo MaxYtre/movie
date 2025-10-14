@@ -1,57 +1,57 @@
 BOOT py=3.11.13 ua=Mozilla/5.0 (Windows NT 10.0; … proxy=off
 SUMMARY candidates_processed=27
 === DIAG COPY START ===
-limit=200 foreign_films=27 429=0 403=0 cache_hits=29 cache_misses=51 sleep_total=492.5
-429_backoffs=30.0s,60.0s,30.0s,30.0s,30.0s,60.0s,30.0s,60.0s,30.0s,30.0s,60.0s,30.0s,60.0s,30.0s,30.0s,30.0s,60.0s,30.0s,30.0s,30.0s,60.0s,30.0s,30.0s,30.0s,60.0s,120.0s,30.0s,30.0s,30.0s,30.0s,30.0s,30.0s,60.0s,30.0s,30.0s,30.0s,30.0s,30.0s,60.0s,30.0s,30.0s,30.0s,60.0s,30.0s,30.0s,30.0s,30.0s,30.0s,60.0s,30.0s,30.0s,30.0s,30.0s,30.0s,30.0s,60.0s,30.0s,30.0s,30.0s
+limit=200 foreign_films=27 429=0 403=0 cache_hits=80 cache_misses=0 sleep_total=471.6
+429_backoffs=30.0s,30.0s,30.0s
 REGION avgust-308206 date_url=https://www.afisha.ru/prm/schedule_cinema_product/avgust-308206/
-REGION perviy-na-olimpe-307551 date_url=https://www.afisha.ru/prm/schedule_cinema_product/perviy-na-olimpe-307551/
-REGION drakula-1000812 date_url=https://www.afisha.ru/prm/schedule_cinema_product/drakula-1000812/
-REGION nahimovcy-yantarniy-bereg-307476 date_url=https://www.afisha.ru/prm/schedule_cinema_product/nahimovcy-yantarniy-bereg-307476/
-REGION svodish-s-uma-1000887 date_url=https://www.afisha.ru/prm/schedule_cinema_product/svodish-s-uma-1000887/
+REGION cheburashka-2-295278 date_url=https://www.afisha.ru/prm/schedule_cinema_product/cheburashka-2-295278/
+REGION illyuziya-obmana-3-308835 date_url=https://www.afisha.ru/prm/schedule_cinema_product/illyuziya-obmana-3-308835/
+REGION alisa-v-strane-chudes-308954 date_url=https://www.afisha.ru/prm/schedule_cinema_product/alisa-v-strane-chudes-308954/
+REGION buratino-295155 date_url=https://www.afisha.ru/prm/schedule_cinema_product/buratino-295155/
+REGION finnik-2-306500 date_url=https://www.afisha.ru/prm/schedule_cinema_product/finnik-2-306500/
 REGION dolgaya-progulka-1001088 date_url=https://www.afisha.ru/prm/schedule_cinema_product/dolgaya-progulka-1001088/
-REGION ne-iskusstvenniy-intellekt-307884 date_url=https://www.afisha.ru/prm/schedule_cinema_product/ne-iskusstvenniy-intellekt-307884/
-REGION grabitel-s-kryshi-308410 date_url=https://www.afisha.ru/prm/schedule_cinema_product/grabitel-s-kryshi-308410/
-REGION zveropoezd-1001045 date_url=https://www.afisha.ru/prm/schedule_cinema_product/zveropoezd-1001045/
-REGION edem-1000775 date_url=https://www.afisha.ru/prm/schedule_cinema_product/edem-1000775/
+REGION gorynych-306463 date_url=https://www.afisha.ru/prm/schedule_cinema_product/gorynych-306463/
+REGION punkt-naznacheniya-smertelnaya-igra-1001008 date_url=https://www.afisha.ru/prm/schedule_cinema_product/punkt-naznacheniya-smertelnaya-igra-1001008/
+REGION mazhor-v-dubae-308075 date_url=https://www.afisha.ru/prm/schedule_cinema_product/mazhor-v-dubae-308075/
 NEW-SELECTORS avgust-308206 country=cache age=cache desc=cache date=cache
-NEW-SELECTORS perviy-na-olimpe-307551 country=cache age=cache desc=cache date=cache
-NEW-SELECTORS drakula-1000812 country=cache age=cache desc=cache date=cache
-NEW-SELECTORS nahimovcy-yantarniy-bereg-307476 country=cache age=cache desc=cache date=cache
-NEW-SELECTORS svodish-s-uma-1000887 country=cache age=cache desc=cache date=cache
+NEW-SELECTORS cheburashka-2-295278 country=cache age=cache desc=cache date=cache
+NEW-SELECTORS illyuziya-obmana-3-308835 country=cache age=cache desc=cache date=cache
+NEW-SELECTORS alisa-v-strane-chudes-308954 country=cache age=cache desc=cache date=cache
+NEW-SELECTORS buratino-295155 country=cache age=cache desc=cache date=cache
+NEW-SELECTORS finnik-2-306500 country=cache age=cache desc=cache date=cache
 NEW-SELECTORS dolgaya-progulka-1001088 country=cache age=cache desc=cache date=cache
-NEW-SELECTORS ne-iskusstvenniy-intellekt-307884 country=cache age=cache desc=cache date=cache
-NEW-SELECTORS grabitel-s-kryshi-308410 country=cache age=cache desc=cache date=cache
-NEW-SELECTORS zveropoezd-1001045 country=cache age=cache desc=cache date=cache
-NEW-SELECTORS edem-1000775 country=cache age=cache desc=cache date=cache
+NEW-SELECTORS gorynych-306463 country=cache age=cache desc=cache date=cache
+NEW-SELECTORS punkt-naznacheniya-smertelnaya-igra-1001008 country=cache age=cache desc=cache date=cache
+NEW-SELECTORS mazhor-v-dubae-308075 country=cache age=cache desc=cache date=cache-miss-date
 REASON avgust-308206 NOT_FOREIGN
-REASON perviy-na-olimpe-307551 NOT_FOREIGN
-REASON nahimovcy-yantarniy-bereg-307476 NOT_FOREIGN
+REASON cheburashka-2-295278 NOT_FOREIGN
+REASON alisa-v-strane-chudes-308954 NOT_FOREIGN
+REASON buratino-295155 NOT_FOREIGN
+REASON finnik-2-306500 NOT_FOREIGN
+REASON gorynych-306463 NOT_FOREIGN
+REASON mazhor-v-dubae-308075 NOT_FOREIGN
+REASON papiny-dochki-mama-vernulas-1001721 NOT_FOREIGN
 REASON svodish-s-uma-1000887 NOT_FOREIGN
-REASON ne-iskusstvenniy-intellekt-307884 NOT_FOREIGN
+REASON na-derevnyu-dedushke-308610 NOT_FOREIGN
 REASON muzhskie-pravila-moego-deda-1001688 NOT_FOREIGN
 REASON lermontov-308328 NOT_FOREIGN
+REASON perviy-na-olimpe-307551 NOT_FOREIGN
+REASON ne-iskusstvenniy-intellekt-307884 NOT_FOREIGN
+REASON masha-i-medvedi-308205 NOT_FOREIGN
+REASON yaga-na-nashu-golovu-1000447 NOT_FOREIGN
+REASON ono-koshmar-na-meypl-strit-1001854 NO_DATE
 REASON serafima-1001519 NOT_FOREIGN
-REASON cheburashka-2-295278 NOT_FOREIGN
-REASON finnik-2-306500 NOT_FOREIGN
-REASON alisa-v-strane-chudes-308954 NOT_FOREIGN
-REASON na-derevnyu-dedushke-308610 NOT_FOREIGN
-REASON doktor-dinozavrov-294927 NOT_FOREIGN
-REASON gorynych-306463 NOT_FOREIGN
-REASON papiny-dochki-mama-vernulas-1001721 NOT_FOREIGN
-REASON semeyniy-prizrak-307147 NOT_FOREIGN
-REASON serdceed-1001685 NOT_FOREIGN
-REASON mazhor-v-dubae-308075 NOT_FOREIGN
-REASON buratino-295155 NOT_FOREIGN
-REASON theatrehd-teodor-kurentzis-buntar-ot-klassiki-1001863 NO_DATE
-PREVIEW Дракула | 2025-10-15 | Великобритания | 18+ | https://www.afisha.ru/prm/schedule_cinema_product/drakula-1000812/
+REASON hellouin-nochnoy-koshmar-1001080 NO_DATE
+REASON nahimovcy-yantarniy-bereg-307476 NOT_FOREIGN
+PREVIEW Иллюзия обмана-3 | 2025-11-14 | США | 12+ | https://www.afisha.ru/prm/schedule_cinema_product/illyuziya-obmana-3-308835/
 PREVIEW Долгая прогулка | 2025-10-15 | США | 18+ | https://www.afisha.ru/prm/schedule_cinema_product/dolgaya-progulka-1001088/
+PREVIEW Пункт назначения: Смертельная игра | 2025-10-15 | Новая Зеландия | 18+ | https://www.afisha.ru/prm/schedule_cinema_product/punkt-naznacheniya-smertelnaya-igra-1001008/
+PREVIEW Дом ада: Спуск к дьяволу | 2025-10-15 | США | 18+ | https://www.afisha.ru/prm/schedule_cinema_product/dom-ada-spusk-k-dyavolu-1001202/
+PREVIEW Выход 8 | 2025-10-15 | Япония | 16+ | https://www.afisha.ru/prm/schedule_cinema_product/vyhod-8-1000762/
 PREVIEW Грабитель с крыши | 2025-10-15 | США | 16+ | https://www.afisha.ru/prm/schedule_cinema_product/grabitel-s-kryshi-308410/
 PREVIEW Зверопоезд | 2025-10-15 | Франция | 6+ | https://www.afisha.ru/prm/schedule_cinema_product/zveropoezd-1001045/
-PREVIEW Эдем | 2025-10-15 | США | 18+ | https://www.afisha.ru/prm/schedule_cinema_product/edem-1000775/
-PREVIEW Дом ада: Спуск к дьяволу | 2025-10-15 | США | 18+ | https://www.afisha.ru/prm/schedule_cinema_product/dom-ada-spusk-k-dyavolu-1001202/
+PREVIEW Звонок. Последняя сессия | 2025-10-15 | Южная Корея | 18+ | https://www.afisha.ru/prm/schedule_cinema_product/zvonok-poslednyaya-sessiya-1001168/
 PREVIEW Мир в огне | 2025-10-15 | США | 18+ | https://www.afisha.ru/prm/schedule_cinema_product/mir-v-ogne-206394/
-PREVIEW Ужастики. Ожившие рисунки | 2025-10-15 | США | 12+ | https://www.afisha.ru/prm/schedule_cinema_product/uzhastiki-ozhivshie-risunki-1001302/
-PREVIEW Выход 8 | 2025-10-15 | Япония | 16+ | https://www.afisha.ru/prm/schedule_cinema_product/vyhod-8-1000762/
-PREVIEW Астрал. Зеркала | 2025-10-15 | Индонезия | 18+ | https://www.afisha.ru/prm/schedule_cinema_product/astral-zerkala-308646/
+PREVIEW Дракула | 2025-10-15 | Великобритания | 18+ | https://www.afisha.ru/prm/schedule_cinema_product/drakula-1000812/
 ICS path=docs/calendar.ics exists=True size=29572
 === DIAG COPY END ===
