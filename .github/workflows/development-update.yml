@@ -3,10 +3,6 @@ name: Development Calendar Update
 on:
   workflow_dispatch:
     inputs:
-      CLEAR_CACHE:
-        description: 'Delete data/cache.sqlite before run'
-        required: false
-        default: 'false'
       MAX_FILMS:
         description: 'Limit number of films to scan'
         required: false
@@ -35,14 +31,11 @@ jobs:
       with:
         python-version: '3.11'
 
-    - name: Prepare data dir and optionally clear cache
+    - name: Disable cache — remove DB unconditionally
       run: |
+        rm -f data/cache.sqlite || true
         mkdir -p data
-        if [ "${{ github.event.inputs.CLEAR_CACHE }}" = "true" ]; then
-          echo "Clearing cache.sqlite by request"
-          rm -f data/cache.sqlite || true
-        fi
-        if [ -f data/cache.sqlite ]; then echo "CACHE_PRESENT"; else echo "CACHE_ABSENT"; fi
+        echo "CACHE_DISABLED"
 
     - name: Install dependencies
       run: |
@@ -50,13 +43,13 @@ jobs:
         python -m pip install --upgrade pip
         pip install aiohttp beautifulsoup4 lxml icalendar python-dateutil pytz aiosqlite
 
-    - name: Run scraper (development, with enrichment)
+    - name: Run scraper (development, no cache)
       env:
         PYTHONPATH: .
         MOVIE_SCRAPER_LOG_LEVEL: DEBUG
         MOVIE_SCRAPER_MAX_FILMS: "${{ github.event.inputs.MAX_FILMS || '50' }}"
         MOVIE_SCRAPER_RATE_LIMIT: "5.0"
-        MOVIE_SCRAPER_CACHE_TTL_DAYS: "15"
+        MOVIE_SCRAPER_CACHE_TTL_DAYS: "0"
         OMDB_API_KEY: ${{ secrets.OMDB_API_KEY }}
         YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
         KINOPOISK_API_KEY: ${{ secrets.KINOPOISK_API_KEY }}
@@ -74,20 +67,20 @@ jobs:
       if: always()
       run: |
         echo "--- DIAG COPY (dev) ---"
-        if [ -f docs/diag.txt ]; then tail -n 500 docs/diag.txt; else echo "no diag.txt"; fi
+        if [ -f docs/diag.txt ]; then tail -n 800 docs/diag.txt; else echo "no diag.txt"; fi
         echo "--- END DIAG ---"
 
-    - name: Commit and push docs and cache to development (rebase-safe)
+    - name: Commit and push docs to development (no cache artifacts)
       if: github.ref == 'refs/heads/development'
       run: |
         set -euo pipefail
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
-        git add docs/ data/cache.sqlite
+        git add docs/
         if git diff --staged --quiet; then
           echo "No changes to commit"
         else
-          git commit -m "[dev] Update docs & cache with enrichment (CLEAR_CACHE=${{ github.event.inputs.CLEAR_CACHE || 'false' }})"
+          git commit -m "[dev] Update docs (cache disabled)"
           git fetch origin development
           if ! git rebase origin/development; then
             git rebase --abort || true
