@@ -65,10 +65,9 @@ class CacheDB:
               updated_at TEXT
             );
             CREATE TABLE IF NOT EXISTS sessions (
-              slug TEXT,
+              slug TEXT PRIMARY KEY,
               next_date TEXT,
-              updated_at TEXT,
-              PRIMARY KEY(slug)
+              updated_at TEXT
             );
             """
         )
@@ -148,10 +147,6 @@ def normalize_detail_url(u: str) -> str:
 def slug_from_url(u: str) -> str:
     return normalize_detail_url(u).rstrip('/').split('/')[-1]
 
-
-class Fetcher:
-    def __init.max__(self):
-        pass
 
 async def fetch(session: aiohttp.ClientSession, url: str, attempt: int) -> Tuple[Optional[str], int]:
     headers = {
