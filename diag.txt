@@ -1,6 +1,6 @@
 BOOT py=3.11.13 ua=Mozilla/5.0 (Windows NT 10.0; … proxy=off
 SUMMARY candidates_processed=0
 === DIAG COPY START ===
-pages_scraped=~ films_discovered=~ foreign_films=0
+limit=10 foreign_films=0 429=17 403=0 cache_hits=0 cache_misses=10
 ICS path=docs/calendar.ics exists=True size=365
 === DIAG COPY END ===
