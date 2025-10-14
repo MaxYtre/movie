@@ -1,16 +1,15 @@
 BOOT py=3.11.13 ua=Mozilla/5.0 (Windows NT 10.0; … proxy=off
-SUMMARY candidates_processed=1
+SUMMARY candidates_processed=0
 === DIAG COPY START ===
-limit=5 foreign_films=1 429=0 403=0 cache_hits=0 cache_misses=0 sleep_total=50.5
-429_backoffs=30.6s,30.8s,61.2s,31.4s,60.8s
+limit=5 foreign_films=0 429=0 403=0 cache_hits=0 cache_misses=0 sleep_total=59.4
+429_backoffs=30.5s,31.1s,31.1s,60.9s,30.6s,61.0s
 REGION alisa-v-strane-chudes-308954 date_url=https://www.afisha.ru/prm/schedule_cinema_product/alisa-v-strane-chudes-308954/
-REGION illyuziya-obmana-3-308835 date_url=https://www.afisha.ru/prm/schedule_cinema_product/illyuziya-obmana-3-308835/
 REGION cheburashka-2-295278 date_url=https://www.afisha.ru/prm/schedule_cinema_product/cheburashka-2-295278/
+REGION illyuziya-obmana-3-308835 date_url=https://www.afisha.ru/prm/schedule_cinema_product/illyuziya-obmana-3-308835/
 REGION avgust-308206 date_url=https://www.afisha.ru/prm/schedule_cinema_product/avgust-308206/
 REGION buratino-295155 date_url=https://www.afisha.ru/prm/schedule_cinema_product/buratino-295155/
 NEW-SELECTORS alisa-v-strane-chudes-308954 country=item-meta age=table desc=object-desc date=calendar
-NEW-SELECTORS illyuziya-obmana-3-308835 country=item-meta age=table desc=object-desc date=calendar
-NEW-SELECTORS cheburashka-2-295278 country=item-meta age=table desc=object-desc date=miss
-PREVIEW Иллюзия обмана-3 | 2025-11-14 | США | 12+ | https://www.afisha.ru/prm/schedule_cinema_product/illyuziya-obmana-3-308835/
-ICS path=docs/calendar.ics exists=True size=1401
+NEW-SELECTORS cheburashka-2-295278 country=item-meta age=table desc=object-desc date=calendar
+NEW-SELECTORS illyuziya-obmana-3-308835 country=item-meta age=table desc=object-desc date=miss
+ICS path=docs/calendar.ics exists=True size=365
 === DIAG COPY END ===
