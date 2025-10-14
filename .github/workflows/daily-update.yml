@@ -37,6 +37,12 @@ jobs:
       with:
         python-version: '3.11'
 
+    - name: Install dependencies
+      run: |
+        set -euo pipefail
+        python -m pip install --upgrade pip
+        pip install aiohttp beautifulsoup4 lxml icalendar python-dateutil pytz aiosqlite
+
     - name: Prepare data dir and optionally clear cache
       run: |
         mkdir -p data
@@ -58,12 +64,6 @@ jobs:
           raise SystemExit(f"Missing required functions: {missing}")
         print('Sanity OK')
         PY
-
-    - name: Install dependencies
-      run: |
-        set -euo pipefail
-        python -m pip install --upgrade pip
-        pip install aiohttp beautifulsoup4 lxml icalendar python-dateutil pytz aiosqlite
 
     - name: Run scraper (TTL=15 days)
       env:
