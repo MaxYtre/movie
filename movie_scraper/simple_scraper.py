@@ -1,539 +1,322 @@
 """
-Упрощенный скрапер для кинотеатров Перми.
-
-Создает ICS календарь иностранных фильмов для GitHub Pages.
+Simplified scraper with structured diagnostics.
+(Logs include DIAG COPY block at the end for quick sharing.)
 """
 
 import asyncio
-import json
 import logging
+import os
 import re
-from datetime import date
-from datetime import datetime
-from datetime import timedelta
+import hashlib
+from datetime import date, datetime, timedelta
 from pathlib import Path
-from typing import Dict
-from typing import List
-from typing import Optional
-from urllib.parse import urljoin
+from typing import List, Optional
+from urllib.parse import urljoin, urlparse
 
 import aiohttp
 from bs4 import BeautifulSoup
-from icalendar import Calendar
-from icalendar import Event
+from icalendar import Calendar, Event
 
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+LOG_LEVEL = os.getenv("MOVIE_SCRAPER_LOG_LEVEL", "DEBUG").upper()
+logging.basicConfig(level=LOG_LEVEL, format="%(levelname)s:%(name)s:%(message)s")
+logger = logging.getLogger("movie_scraper.simple_scraper")
 
+USER_AGENT = os.getenv("MOVIE_SCRAPER_USER_AGENT", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0 Safari/537.36")
+ACCEPT_LANG = os.getenv("MOVIE_SCRAPER_ACCEPT_LANGUAGE", "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7")
+PROXY_URL = os.getenv("MOVIE_SCRAPER_PROXY_URL")
+RATE_MIN = float(os.getenv("MOVIE_SCRAPER_RATE_LIMIT", "1.0"))
 
-class FilmInfo:
-    """Информация о фильме."""
-    
-    def __init__(self, title: str, country: str, url: str, next_date: Optional[date] = None):
+BASE = "https://www.afisha.ru"
+LIST_URL = f"{BASE}/prm/schedule_cinema/"
+
+MONTHS_RU = {
+    'января': 1, 'февраля': 2, 'марта': 3, 'апреля': 4,
+    'мая': 5, 'июня': 6, 'июля': 7, 'августа': 8,
+    'сентября': 9, 'октября': 10, 'ноября': 11, 'декабря': 12
+}
+
+class Film:
+    def __init__(self, title: str, url: str):
         self.title = title
-        self.country = country
         self.url = url
-        self.next_date = next_date
-        self.description = ""
-        self.rating = ""
-        self.age_limit = ""
-        
+        self.country: Optional[str] = None
+        self.age_limit: Optional[str] = None
+        self.rating: Optional[str] = None
+        self.description: Optional[str] = None
+        self.next_date: Optional[date] = None
+
     @property
     def is_foreign(self) -> bool:
-        """Проверяет, является ли фильм иностранным."""
-        russian_keywords = ['россия', 'russia', 'рф', 'ссср', 'ussr']
-        return not any(keyword in self.country.lower() for keyword in russian_keywords)
-    
-    def __repr__(self) -> str:
-        return f"FilmInfo({self.title}, {self.country}, foreign={self.is_foreign})"
+        if not self.country:
+            return False
+        countries = re.split(r"[,/;|]", self.country)
+        for c in countries:
+            if re.search(r"\b(россия|russia|рф|ссср|ussr)\b", c.strip(), re.IGNORECASE):
+                return False
+        return True
 
 
-class PermCinemaScraper:
-    """Скрапер для афиша.ru Пермь."""
-    
-    def __init__(self):
-        self.base_url = "https://www.afisha.ru"
-        self.perm_url = f"{self.base_url}/prm/schedule_cinema/"
-        self.session: Optional[aiohttp.ClientSession] = None
-        
-    async def __aenter__(self):
-        connector = aiohttp.TCPConnector(limit=10)
-        timeout = aiohttp.ClientTimeout(total=30)
-        
-        self.session = aiohttp.ClientSession(
-            headers={
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-            },
-            connector=connector,
-            timeout=timeout
-        )
-        return self
-    
-    async def __aexit__(self, exc_type, exc_val, exc_tb):
-        if self.session:
-            await self.session.close()
-    
-    async def _fetch_with_retry(self, url: str, retries: int = 3) -> Optional[str]:
-        """Получает HTML с повторными попытками."""
-        for attempt in range(retries):
-            try:
-                logger.info(f"Fetching {url} (attempt {attempt + 1})")
-                
-                async with self.session.get(url) as response:
-                    if response.status == 200:
-                        return await response.text()
-                    elif response.status == 429:
-                        # Rate limited - wait longer
-                        await asyncio.sleep(2 ** attempt)
-                        continue
-                    else:
-                        logger.warning(f"HTTP {response.status} for {url}")
-                        
-            except Exception as e:
-                logger.warning(f"Request failed: {e}")
-                if attempt < retries - 1:
-                    await asyncio.sleep(1 * (attempt + 1))
-                
-        return None
-    
-    async def scrape_film_listings(self) -> List[str]:
-        """Получает список URL фильмов."""
-        film_urls = []
-        page = 1
-        
-        while page <= 5:  # Ограничиваем для безопасности
-            if page == 1:
-                url = self.perm_url
+def normalize_detail_url(u: str) -> str:
+    # Drop fragment and query params
+    p = urlparse(u)
+    path = p.path
+    # Remove trailing date segment like /DD-MM-YYYY
+    if re.search(r"/\d{2}-\d{2}-\d{4}$", path):
+        path = re.sub(r"/\d{2}-\d{2}-\d{4}$", "", path)
+    return urljoin(BASE, path.rstrip('/') + '/')
+
+
+async def fetch(session: aiohttp.ClientSession, url: str, attempt: int) -> Optional[str]:
+    headers = {
+        'User-Agent': USER_AGENT,
+        'Accept-Language': ACCEPT_LANG,
+        'Referer': LIST_URL,
+        'DNT': '1',
+        'Cache-Control': 'no-cache',
+    }
+    try:
+        async with session.get(url, headers=headers, proxy=PROXY_URL) as resp:
+            status = resp.status
+            if status == 200:
+                text = await resp.text()
+                logger.info(f"[FETCH] try={attempt} status=200 url={url}")
+                return text
             else:
-                url = f"{self.perm_url}page{page}/"
-            
-            html = await self._fetch_with_retry(url)
-            if not html:
-                break
-            
-            soup = BeautifulSoup(html, 'html.parser')
-            page_urls = self._extract_film_urls(soup)
-            
-            if not page_urls:
-                logger.info(f"No films found on page {page}, stopping")
-                break
-                
-            film_urls.extend(page_urls)
-            logger.info(f"Found {len(page_urls)} films on page {page}")
-            page += 1
-            
-            # Пауза между запросами
-            await asyncio.sleep(1)
-        
-        return list(set(film_urls))  # Убираем дубликаты
-    
-    def _extract_film_urls(self, soup: BeautifulSoup) -> List[str]:
-        """Извлекает URL фильмов со страницы расписания."""
-        urls = []
-        
-        # Попробуем разные селекторы для поиска ссылок на фильмы
-        selectors = [
-            'a[href*="/prm/schedule_cinema_product/"]',
-            'a[href*="/schedule_cinema_product/"]',
-            '.b-object-item h3 a',
-            '.film-title a',
-            'h3 a[href*="cinema"]',
-            '.object-summary-title-link'
-        ]
-        
-        for selector in selectors:
-            links = soup.select(selector)
-            for link in links:
-                href = link.get('href')
-                if href and '/schedule_cinema_product/' in href:
-                    full_url = urljoin(self.base_url, href)
-                    urls.append(full_url)
-        
-        return urls
-    
-    async def get_film_info(self, film_url: str) -> Optional[FilmInfo]:
-        """Получает информацию о фильме."""
-        html = await self._fetch_with_retry(film_url)
-        if not html:
-            return None
-        
-        soup = BeautifulSoup(html, 'html.parser')
-        
-        # Извлекаем название
-        title = self._extract_title(soup)
-        if not title:
-            return None
-            
-        # Извлекаем страну
-        country = self._extract_country(soup)
-        if not country:
-            return None
-            
-        # Создаем объект фильма
-        film = FilmInfo(title, country, film_url)
-        
-        # Проверяем, является ли фильм иностранным
-        if not film.is_foreign:
-            logger.debug(f"Skipping Russian film: {title} ({country})")
-            return None
-            
-        # Ищем ближайший сеанс
-        film.next_date = self._find_next_screening(soup)
-        
-        # Дополнительная информация
-        film.description = self._extract_description(soup)
-        film.rating = self._extract_rating(soup)
-        film.age_limit = self._extract_age_limit(soup)
-        
-        return film
-    
-    def _extract_title(self, soup: BeautifulSoup) -> Optional[str]:
-        """Извлекает название фильма."""
-        selectors = ['h1', '.object-summary-title', '.film-title', '.b-object-title']
-        
-        for selector in selectors:
-            elem = soup.select_one(selector)
-            if elem:
-                return elem.get_text(strip=True)
-        
+                logger.warning(f"[FETCH] try={attempt} status={status} url={url}")
+                return None
+    except Exception as e:
+        logger.warning(f"[FETCH] try={attempt} error={type(e).__name__} url={url} msg={e}")
         return None
-    
-    def _extract_country(self, soup: BeautifulSoup) -> Optional[str]:
-        """Извлекает страну производства."""
-        # Ищем в информации о фильме
-        text_content = soup.get_text()
-        
-        # Паттерны для поиска страны
-        patterns = [
-            r'Страна[:\s]+([^\n,]+)',
-            r'страна[:\s]+([^\n,]+)',
-            r'Country[:\s]+([^\n,]+)',
-        ]
-        
-        for pattern in patterns:
-            match = re.search(pattern, text_content, re.IGNORECASE)
-            if match:
-                country = match.group(1).strip()
-                # Очищаем от лишних символов
-                country = re.sub(r'[\r\n\t]+', ' ', country)
-                return country
-        
-        # Попробуем найти в мета-тегах или структурированных данных
-        meta_selectors = [
-            '[itemprop="countryOfOrigin"]',
-            '.country',
-            '.film-country',
-            '.object-country'
-        ]
-        
-        for selector in meta_selectors:
-            elem = soup.select_one(selector)
-            if elem:
-                return elem.get_text(strip=True)
-        
-        # Фоллбэк: если не нашли страну, считаем российским
-        logger.warning(f"Could not determine country, assuming Russian")
-        return "Россия"
-    
-    def _find_next_screening(self, soup: BeautifulSoup) -> Optional[date]:
-        """Находит дату ближайшего сеанса."""
-        today = date.today()
-        
-        # Ищем даты в тексте
-        text = soup.get_text()
-        date_patterns = [
-            r'(\d{1,2})\s+(января|февраля|марта|апреля|мая|июня|июля|августа|сентября|октября|ноября|декабря)',
-            r'(\d{1,2})\.(\d{1,2})\.(\d{4})',
-            r'(\d{4})-(\d{1,2})-(\d{1,2})'
-        ]
-        
-        found_dates = []
-        
-        for pattern in date_patterns:
-            matches = re.findall(pattern, text)
-            for match in matches:
-                try:
-                    if len(match) == 2 and isinstance(match[1], str):  # месяц словом
-                        day, month_name = match
-                        month_map = {
-                            'января': 1, 'февраля': 2, 'марта': 3, 'апреля': 4,
-                            'мая': 5, 'июня': 6, 'июля': 7, 'августа': 8,
-                            'сентября': 9, 'октября': 10, 'ноября': 11, 'декабря': 12
-                        }
-                        if month_name in month_map:
-                            screening_date = date(today.year, month_map[month_name], int(day))
-                            if screening_date >= today:
-                                found_dates.append(screening_date)
-                except ValueError:
+
+
+def parse_country(soup: BeautifulSoup) -> Optional[str]:
+    # 1) dt/dd pattern
+    for dt in soup.select('dt'):
+        if 'страна' in dt.get_text(strip=True).lower():
+            dd = dt.find_next('dd')
+            if dd:
+                return dd.get_text(" ", strip=True)
+    # 2) common classes
+    for sel in ['.film-info .country', '.movie-info .country', '.film-meta .country', '[data-country]']:
+        el = soup.select_one(sel)
+        if el:
+            return el.get_text(" ", strip=True)
+    # 3) microdata
+    el = soup.select_one('[itemprop="countryOfOrigin"]')
+    if el:
+        return el.get_text(" ", strip=True)
+    # 4) regex fallback
+    txt = soup.get_text(" ", strip=True)
+    m = re.search(r"Страна\s*[:\-]?\s*([^\n,|]+(?:[,/;|][^\n,|]+)*)", txt, re.IGNORECASE)
+    if m:
+        return m.group(1).strip()
+    return None
+
+
+def parse_age(soup: BeautifulSoup) -> Optional[str]:
+    txt = soup.get_text(" ", strip=True)
+    m = re.search(r"(\b\d{1,2}\+)\b", txt)
+    return m.group(1) if m else None
+
+
+def parse_rating(soup: BeautifulSoup) -> Optional[str]:
+    txt = soup.get_text(" ", strip=True)
+    for pat in [r"IMDb\s*[:\-]?\s*(\d+\.\d+)", r"Кинопоиск\s*[:\-]?\s*(\d+\.\d+)", r"рейтинг\s*[:\-]?\s*(\d+\.\d+)"]:
+        m = re.search(pat, txt, re.IGNORECASE)
+        if m:
+            return m.group(1)
+    return None
+
+
+def parse_description(soup: BeautifulSoup) -> Optional[str]:
+    for sel in ['.annotation', '.description', '.film-description', '.b-object-lead']:
+        el = soup.select_one(sel)
+        if el:
+            desc = el.get_text(" ", strip=True)
+            return (desc[:300] + '...') if len(desc) > 300 else desc
+    return None
+
+
+def parse_next_date(soup: BeautifulSoup) -> Optional[date]:
+    today = date.today()
+    txt = soup.get_text(" ", strip=True)
+    dates: List[date] = []
+    # 1) DD monthname
+    for m in re.finditer(r"(\d{1,2})\s+(января|февраля|марта|апреля|мая|июня|июля|августа|сентября|октября|ноября|декабря)", txt, re.IGNORECASE):
+        d = int(m.group(1)); mon = MONTHS_RU[m.group(2).lower()]
+        try:
+            cand = date(today.year, mon, d)
+            if cand >= today:
+                dates.append(cand)
+        except ValueError:
+            pass
+    # 2) DD.MM.YYYY
+    for m in re.finditer(r"(\d{2})\.(\d{2})\.(\d{4})", txt):
+        d, mon, y = int(m.group(1)), int(m.group(2)), int(m.group(3))
+        try:
+            cand = date(y, mon, d)
+            if cand >= today:
+                dates.append(cand)
+        except ValueError:
+            pass
+    if dates:
+        return min(dates)
+    return None
+
+
+async def scrape() -> List[Film]:
+    logger.info(f"[BOOT] py={os.sys.version.split()[0]} aiohttp={aiohttp.__version__} bs4={BeautifulSoup.__module__.split('.')[0]} icalendar={Calendar.__module__.split('.')[0]}")
+    films: List[Film] = []
+    timeout = aiohttp.ClientTimeout(total=30)
+    connector = aiohttp.TCPConnector(limit=10)
+    async with aiohttp.ClientSession(timeout=timeout, connector=connector) as session:
+        # paginate (safe cap 10 pages)
+        page = 1
+        while page <= 10:
+            url = LIST_URL if page == 1 else f"{LIST_URL}page{page}/"
+            html = await fetch(session, url, attempt=1)
+            if not html:
+                logger.warning(f"[LIST] page={page} url={url} fetch=MISS; stop")
+                break
+            soup = BeautifulSoup(html, 'lxml')
+            cards = soup.select('a[href*="/schedule_cinema_product/"]')
+            if not cards:
+                logger.info(f"[LIST] page={page} films_found=0; stop")
+                break
+            logger.info(f"[LIST] page={page} films_found={len(cards)}")
+            for a in cards:
+                href = a.get('href')
+                if not href:
                     continue
-        
-        if found_dates:
-            return min(found_dates)  # Ближайшая дата
-        
-        # Если не нашли дату, используем завтра
-        return today + timedelta(days=1)
-    
-    def _extract_description(self, soup: BeautifulSoup) -> str:
-        """Извлекает описание фильма."""
-        selectors = ['.annotation', '.description', '.film-description', '.b-object-lead']
-        
-        for selector in selectors:
-            elem = soup.select_one(selector)
-            if elem:
-                desc = elem.get_text(strip=True)
-                return desc[:300] + "..." if len(desc) > 300 else desc
-        
-        return ""
-    
-    def _extract_rating(self, soup: BeautifulSoup) -> str:
-        """Извлекает рейтинг фильма."""
-        text = soup.get_text()
-        
-        # Ищем рейтинги
-        rating_patterns = [
-            r'IMDb[:\s]+(\d+\.\d+)',
-            r'Кинопоиск[:\s]+(\d+\.\d+)',
-            r'рейтинг[:\s]+(\d+\.\d+)',
-        ]
-        
-        for pattern in rating_patterns:
-            match = re.search(pattern, text, re.IGNORECASE)
-            if match:
-                return match.group(1)
-        
-        return ""
-    
-    def _extract_age_limit(self, soup: BeautifulSoup) -> str:
-        """Извлекает возрастное ограничение."""
-        text = soup.get_text()
-        
-        age_patterns = [
-            r'(\d+\+)',
-            r'возраст[:\s]+(\d+\+)',
-        ]
-        
-        for pattern in age_patterns:
-            match = re.search(pattern, text, re.IGNORECASE)
-            if match:
-                return match.group(1)
-        
-        return ""
+                detail = normalize_detail_url(urljoin(BASE, href))
+                title = a.get_text(" ", strip=True) or ""
+                films.append(Film(title=title, url=detail))
+            page += 1
+            await asyncio.sleep(RATE_MIN)
 
+        # limit to 20 for safety in CI
+        films = films[:20]
+        logger.info(f"[LIST] total_candidates={len(films)}")
 
-class ICSCalendarGenerator:
-    """Генератор ICS календаря."""
-    
-    @staticmethod
-    def generate_calendar(films: List[FilmInfo]) -> bytes:
-        """Создает ICS календарь из списка фильмов."""
-        cal = Calendar()
-        cal.add('prodid', '-//Perm Foreign Films//perm-cinema//EN')
-        cal.add('version', '2.0')
-        cal.add('calscale', 'GREGORIAN')
-        cal.add('method', 'PUBLISH')
-        cal.add('x-wr-calname', 'Зарубежные фильмы в кинотеатрах Перми')
-        cal.add('x-wr-caldesc', 'Иностранные фильмы, идущие в кинотеатрах Перми. Обновляется ежедневно.')
-        
-        for film in films:
-            if not film.next_date:
+        # process details
+        processed: List[Film] = []
+        for i, f in enumerate(films, 1):
+            logger.info(f"[DETAIL] {i}/{len(films)} url={f.url}")
+            html = None
+            for attempt in range(1, 4):
+                await asyncio.sleep(RATE_MIN + (attempt * 0.3))
+                html = await fetch(session, f.url, attempt)
+                if html:
+                    break
+            if not html:
+                logger.warning(f"[PARSE] SKIP reason=FETCH_FAIL url={f.url}")
                 continue
-                
-            event = Event()
-            
-            # Уникальный идентификатор
-            slug = film.url.split('/')[-2] if film.url.endswith('/') else film.url.split('/')[-1]
-            event.add('uid', f"{slug}-{film.next_date.isoformat()}@perm-cinema")
-            
-            # Даты (весь день)
-            event.add('dtstart', film.next_date)
-            event.add('dtend', film.next_date)
-            event.add('dtstamp', datetime.now())
-            
-            # Указываем, что это событие на весь день
-            event['dtstart'].params['VALUE'] = 'DATE'
-            event['dtend'].params['VALUE'] = 'DATE'
-            
-            # Название события
-            title = film.title
-            if film.age_limit:
-                title += f" ({film.age_limit})"
-            event.add('summary', title)
-            
-            # Описание
-            description_parts = []
-            if film.country:
-                description_parts.append(f"Страна: {film.country}")
-            if film.rating:
-                description_parts.append(f"Рейтинг: {film.rating}")
-            if film.description:
-                description_parts.append(f"\nОписание: {film.description}")
-            if film.url:
-                description_parts.append(f"\nПодробнее: {film.url}")
-            
-            event.add('description', '\n'.join(description_parts))
-            
-            # URL источника
-            if film.url:
-                event.add('url', film.url)
-            
-            # Категории для фильтрации
-            event.add('categories', ['ЗАРУБЕЖНЫЕ-ФИЛЬМЫ', 'КИНО', 'ПЕРМЬ'])
-            
-            cal.add_component(event)
-        
-        return cal.to_ical()
+            soup = BeautifulSoup(html, 'lxml')
+            f.country = parse_country(soup)
+            f.age_limit = parse_age(soup)
+            f.rating = parse_rating(soup)
+            f.description = parse_description(soup)
+            f.next_date = parse_next_date(soup)
+            logger.info(
+                f"[PARSE] title='{(f.title or '')[:40]}' country='{f.country}' age='{f.age_limit}' rating='{f.rating}' next='{f.next_date}'"
+            )
+            if not f.country:
+                logger.warning(f"[FILTER] EXCLUDE reason=NO_COUNTRY url={f.url}")
+                continue
+            if not f.is_foreign:
+                logger.info(f"[FILTER] EXCLUDE reason=RUSSIAN url={f.url} country='{f.country}'")
+                continue
+            if not f.next_date:
+                logger.info(f"[FILTER] EXCLUDE reason=NO_UPCOMING url={f.url}")
+                continue
+            processed.append(f)
+        return processed
+
+
+def write_ics(films: List[Film], docs_dir: Path) -> Path:
+    cal = Calendar()
+    cal.add('prodid', '-//Perm Foreign Films//perm-cinema//EN')
+    cal.add('version', '2.0')
+    cal.add('calscale', 'GREGORIAN')
+    cal.add('method', 'PUBLISH')
+    cal.add('x-wr-calname', 'Зарубежные фильмы в кинотеатрах Перми')
+    cal.add('x-wr-caldesc', 'Иностранные фильмы, идущие в кинотеатрах Перми. Обновляется ежедневно.')
+
+    for f in films:
+        ev = Event()
+        slug = normalize_detail_url(f.url).rstrip('/').split('/')[-1]
+        dt = f.next_date or date.today()
+        ev.add('uid', f"{slug}-{dt.isoformat()}@perm-cinema")
+        ev.add('dtstart', dt); ev['dtstart'].params['VALUE'] = 'DATE'
+        ev.add('dtend', dt);   ev['dtend'].params['VALUE'] = 'DATE'
+        ev.add('dtstamp', datetime.utcnow())
+        title = f.title
+        if f.age_limit:
+            title += f" ({f.age_limit})"
+        ev.add('summary', title)
+        desc_parts = []
+        if f.country: desc_parts.append(f"Страна: {f.country}")
+        if f.rating:  desc_parts.append(f"Рейтинг: {f.rating}")
+        if f.description: desc_parts.append(f"\nОписание: {f.description}")
+        if f.url: desc_parts.append(f"\nПодробнее: {f.url}")
+        ev.add('description', "\n".join(desc_parts))
+        if f.url:
+            ev.add('url', f.url)
+        ev.add('categories', ['ЗАРУБЕЖНЫЕ-ФИЛЬМЫ','КИНО','ПЕРМЬ'])
+        cal.add_component(ev)
+
+    docs_dir.mkdir(exist_ok=True)
+    ics_path = docs_dir / "calendar.ics"
+    payload = cal.to_ical()
+    with open(ics_path, "wb") as fh:
+        fh.write(payload)
+    md5 = hashlib.md5(payload).hexdigest()
+    logger.info(f"[ICS] events={len(films)} size={len(payload)} md5={md5} path={ics_path}")
+    return ics_path
+
+
+def write_index(docs_dir: Path, films_count: int):
+    html = f"""
+<!doctype html><html lang="ru"><meta charset="utf-8"><title>Календарь фильмов</title>
+<body style="font-family:Arial,sans-serif;max-width:800px;margin:20px auto;">
+<h1>Календарь зарубежных фильмов (Пермь)</h1>
+<p>Фильм(ов) в календаре: <strong>{films_count}</strong></p>
+<p><a href="calendar.ics">Скачать календарь (.ics)</a></p>
+<hr>
+<pre id="diag" style="background:#f7f7f7;padding:10px;border:1px solid #ddd;white-space:pre-wrap;"></pre>
+<script>fetch('diag.txt').then(r=>r.text()).then(t=>document.getElementById('diag').textContent=t).catch(()=>{});</script>
+</body></html>
+"""
+    with open(docs_dir / "index.html", "w", encoding="utf-8") as f:
+        f.write(html)
+
+
+def write_diag(docs_dir: Path, lines: List[str]):
+    with open(docs_dir / "diag.txt", "w", encoding="utf-8") as f:
+        f.write("\n".join(lines))
 
 
 async def main():
-    """Главная функция для запуска скрапера."""
-    logger.info("Starting Perm cinema scraper...")
-    
-    try:
-        async with PermCinemaScraper() as scraper:
-            # Получаем список фильмов
-            logger.info("Fetching film listings...")
-            film_urls = await scraper.scrape_film_listings()
-            logger.info(f"Found {len(film_urls)} films to process")
-            
-            # Обрабатываем фильмы
-            foreign_films = []
-            
-            for i, url in enumerate(film_urls[:20], 1):  # Ограничиваем для тестирования
-                logger.info(f"Processing film {i}/{min(20, len(film_urls))}: {url}")
-                
-                film_info = await scraper.get_film_info(url)
-                if film_info and film_info.is_foreign:
-                    foreign_films.append(film_info)
-                    logger.info(f"Added foreign film: {film_info.title} ({film_info.country})")
-                
-                # Пауза между запросами
-                await asyncio.sleep(1)
-            
-            logger.info(f"Found {len(foreign_films)} foreign films")
-            
-            # Создаем календарь
-            if foreign_films:
-                ics_data = ICSCalendarGenerator.generate_calendar(foreign_films)
-                
-                # Сохраняем файл
-                docs_dir = Path("docs")
-                docs_dir.mkdir(exist_ok=True)
-                
-                calendar_path = docs_dir / "calendar.ics"
-                with open(calendar_path, 'wb') as f:
-                    f.write(ics_data)
-                
-                logger.info(f"Calendar saved to {calendar_path} with {len(foreign_films)} films")
-                
-                # Создаем индексную страницу
-                create_index_page(docs_dir, len(foreign_films))
-                
-            else:
-                logger.warning("No foreign films found, not generating calendar")
-                
-    except Exception as e:
-        logger.error(f"Scraper failed: {e}")
-        raise
+    docs = Path("docs")
+    diag: List[str] = []
+    diag.append(f"BOOT py={os.sys.version.split()[0]} ua={USER_AGENT[:30]}… proxy={'on' if PROXY_URL else 'off'}")
+    films = await scrape()
+    foreign = films
+    diag.append(f"SUMMARY candidates_processed={len(foreign)}")
 
+    # Always produce ICS and index (even if 0 films)
+    ics_path = write_ics(foreign, docs)
+    write_index(docs, len(foreign))
 
-def create_index_page(docs_dir: Path, film_count: int):
-    """Создает индексную страницу для GitHub Pages."""
-    html_content = f"""
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Календарь зарубежных фильмов в Перми</title>
-    <style>
-        body {{
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }}
-        .container {{
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }}
-        .calendar-link {{
-            display: inline-block;
-            background: #4CAF50;
-            color: white;
-            padding: 12px 24px;
-            text-decoration: none;
-            border-radius: 4px;
-            margin: 10px 0;
-        }}
-        .calendar-link:hover {{
-            background: #45a049;
-        }}
-        .instructions {{
-            background: #e8f5e8;
-            padding: 20px;
-            border-radius: 4px;
-            margin: 20px 0;
-        }}
-        .stats {{
-            color: #666;
-            font-size: 14px;
-        }}
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>🎬 Календарь зарубежных фильмов в Перми</h1>
-        <p>Автоматически обновляемый календарь иностранных фильмов, идущих в кинотеатрах Перми.</p>
-        
-        <a href="calendar.ics" class="calendar-link" download>📅 Скачать календарь (.ics)</a>
-        
-        <div class="instructions">
-            <h3>Как подключить к Google Calendar:</h3>
-            <ol>
-                <li>Скопируйте эту ссылку: <code>https://maxytree.github.io/movie/calendar.ics</code></li>
-                <li>Откройте Google Calendar</li>
-                <li>Слева нажмите "+" рядом с "Другие календари"</li>
-                <li>Выберите "Из URL"</li>
-                <li>Вставьте скопированную ссылку</li>
-                <li>Нажмите "Добавить календарь"</li>
-            </ol>
-        </div>
-        
-        <div class="instructions">
-            <h3>Для других календарных приложений:</h3>
-            <ul>
-                <li><strong>Apple Calendar:</strong> Файл → Подписка на календарь</li>
-                <li><strong>Outlook:</strong> Добавить календарь → Подписаться из Интернета</li>
-                <li><strong>Другие:</strong> Скачайте файл .ics и импортируйте его</li>
-            </ul>
-        </div>
-        
-        <div class="stats">
-            <p>📊 Сейчас в календаре: {film_count} зарубежных фильмов</p>
-            <p>🔄 Обновляется ежедневно в 11:00 по времени Перми</p>
-            <p>📅 События создаются на весь день (без конкретного времени сеанса)</p>
-            <p>⏰ Последнее обновление: {datetime.now().strftime('%d.%m.%Y в %H:%M')}</p>
-        </div>
-        
-        <hr>
-        <p><small>
-            Источник данных: <a href="https://www.afisha.ru/prm/schedule_cinema/" target="_blank">afisha.ru</a> | 
-            Код проекта: <a href="https://github.com/MaxYtre/movie" target="_blank">GitHub</a>
-        </small></p>
-    </div>
-</body>
-</html>
-"""
-    
-    index_path = docs_dir / "index.html"
-    with open(index_path, 'w', encoding='utf-8') as f:
-        f.write(html_content)
-    
-    logger.info(f"Index page created at {index_path}")
-
+    # DIAG COPY block
+    diag.append("=== DIAG COPY START ===")
+    diag.append(f"pages_scraped=~ films_discovered=~ foreign_films={len(foreign)}")
+    for f in foreign[:5]:
+        diag.append(f"FILM title='{f.title[:40]}' country='{f.country}' next='{f.next_date}' url='{f.url}'")
+    diag.append(f"ICS path={ics_path} exists={ics_path.exists()} size={ics_path.stat().st_size if ics_path.exists() else 0}")
+    diag.append("=== DIAG COPY END ===")
+    write_diag(docs, diag)
+    logger.info("\n" + "\n".join(diag))
 
 if __name__ == "__main__":
     asyncio.run(main())
