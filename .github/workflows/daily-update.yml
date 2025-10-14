@@ -36,13 +36,15 @@ jobs:
         mkdir -p docs
         mkdir -p data
 
-    - name: Run scraper and generate calendar (diagnostic mode, limit=10)
+    - name: Run scraper and generate calendar (super-gentle, limit=5)
       env:
         PYTHONPATH: .
         MOVIE_SCRAPER_LOG_LEVEL: DEBUG
-        MOVIE_SCRAPER_MAX_FILMS: "10"
+        MOVIE_SCRAPER_MAX_FILMS: "5"
+        MOVIE_SCRAPER_RATE_LIMIT: "5.0"
       run: |
         set -euo pipefail
+        python -m py_compile movie_scraper/simple_scraper.py
         python -c "
         import asyncio, sys
         sys.path.insert(0, '.')
