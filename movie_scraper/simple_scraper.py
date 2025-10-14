@@ -1,10 +1,9 @@
 """
-Afisha parser updated to robust data-test/aria selectors.
-- Country via ITEM-META block link /movie/strana-*
-- Age via table row aria-label="Возраст"
-- Description via OBJECT-DESCRIPTION-CONTENT
-- First available show day via a[data-test="DAY"]:not([disabled]) aria-label
-Diagnostics show which selector path succeeded.
+Final touches:
+- Use film title from /movie/<slug>/ (ITEM-NAME) for ICS summary, not from schedule page.
+- Add REGION line to DIAG.
+- Keep region-specific date URL (/prm/...).
+- Optionally raise MAX_FILMS via env later; keep defaults polite.
 """
 
 import asyncio
@@ -82,7 +81,7 @@ class CacheDB:
         cur = self.conn.execute("SELECT slug,title,country,rating,description,age,url,updated_at FROM films WHERE slug=?", (slug,))
         return cur.fetchone()
 
-    def upsert_film(self, slug: str, title: str, country: Optional[str], rating: Optional[str], description: Optional[str], age: Optional[str], url: str) -> None:
+    def upsert_film(self, slug: str, title: Optional[str], country: Optional[str], rating: Optional[str], description: Optional[str], age: Optional[str], url: str) -> None:
         now = datetime.utcnow().isoformat()
         self.conn.execute(
             "REPLACE INTO films(slug,title,country,rating,description,age,url,updated_at) VALUES(?,?,?,?,?,?,?,?)",
@@ -192,18 +191,15 @@ async def fetch(session: aiohttp.ClientSession, url: str, attempt: int, backoffs
         return None, -1
 
 
-# New selectors based on data-test/aria
+# New selectors for Afisha
 
 def parse_country_new(soup: BeautifulSoup) -> Tuple[Optional[str], str]:
     el = soup.select_one('[data-test="ITEM-META"] a[href*="/movie/strana-"]')
     if el:
         return el.get_text(" ", strip=True), "item-meta"
-    # fallback: within ITEM-META plain text up to first comma
     meta = soup.select_one('[data-test="ITEM-META"]')
     if meta:
         txt = meta.get_text(" ", strip=True)
-        # Often looks like: "Фильм Август", then 
-        # country and year in following span; use regex to pick country before comma
         m = re.search(r"([A-Za-zА-Яа-яЁё\-\s]+)\s*,\s*\d{4}", txt)
         if m:
             return m.group(1).strip(), "item-meta-text"
@@ -214,7 +210,6 @@ def parse_age_new(soup: BeautifulSoup) -> Tuple[Optional[str], str]:
     el = soup.select_one('tr[aria-label="Возраст"] [data-test="META-FIELD-VALUE"]')
     if el:
         return el.get_text(" ", strip=True), "table"
-    # fallback regex
     txt = soup.get_text(" ", strip=True)
     m = re.search(r"\b(\d{1,2}\+)\b", txt)
     return (m.group(1) if m else None), ("regex" if m else "miss")
@@ -231,7 +226,7 @@ def parse_desc_new(soup: BeautifulSoup) -> Tuple[Optional[str], str]:
 def parse_first_day_new(soup: BeautifulSoup) -> Tuple[Optional[date], str]:
     day = soup.select_one('a[data-test="DAY"]:not([disabled])')
     if day and day.has_attr('aria-label'):
-        label = day['aria-label'].strip().lower()  # e.g. "15 октября"
+        label = day['aria-label'].strip().lower()
         m = re.match(r"(\d{1,2})\s+([а-я]+)", label)
         if m:
             d = int(m.group(1)); mon_name = m.group(2)
@@ -243,11 +238,22 @@ def parse_first_day_new(soup: BeautifulSoup) -> Tuple[Optional[date], str]:
                     return cand, "calendar"
                 except Exception:
                     pass
-    # fallback to existing extractor
     return parse_next_date(soup), "fallback"
 
 
-# Old helpers kept for fallback
+def parse_item_name(soup: BeautifulSoup) -> Optional[str]:
+    # Prefer explicit ITEM-NAME if present
+    name = soup.select_one('[data-test="ITEM-NAME"]')
+    if name:
+        return name.get_text(" ", strip=True)
+    # fallback to <h1>
+    h = soup.find('h1')
+    if h:
+        return h.get_text(" ", strip=True)
+    return None
+
+
+# Old date fallback
 
 def parse_next_date(soup: BeautifulSoup) -> Optional[date]:
     today = date.today()
@@ -275,7 +281,7 @@ def parse_next_date(soup: BeautifulSoup) -> Optional[date]:
 
 
 async def scrape() -> Tuple[List['Film'], dict]:
-    stats = {"429": 0, "403": 0, "errors": 0, "cache_hits": 0, "cache_misses": 0, "sleep_total": 0.0, "backoffs": [], "miss_samples": [], "selectors": []}
+    stats = {"429": 0, "403": 0, "errors": 0, "cache_hits": 0, "cache_misses": 0, "sleep_total": 0.0, "backoffs": [], "miss_samples": [], "selectors": [], "region": []}
     logger.info(f"[BOOT] py={os.sys.version.split()[0]} ua={USER_AGENT_BASE[:20]}… proxy={'on' if PROXY_URL else 'off'}")
     films: List[Film] = []
     timeout = aiohttp.ClientTimeout(total=60)
@@ -292,19 +298,25 @@ async def scrape() -> Tuple[List['Film'], dict]:
                 logger.warning(f"[LIST] page={page} fetch=MISS; stop")
                 break
             soup = BeautifulSoup(html, 'lxml')
-            cards = soup.select('a[href*="/schedule_cinema_product/"]')
-            logger.info(f"[LIST] page={page} films_found={len(cards)}")
-            if not cards:
+            items = soup.select('div[data-test="ITEM"]')
+            logger.info(f"[LIST] page={page} items_found={len(items)}")
+            if not items:
                 break
-            for a in cards:
+            for it in items:
                 if len(films) >= MAX_FILMS:
                     break
-                href = a.get('href')
-                if not href:
+                link = it.select_one('a[data-test="LINK ITEM-URL"]')
+                if not link or not link.get('href'):
                     continue
-                detail = normalize_detail_url(urljoin(BASE, href))
+                href = link['href']
+                # clean fragment/params
+                href = urlparse(href)._replace(query='', fragment='').geturl()
+                # absolute
+                detail = urljoin(BASE, href)
                 s = slug_from_url(detail)
-                title = a.get_text(" ", strip=True) or ""
+                # title from card if available
+                name_link = it.select_one('[data-test="LINK ITEM-NAME ITEM-URL"]')
+                title = name_link.get_text(" ", strip=True) if name_link else link.get('title') or s
                 films.append(Film(title=title, url=detail, slug=s))
             page += 1
             pause = RATE_MIN + random.uniform(0.3, 0.9)
@@ -318,71 +330,42 @@ async def scrape() -> Tuple[List['Film'], dict]:
         db = CacheDB(CACHE_DB)
         for i, f in enumerate(films, 1):
             logger.info(f"[DETAIL] {i}/{len(films)} slug={f.slug} url={f.url}")
-            if db.is_fresh(f.slug, CACHE_TTL_DAYS):
-                row = db.get_film(f.slug)
-                if row:
-                    f.title = row[1] or f.title
-                    f.country = row[2]
-                    f.rating = row[3]
-                    f.description = row[4]
-                    f.age_limit = row[5]
-                    f.url = row[6] or f.url
-                    f.next_date = db.get_session(f.slug)
-                    stats["cache_hits"] += 1
-                    logger.info(f"[CACHE] HIT slug={f.slug} next={f.next_date}")
-                    if f.country and f.is_foreign and f.next_date:
-                        processed.append(f)
-                        pause = random.uniform(EXTRA_BETWEEN_FILMS_MIN, EXTRA_BETWEEN_FILMS_MAX)
-                        stats["sleep_total"] += pause
-                        await asyncio.sleep(pause)
-                        continue
-            stats["cache_misses"] += 1
+            # Always compute region date URL for Perm
+            date_url = urljoin(BASE, f"/prm/schedule_cinema_product/{f.slug}/")
+            stats["region"].append((f.slug, date_url))
 
-            if cb_failures >= 8:
-                logger.warning("[CB] open; skipping remaining details to avoid ban")
-                break
-
+            # Fetch film detail (country/title/age/desc)
             html = None; status = -1
-            for attempt in range(1, 4):
-                html, status = await fetch(session, f.url, attempt, backoffs=stats["backoffs"])
-                if status == 429:
-                    stats["429"] += 1
-                    delay = [30.0, 60.0, 120.0][min(attempt-1, 2)] + random.uniform(0.5, 1.5)
+            for attempt in range(1, 3):
+                html, status = await fetch(session, urljoin(BASE, f"/movie/{f.slug}/"), attempt, backoffs=stats["backoffs"])
+                if status in (429, 403) or not html:
+                    delay = RATE_MIN + attempt * 1.0 + random.uniform(0.5, 1.0)
                     stats["sleep_total"] += delay
                     await asyncio.sleep(delay)
                     continue
-                if status == 403:
-                    stats["403"] += 1
-                if html:
-                    break
-                delay = RATE_MIN + attempt * 1.0 + random.uniform(0.5, 1.0)
-                stats["sleep_total"] += delay
-                await asyncio.sleep(delay)
-
+                break
             if not html:
-                cb_failures += 1
-                logger.warning(f"[PARSE] SKIP reason=FETCH_FAIL slug={f.slug}")
-                pause = random.uniform(EXTRA_BETWEEN_FILMS_MIN, EXTRA_BETWEEN_FILMS_MAX)
-                stats["sleep_total"] += pause
-                await asyncio.sleep(pause)
+                logger.warning(f"[PARSE] SKIP reason=DETAIL_FETCH_FAIL slug={f.slug}")
                 continue
-
-            cb_failures = 0
             soup = BeautifulSoup(html, 'lxml')
+
+            # Extract meta
             country, c_via = parse_country_new(soup)
             age, a_via = parse_age_new(soup)
             desc, d_via = parse_desc_new(soup)
-            next_dt, n_via = parse_first_day_new(soup)
+            title_override = parse_item_name(soup)
+            if title_override:
+                f.title = title_override
 
-            if not country:
-                # record sample from ITEM-META area if exists
-                meta = soup.select_one('[data-test="ITEM-META"]')
-                sample = (meta.get_text(" ", strip=True) if meta else soup.get_text(" ", strip=True)[:120]).replace('\n', ' ')
-                stats["miss_samples"].append((f.slug, f"country:{c_via}", sample[:120]))
+            # Fetch region date page
+            date_html, d_status = await fetch(session, date_url, attempt=1, backoffs=stats["backoffs"])
+            next_dt, n_via = (None, "miss")
+            if date_html:
+                date_soup = BeautifulSoup(date_html, 'lxml')
+                next_dt, n_via = parse_first_day_new(date_soup)
 
             f.country = country
             f.age_limit = age
-            f.rating = None  # rating parsing not stable in new layout; keep None for now
             f.description = desc
             f.next_date = next_dt
             stats["selectors"].append((f.slug, c_via, a_via, d_via, n_via))
@@ -391,9 +374,11 @@ async def scrape() -> Tuple[List['Film'], dict]:
                 f"[PARSE] title='{(f.title or '')[:40]}' country='{f.country}' age='{f.age_limit}' next='{f.next_date}' via={c_via}/{a_via}/{d_via}/{n_via}"
             )
 
-            db.upsert_film(f.slug, f.title, f.country, f.rating, f.description, f.age_limit, f.url)
+            # Cache
+            db.upsert_film(f.slug, f.title, f.country, None, f.description, f.age_limit, f.url)
             db.upsert_session(f.slug, f.next_date)
 
+            # Filters
             if not f.country:
                 logger.warning(f"[FILTER] EXCLUDE reason=NO_COUNTRY slug={f.slug}")
             elif not f.is_foreign:
@@ -403,7 +388,7 @@ async def scrape() -> Tuple[List['Film'], dict]:
             else:
                 processed.append(f)
 
-            pause = random.uniform(EXTRA_BETWEEN_FILMS_MIN, EXTRA_BETWEEN_FILMS_MAX)
+            pause = RATE_MIN + random.uniform(0.3, 0.9)
             stats["sleep_total"] += pause
             await asyncio.sleep(pause)
 
@@ -433,10 +418,10 @@ def write_ics(films: List[Film], docs_dir: Path) -> Path:
         desc_parts = []
         if f.country: desc_parts.append("Страна: " + f.country)
         if f.description: desc_parts.append("\nОписание: " + f.description)
-        if f.url: desc_parts.append("\nПодробнее: " + f.url)
+        more_url = urljoin(BASE, f"/prm/schedule_cinema_product/{f.slug}/")
+        desc_parts.append("\nПодробнее: " + more_url)
         ev.add('description', "\n".join(desc_parts))
-        if f.url:
-            ev.add('url', f.url)
+        ev.add('url', more_url)
         ev.add('categories', ['ЗАРУБЕЖНЫЕ-ФИЛЬМЫ','КИНО','ПЕРМЬ'])
         cal.add_component(ev)
 
@@ -452,10 +437,10 @@ def write_ics(films: List[Film], docs_dir: Path) -> Path:
 
 def write_index(docs_dir: Path, films_count: int, preview: List[str], stats: dict):
     preview_html = "".join(f"<li>{p}</li>" for p in preview)
+    region_html = "".join(f"<li>{slug}: {url}</li>" for slug, url in stats.get('region', [])[:5])
     sel_html = "".join(
         f"<li>{slug}: country={c}, age={a}, desc={d}, date={n}</li>" for slug, c, a, d, n in stats.get('selectors', [])[:5]
     )
-    miss_html = "".join(f"<li>{slug}: {reason} :: {sample}</li>" for slug, reason, sample in stats.get('miss_samples', [])[:3])
     html = (
         f"<!doctype html><html lang=\"ru\"><meta charset=\"utf-8\"><title>Календарь фильмов</title>\n"
         f"<body style=\"font-family:Arial,sans-serif;max-width:800px;margin:20px auto;\">\n"
@@ -463,9 +448,8 @@ def write_index(docs_dir: Path, films_count: int, preview: List[str], stats: dic
         f"<p>Фильм(ов) в календаре: <strong>{films_count}</strong></p>\n"
         f"<p><a href=\"calendar.ics\">Скачать календарь (.ics)</a></p>\n"
         f"<h3>Пример событий</h3><ul>{preview_html}</ul>\n"
-        f"<p style=\"color:#555\">429: {stats.get('429',0)}, 403: {stats.get('403',0)}, cache_hits: {stats.get('cache_hits',0)}, cache_misses: {stats.get('cache_misses',0)}, total_sleep_s: {stats.get('sleep_total',0.0):.1f}</p>\n"
+        f"<details><summary>REGION date URLs</summary><ul>{region_html}</ul></details>\n"
         f"<details><summary>Новые селекторы</summary><ul>{sel_html}</ul></details>\n"
-        f"<details><summary>Диагностика отсутствия страны</summary><ul>{miss_html}</ul></details>\n"
         f"<hr>\n"
         f"<pre id=\"diag\" style=\"background:#f7f7f7;padding:10px;border:1px solid #ddd;white-space:pre-wrap;\"></pre>\n"
         f"<script>fetch('diag.txt').then(r=>r.text()).then(t=>document.getElementById('diag').textContent=t).catch(()=>{{}});</script>\n"
@@ -490,7 +474,8 @@ async def main():
 
         preview = []
         for f in films[:3]:
-            preview.append(f"{f.title} | {f.next_date} | {f.country} | {f.age_limit or ''} | {f.url}")
+            more_url = urljoin(BASE, f"/prm/schedule_cinema_product/{f.slug}/")
+            preview.append(f"{f.title} | {f.next_date} | {f.country} | {f.age_limit or ''} | {more_url}")
 
         ics_path = write_ics(films, docs)
         write_index(docs, len(films), preview, stats)
@@ -499,10 +484,10 @@ async def main():
         diag.append(f"limit={MAX_FILMS} foreign_films={len(films)} 429={stats['429']} 403={stats['403']} cache_hits={stats['cache_hits']} cache_misses={stats['cache_misses']} sleep_total={stats['sleep_total']:.1f}")
         if stats['backoffs']:
             diag.append("429_backoffs=" + ",".join(f"{d:.1f}s" for d in stats['backoffs']))
+        for slug, url in stats.get('region', [])[:5]:
+            diag.append(f"REGION {slug} date_url={url}")
         for slug, c,a,d,n in stats.get('selectors', [])[:5]:
             diag.append(f"NEW-SELECTORS {slug} country={c} age={a} desc={d} date={n}")
-        for slug, reason, sample in stats.get('miss_samples', [])[:3]:
-            diag.append(f"MISS {slug} {reason} :: {sample}")
         if preview:
             for p in preview:
                 diag.append("PREVIEW " + p)
