@@ -11,7 +11,7 @@ BEGIN:VEVENT
 SUMMARY:Дракула (18+)
 DTSTART;VALUE=DATE:20251015
 DTEND;VALUE=DATE:20251015
-DTSTAMP:20251014T054912Z
+DTSTAMP:20251014T060801Z
 UID:drakula-1000812-2025-10-15@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:Страна: Великобритания\n\nОписание
@@ -27,30 +27,10 @@ DESCRIPTION:Страна: Великобритания\n\nОписание
 URL:https://www.afisha.ru/prm/schedule_cinema_product/drakula-1000812/
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Долгая прогулка (18+)
-DTSTART;VALUE=DATE:20251015
-DTEND;VALUE=DATE:20251015
-DTSTAMP:20251014T054912Z
-UID:dolgaya-progulka-1001088-2025-10-15@perm-cinema
-CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
-DESCRIPTION:Страна: США\n\nОписание: О фильме Бу
- дущее. Тоталитарное государство ежегодн
- о проводит показательное состязание под
-  названием «Долгая прогулка». Чтобы выиг
- рать крупный приз\, полсотн�и подростко
- в выходят на трассу и должны идти\, не ост
- анавливаясь ни на минуту. Сбавил скорост
- ь — предупреждение. Три предупреждения 
- — и тебя убив...\n\nПодробнее: https://www.afisha.ru/p
- rm/schedule_cinema_product/dolgaya-progulka-1001088/
-URL:https://www.afisha.ru/prm/schedule_cinema_product/dolgaya-progulka-100
- 1088/
-END:VEVENT
-BEGIN:VEVENT
 SUMMARY:Грабитель с крыши (16+)
 DTSTART;VALUE=DATE:20251015
 DTEND;VALUE=DATE:20251015
-DTSTAMP:20251014T054912Z
+DTSTAMP:20251014T060801Z
 UID:grabitel-s-kryshi-308410-2025-10-15@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:Страна: США\n\nОписание: О фильме Дж
@@ -67,29 +47,30 @@ URL:https://www.afisha.ru/prm/schedule_cinema_product/grabitel-s-kryshi-30
  8410/
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Зверопоезд (6+)
+SUMMARY:Долгая прогулка (18+)
 DTSTART;VALUE=DATE:20251015
 DTEND;VALUE=DATE:20251015
-DTSTAMP:20251014T054913Z
-UID:zveropoezd-1001045-2025-10-15@perm-cinema
+DTSTAMP:20251014T060801Z
+UID:dolgaya-progulka-1001088-2025-10-15@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
-DESCRIPTION:Страна: Франция\n\nОписание: О филь
- ме Команда животных оказывается в ловуш
- ке\, когда высокоскоростной поезд неожид
- анно трогается с места без людей на борт
- у. Пока экспресс мчится на всех парах\, пи
- томцы выясняют\, что произошедшее — дело
-  лапок злопамятного барсука Ханса. Тепер
- ь у зверей остается последняя надежда пр
- едотвратить ката...\n\nПодробнее: https://www.afis
- ha.ru/prm/schedule_cinema_product/zveropoezd-1001045/
-URL:https://www.afisha.ru/prm/schedule_cinema_product/zveropoezd-1001045/
+DESCRIPTION:Страна: США\n\nОписание: О фильме Бу
+ дущее. Тоталитарное государство ежегодн
+ о проводит показательное состязание под
+  названием «Долгая прогулка». Чтобы выиг
+ рать крупный приз\, полсотн�и подростко
+ в выходят на трассу и должны идти\, не ост
+ анавливаясь ни на минуту. Сбавил скорост
+ ь — предупреждение. Три предупреждения 
+ — и тебя убив...\n\nПодробнее: https://www.afisha.ru/p
+ rm/schedule_cinema_product/dolgaya-progulka-1001088/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/dolgaya-progulka-100
+ 1088/
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:Эдем (18+)
 DTSTART;VALUE=DATE:20251015
 DTEND;VALUE=DATE:20251015
-DTSTAMP:20251014T054913Z
+DTSTAMP:20251014T060801Z
 UID:edem-1000775-2025-10-15@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:Страна: США\n\nОписание: О фильме В 1
@@ -105,10 +86,29 @@ DESCRIPTION:Страна: США\n\nОписание: О фильме В 1
 URL:https://www.afisha.ru/prm/schedule_cinema_product/edem-1000775/
 END:VEVENT
 BEGIN:VEVENT
+SUMMARY:Зверопоезд (6+)
+DTSTART;VALUE=DATE:20251015
+DTEND;VALUE=DATE:20251015
+DTSTAMP:20251014T060801Z
+UID:zveropoezd-1001045-2025-10-15@perm-cinema
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+DESCRIPTION:Страна: Франция\n\nОписание: О филь
+ ме Команда животных оказывается в ловуш
+ ке\, когда высокоскоростной поезд неожид
+ анно трогается с места без людей на борт
+ у. Пока экспресс мчится на всех парах\, пи
+ томцы выясняют\, что произошедшее — дело
+  лапок злопамятного барсука Ханса. Тепер
+ ь у зверей остается последняя надежда пр
+ едотвратить ката...\n\nПодробнее: https://www.afis
+ ha.ru/prm/schedule_cinema_product/zveropoezd-1001045/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/zveropoezd-1001045/
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:Дом ада: Спуск к дьяволу (18+)
 DTSTART;VALUE=DATE:20251015
 DTEND;VALUE=DATE:20251015
-DTSTAMP:20251014T054913Z
+DTSTAMP:20251014T060801Z
 UID:dom-ada-spusk-k-dyavolu-1001202-2025-10-15@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:Страна: США\n\nОписание: О фильме Ва
@@ -128,7 +128,7 @@ BEGIN:VEVENT
 SUMMARY:Мир в огне (18+)
 DTSTART;VALUE=DATE:20251015
 DTEND;VALUE=DATE:20251015
-DTSTAMP:20251014T054913Z
+DTSTAMP:20251014T060801Z
 UID:mir-v-ogne-206394-2025-10-15@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:Страна: США\n\nОписание: Охотник за 
@@ -144,30 +144,10 @@ DESCRIPTION:Страна: США\n\nОписание: Охотник за
 URL:https://www.afisha.ru/prm/schedule_cinema_product/mir-v-ogne-206394/
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Ужастики. Ожившие рисунки (12+)
-DTSTART;VALUE=DATE:20251015
-DTEND;VALUE=DATE:20251015
-DTSTAMP:20251014T054913Z
-UID:uzhastiki-ozhivshie-risunki-1001302-2025-10-15@perm-cinema
-CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
-DESCRIPTION:Страна: США\n\nОписание: О фильме Ал
- ьбом с рисунками 10-летней Эмбер случайно
-  падает в магический пруд с живой водой\, 
- и все ее творения вдруг оживают. Но есть 
- нюанс — Эмбер обожает рисовать всяких с
- трашных монстров. Когда город начинают а
- таковать ужастики всех мастей\, Эмбер и е
- е семья должны объединиться и понять\, ка
- к остан...\n\nПодробнее: https://www.afisha.ru/prm/schedule
- _cinema_product/uzhastiki-ozhivshie-risunki-1001302/
-URL:https://www.afisha.ru/prm/schedule_cinema_product/uzhastiki-ozhivshie-
- risunki-1001302/
-END:VEVENT
-BEGIN:VEVENT
 SUMMARY:Выход 8 (16+)
 DTSTART;VALUE=DATE:20251015
 DTEND;VALUE=DATE:20251015
-DTSTAMP:20251014T054913Z
+DTSTAMP:20251014T060801Z
 UID:vyhod-8-1000762-2025-10-15@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:Страна: Япония\n\nОписание: О фильм
@@ -183,47 +163,10 @@ DESCRIPTION:Страна: Япония\n\nОписание: О фильм
 URL:https://www.afisha.ru/prm/schedule_cinema_product/vyhod-8-1000762/
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Астрал. Зеркала (18+)
-DTSTART;VALUE=DATE:20251015
-DTEND;VALUE=DATE:20251015
-DTSTAMP:20251014T054913Z
-UID:astral-zerkala-308646-2025-10-15@perm-cinema
-CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
-DESCRIPTION:Страна: Индонезия\n\nОписание: О фи
- льме Майя пытается связаться с умершим о
- тцом\, проведя древний обряд с помощью ро
- дового зеркала\, открывающего врата в по
- тусторонний мир. Но общение с мертвыми и
- меет свою цену...\n\nПодробнее: https://www.afisha.ru
- /prm/schedule_cinema_product/astral-zerkala-308646/
-URL:https://www.afisha.ru/prm/schedule_cinema_product/astral-zerkala-30864
- 6/
-END:VEVENT
-BEGIN:VEVENT
-SUMMARY:Изумительная Мокси (6+)
-DTSTART;VALUE=DATE:20251015
-DTEND;VALUE=DATE:20251015
-DTSTAMP:20251014T054913Z
-UID:izumitelnaya-moksi-1001083-2025-10-15@perm-cinema
-CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
-DESCRIPTION:Страна: Нидерланды\n\nОписание: О ф
- ильме Самоуверенная домашняя кошка Мокс
- и осталась совсем одна в глуши на юге Фра
- нции. Теперь ей надо найти дорогу домой к
-  хозяйке. Ее спутниками становятся те\, к
- ого она раньше на дух не переносила: глуп
- оватый пес и ворчливая птица. Их путешес
- твие\, полное приключений\, помогает Мокс
- и увидеть мир и ...\n\nПодробнее: https://www.afisha.
- ru/prm/schedule_cinema_product/izumitelnaya-moksi-1001083/
-URL:https://www.afisha.ru/prm/schedule_cinema_product/izumitelnaya-moksi-1
- 001083/
-END:VEVENT
-BEGIN:VEVENT
 SUMMARY:Ночь (16+)
 DTSTART;VALUE=DATE:20251015
 DTEND;VALUE=DATE:20251015
-DTSTAMP:20251014T054913Z
+DTSTAMP:20251014T060801Z
 UID:noch-172736-2025-10-15@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:Страна: Франция\n\nОписание: Двадца
