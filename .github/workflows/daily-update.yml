@@ -43,7 +43,7 @@ jobs:
       env:
         PYTHONPATH: .
         MOVIE_SCRAPER_LOG_LEVEL: DEBUG
-        MOVIE_SCRAPER_MAX_FILMS: "5"
+        MOVIE_SCRAPER_MAX_FILMS: "20"
         MOVIE_SCRAPER_RATE_LIMIT: "5.0"
         MOVIE_SCRAPER_CACHE_TTL_DAYS: "15"
       run: |
