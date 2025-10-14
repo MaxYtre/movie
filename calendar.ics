@@ -7,4 +7,16 @@ X-WR-CALDESC:Иностранные фильмы\, идущие в кин
  отеатрах Перми. Обновляется ежедневно.
 X-WR-CALNAME:Зарубежные фильмы в кинотеатрах 
  Перми
+BEGIN:VEVENT
+SUMMARY:Билеты
+DTSTART;VALUE=DATE:20251014
+DTEND;VALUE=DATE:20251014
+DTSTAMP:20251014T032908Z
+UID:dolgaya-progulka-1001088-2025-10-14@perm-cinema
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+DESCRIPTION:Страна: снов\n\nПодробнее: https://www.afis
+ ha.ru/prm/schedule_cinema_product/dolgaya-progulka-1001088/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/dolgaya-progulka-100
+ 1088/
+END:VEVENT
 END:VCALENDAR

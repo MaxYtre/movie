@@ -1,7 +1,11 @@
 BOOT py=3.11.13 ua=Mozilla/5.0 (Windows NT 10.0; … proxy=off
-SUMMARY candidates_processed=0
+SUMMARY candidates_processed=1
 === DIAG COPY START ===
-limit=5 foreign_films=0 429=2 403=0 cache_hits=0 cache_misses=5 sleep_total=77.8
-429_backoffs=31.2s,31.3s
-ICS path=docs/calendar.ics exists=True size=365
+limit=5 foreign_films=1 429=2 403=0 cache_hits=0 cache_misses=5 sleep_total=107.6
+429_backoffs=31.4s,60.7s
+MISS avgust-308206 NO_COUNTRY ::    <!DOCTYPE html> <html prefix="og: http://ogp.me/ns#" dir="ltr" lang="ru" data-d> <head>     <meta charset="utf-8">     <meta name="viewport" content="width=device-width, user-scalable=yes" />     <
+MISS perviy-na-olimpe-307551 NO_COUNTRY ::    <!DOCTYPE html> <html prefix="og: http://ogp.me/ns#" dir="ltr" lang="ru" data-d> <head>     <meta charset="utf-8">     <meta name="viewport" content="width=device-width, user-scalable=yes" />     <
+MISS drakula-1000812 NO_COUNTRY ::    <!DOCTYPE html> <html prefix="og: http://ogp.me/ns#" dir="ltr" lang="ru" data-d> <head>     <meta charset="utf-8">     <meta name="viewport" content="width=device-width, user-scalable=yes" />     <
+PREVIEW Билеты | 2025-10-14 | снов |  | https://www.afisha.ru/prm/schedule_cinema_product/dolgaya-progulka-1001088/
+ICS path=docs/calendar.ics exists=True size=836
 === DIAG COPY END ===
