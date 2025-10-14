@@ -1,8 +1,8 @@
 BOOT py=3.11.13 ua=Mozilla/5.0 (Windows NT 10.0; … proxy=off
 SUMMARY candidates_processed=1
 === DIAG COPY START ===
-limit=5 foreign_films=1 429=0 403=0 cache_hits=0 cache_misses=0 sleep_total=33.4
-429_backoffs=30.6s,30.8s,62.0s,31.8s,61.0s
+limit=5 foreign_films=1 429=0 403=0 cache_hits=0 cache_misses=0 sleep_total=33.7
+429_backoffs=31.5s,30.6s,31.7s,31.0s,61.8s
 REGION avgust-308206 date_url=https://www.afisha.ru/prm/schedule_cinema_product/avgust-308206/
 REGION cheburashka-2-295278 date_url=https://www.afisha.ru/prm/schedule_cinema_product/cheburashka-2-295278/
 REGION illyuziya-obmana-3-308835 date_url=https://www.afisha.ru/prm/schedule_cinema_product/illyuziya-obmana-3-308835/
