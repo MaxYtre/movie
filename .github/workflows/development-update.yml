@@ -1,0 +1,84 @@
+name: Development Calendar Update
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ development ]
+    paths:
+      - 'movie_scraper/**'
+      - '.github/workflows/**'
+
+jobs:
+  update-calendar-dev:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        ref: development
+        persist-credentials: true
+        fetch-depth: 0
+
+    - name: Setup Python 3.11
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Ensure data dir and show cache status
+      run: |
+        mkdir -p data
+        if [ -f data/cache.sqlite ]; then echo "CACHE_PRESENT"; else echo "CACHE_ABSENT"; fi
+
+    - name: Install dependencies
+      run: |
+        set -euo pipefail
+        python -m pip install --upgrade pip
+        pip install aiohttp beautifulsoup4 lxml icalendar python-dateutil pytz aiosqlite
+
+    - name: Run scraper (development, with enrichment)
+      env:
+        PYTHONPATH: .
+        MOVIE_SCRAPER_LOG_LEVEL: DEBUG
+        MOVIE_SCRAPER_MAX_FILMS: "50"
+        MOVIE_SCRAPER_RATE_LIMIT: "5.0"
+        MOVIE_SCRAPER_CACHE_TTL_DAYS: "15"
+        OMDB_API_KEY: ${{ secrets.OMDB_API_KEY }}
+        YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        KINOPOISK_API_KEY: ${{ secrets.KINOPOISK_API_KEY }}
+      run: |
+        set -euo pipefail
+        python -m py_compile movie_scraper/simple_scraper.py
+        python -c "
+        import asyncio, sys
+        sys.path.insert(0, '.')
+        from movie_scraper.simple_scraper import main
+        asyncio.run(main())
+        "
+
+    - name: Show DIAG COPY block
+      if: always()
+      run: |
+        echo "--- DIAG COPY (dev) ---"
+        if [ -f docs/diag.txt ]; then tail -n 200 docs/diag.txt; else echo "no diag.txt"; fi
+        echo "--- END DIAG ---"
+
+    - name: Commit and push docs and cache to development (rebase-safe)
+      if: github.ref == 'refs/heads/development'
+      run: |
+        set -euo pipefail
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git add docs/ data/cache.sqlite
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "[dev] Update docs & cache with enrichment"
+          git fetch origin development
+          if ! git rebase origin/development; then
+            git rebase --abort || true
+            git merge -s ours -m "Resolve dev conflicts by keeping artifacts" origin/development
+          fi
+          git push origin HEAD:development
+        fi
