@@ -1,6 +1,6 @@
 """
-SQLite-backed cache and structured scraper with rate limiting, backoff, circuit breaker,
-film limit, and diagnostics (DIAG COPY). Generates ICS and index preview.
+SQLite-backed cache and structured scraper with strong rate limiting/backoff to avoid 429,
+film limit control, and diagnostics (DIAG COPY). Generates ICS and index preview.
 """
 
 import asyncio
@@ -19,13 +19,16 @@ import aiohttp
 from bs4 import BeautifulSoup
 from icalendar import Calendar, Event
 
-# Settings
+# Settings (tuned for politeness)
 LOG_LEVEL = os.getenv("MOVIE_SCRAPER_LOG_LEVEL", "DEBUG").upper()
-USER_AGENT = os.getenv("MOVIE_SCRAPER_USER_AGENT", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0 Safari/537.36")
+USER_AGENT_BASE = os.getenv("MOVIE_SCRAPER_USER_AGENT", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0 Safari/537.36")
 ACCEPT_LANG = os.getenv("MOVIE_SCRAPER_ACCEPT_LANGUAGE", "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7")
 PROXY_URL = os.getenv("MOVIE_SCRAPER_PROXY_URL")
-RATE_MIN = float(os.getenv("MOVIE_SCRAPER_RATE_LIMIT", "1.0"))
-MAX_FILMS = int(os.getenv("MOVIE_SCRAPER_MAX_FILMS", "10"))
+# Slower global rate and extra jitter to reduce 429
+RATE_MIN = float(os.getenv("MOVIE_SCRAPER_RATE_LIMIT", "3.0"))
+EXTRA_BETWEEN_FILMS_MIN = 1.0
+EXTRA_BETWEEN_FILMS_MAX = 3.0
+MAX_FILMS = int(os.getenv("MOVIE_SCRAPER_MAX_FILMS", "5"))
 CACHE_TTL_DAYS = int(os.getenv("MOVIE_SCRAPER_CACHE_TTL_DAYS", "3"))
 
 logging.basicConfig(level=LOG_LEVEL, format="%(levelname)s:%(name)s:%(message)s")
@@ -148,14 +151,29 @@ def slug_from_url(u: str) -> str:
     return normalize_detail_url(u).rstrip('/').split('/')[-1]
 
 
-async def fetch(session: aiohttp.ClientSession, url: str, attempt: int) -> Tuple[Optional[str], int]:
+def rotate_headers() -> dict:
+    # Slight UA variations and additional headers to look more like a browser
+    ua_suffix = random.choice(["", "; rv:118.0", "; WOW64"])
+    ua = USER_AGENT_BASE + ua_suffix
     headers = {
-        'User-Agent': USER_AGENT,
+        'User-Agent': ua,
         'Accept-Language': ACCEPT_LANG,
+        'Accept': random.choice([
+            'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+            'text/html,application/xml;q=0.9,*/*;q=0.8'
+        ]),
+        'Connection': random.choice(['keep-alive', 'close']),
+        'Pragma': random.choice(['no-cache', '']),
+        'Cache-Control': 'no-cache',
         'Referer': LIST_URL,
         'DNT': '1',
-        'Cache-Control': 'no-cache',
     }
+    # Remove empty header values
+    return {k: v for k, v in headers.items() if v}
+
+
+async def fetch(session: aiohttp.ClientSession, url: str, attempt: int, backoffs: List[float]) -> Tuple[Optional[str], int]:
+    headers = rotate_headers()
     try:
         async with session.get(url, headers=headers, proxy=PROXY_URL) as resp:
             status = resp.status
@@ -165,6 +183,10 @@ async def fetch(session: aiohttp.ClientSession, url: str, attempt: int) -> Tuple
                 return text, status
             else:
                 logger.warning(f"[FETCH] try={attempt} status={status} url={url}")
+                # If 429, compute and record backoff used
+                if status == 429:
+                    delay = [30.0, 60.0, 120.0][min(attempt-1, 2)] + random.uniform(0.5, 1.5)
+                    backoffs.append(delay)
                 return None, status
     except Exception as e:
         logger.warning(f"[FETCH] try={attempt} error={type(e).__name__} url={url} msg={e}")
@@ -241,23 +263,22 @@ def parse_next_date(soup: BeautifulSoup) -> Optional[date]:
 
 
 async def scrape() -> Tuple[List[Film], dict]:
-    stats = {"429": 0, "403": 0, "errors": 0, "cache_hits": 0, "cache_misses": 0}
-    logger.info(f"[BOOT] py={os.sys.version.split()[0]} ua={USER_AGENT[:20]}… proxy={'on' if PROXY_URL else 'off'}")
+    stats = {"429": 0, "403": 0, "errors": 0, "cache_hits": 0, "cache_misses": 0, "sleep_total": 0.0, "backoffs": []}
+    logger.info(f"[BOOT] py={os.sys.version.split()[0]} ua={USER_AGENT_BASE[:20]}… proxy={'on' if PROXY_URL else 'off'}")
     films: List[Film] = []
-    timeout = aiohttp.ClientTimeout(total=30)
+    timeout = aiohttp.ClientTimeout(total=45)
     connector = aiohttp.TCPConnector(limit=10)
     async with aiohttp.ClientSession(timeout=timeout, connector=connector) as session:
         # Listing pages
         page = 1
         while page <= 10 and len(films) < MAX_FILMS:
-            url = LIST_URL if page == 1 else f"{LIST_URL}page{page}/"
-            html, status = await fetch(session, url, attempt=1)
+            html, status = await fetch(session, LIST_URL if page == 1 else f"{LIST_URL}page{page}/", attempt=1, backoffs=stats["backoffs"])
             if status == 429:
                 stats["429"] += 1
             if status == 403:
                 stats["403"] += 1
             if not html:
-                logger.warning(f"[LIST] page={page} url={url} fetch=MISS; stop")
+                logger.warning(f"[LIST] page={page} fetch=MISS; stop")
                 break
             soup = BeautifulSoup(html, 'lxml')
             cards = soup.select('a[href*="/schedule_cinema_product/"]')
@@ -275,7 +296,9 @@ async def scrape() -> Tuple[List[Film], dict]:
                 title = a.get_text(" ", strip=True) or ""
                 films.append(Film(title=title, url=detail, slug=s))
             page += 1
-            await asyncio.sleep(RATE_MIN + random.uniform(0.1, 0.4))
+            pause = RATE_MIN + random.uniform(0.1, 0.6)
+            stats["sleep_total"] += pause
+            await asyncio.sleep(pause)
 
         logger.info(f"[LIST] total_candidates={len(films)} (limit={MAX_FILMS})")
 
@@ -300,6 +323,10 @@ async def scrape() -> Tuple[List[Film], dict]:
                     logger.info(f"[CACHE] HIT slug={f.slug} next={f.next_date}")
                     if f.country and f.is_foreign and f.next_date:
                         processed.append(f)
+                        # extra pause between films even on cache hit
+                        pause = random.uniform(EXTRA_BETWEEN_FILMS_MIN, EXTRA_BETWEEN_FILMS_MAX)
+                        stats["sleep_total"] += pause
+                        await asyncio.sleep(pause)
                         continue
             stats["cache_misses"] += 1
 
@@ -310,10 +337,11 @@ async def scrape() -> Tuple[List[Film], dict]:
 
             html = None; status = -1
             for attempt in range(1, 4):
-                html, status = await fetch(session, f.url, attempt)
+                html, status = await fetch(session, f.url, attempt, backoffs=stats["backoffs"])
                 if status == 429:
                     stats["429"] += 1
-                    delay = (2 ** attempt) + random.uniform(0.3, 0.7)
+                    delay = [30.0, 60.0, 120.0][min(attempt-1, 2)] + random.uniform(0.5, 1.5)
+                    stats["sleep_total"] += delay
                     await asyncio.sleep(delay)
                     continue
                 if status == 403:
@@ -321,11 +349,17 @@ async def scrape() -> Tuple[List[Film], dict]:
                 if html:
                     break
                 # mild backoff for other errors
-                await asyncio.sleep(RATE_MIN + attempt * 0.5 + random.uniform(0.1, 0.4))
+                delay = RATE_MIN + attempt * 0.8 + random.uniform(0.2, 0.6)
+                stats["sleep_total"] += delay
+                await asyncio.sleep(delay)
 
             if not html:
                 cb_failures += 1
                 logger.warning(f"[PARSE] SKIP reason=FETCH_FAIL slug={f.slug}")
+                # pause between films to be polite
+                pause = random.uniform(EXTRA_BETWEEN_FILMS_MIN, EXTRA_BETWEEN_FILMS_MAX)
+                stats["sleep_total"] += pause
+                await asyncio.sleep(pause)
                 continue
 
             cb_failures = 0
@@ -344,14 +378,18 @@ async def scrape() -> Tuple[List[Film], dict]:
 
             if not f.country:
                 logger.warning(f"[FILTER] EXCLUDE reason=NO_COUNTRY slug={f.slug}")
-                continue
-            if not f.is_foreign:
+            elif not f.is_foreign:
                 logger.info(f"[FILTER] EXCLUDE reason=RUSSIAN slug={f.slug} country='{f.country}'")
-                continue
-            if not f.next_date:
+            elif not f.next_date:
                 logger.info(f"[FILTER] EXCLUDE reason=NO_UPCOMING slug={f.slug}")
-                continue
-            processed.append(f)
+            else:
+                processed.append(f)
+
+            # extra pause between films
+            pause = random.uniform(EXTRA_BETWEEN_FILMS_MIN, EXTRA_BETWEEN_FILMS_MAX)
+            stats["sleep_total"] += pause
+            await asyncio.sleep(pause)
+
         return processed, stats
 
 
@@ -396,14 +434,16 @@ def write_ics(films: List[Film], docs_dir: Path) -> Path:
     return ics_path
 
 
-def write_index(docs_dir: Path, films_count: int, preview: List[str]):
+def write_index(docs_dir: Path, films_count: int, preview: List[str], stats: dict):
+    preview_html = "".join(f"<li>{p}</li>" for p in preview)
     html = (
         f"<!doctype html><html lang=\"ru\"><meta charset=\"utf-8\"><title>Календарь фильмов</title>\n"
         f"<body style=\"font-family:Arial,sans-serif;max-width:800px;margin:20px auto;\">\n"
         f"<h1>Календарь зарубежных фильмов (Пермь)</h1>\n"
         f"<p>Фильм(ов) в календаре: <strong>{films_count}</strong></p>\n"
         f"<p><a href=\"calendar.ics\">Скачать календарь (.ics)</a></p>\n"
-        f"<h3>Пример событий</h3><ul>" + "".join(f"<li>{p}</li>" for p in preview) + "</ul>\n"
+        f"<h3>Пример событий</h3><ul>{preview_html}</ul>\n"
+        f"<p style=\"color:#555\">429: {stats.get('429',0)}, 403: {stats.get('403',0)}, cache_hits: {stats.get('cache_hits',0)}, cache_misses: {stats.get('cache_misses',0)}, total_sleep_s: {stats.get('sleep_total',0.0):.1f}</p>\n"
         f"<hr>\n"
         f"<pre id=\"diag\" style=\"background:#f7f7f7;padding:10px;border:1px solid #ddd;white-space:pre-wrap;\"></pre>\n"
         f"<script>fetch('diag.txt').then(r=>r.text()).then(t=>document.getElementById('diag').textContent=t).catch(()=>{{}});</script>\n"
@@ -422,7 +462,7 @@ async def main():
     docs = Path("docs"); docs.mkdir(exist_ok=True)
     diag: List[str] = []
     try:
-        diag.append(f"BOOT py={os.sys.version.split()[0]} ua={USER_AGENT[:30]}… proxy={'on' if PROXY_URL else 'off'}")
+        diag.append(f"BOOT py={os.sys.version.split()[0]} ua={USER_AGENT_BASE[:30]}… proxy={'on' if PROXY_URL else 'off'}")
         films, stats = await scrape()
         diag.append(f"SUMMARY candidates_processed={len(films)}")
 
@@ -432,10 +472,12 @@ async def main():
             preview.append(f"{f.title} | {f.next_date} | {f.country} | {f.age_limit or ''} | {f.url}")
 
         ics_path = write_ics(films, docs)
-        write_index(docs, len(films), preview)
+        write_index(docs, len(films), preview, stats)
 
         diag.append("=== DIAG COPY START ===")
-        diag.append(f"limit={MAX_FILMS} foreign_films={len(films)} 429={stats['429']} 403={stats['403']} cache_hits={stats['cache_hits']} cache_misses={stats['cache_misses']}")
+        diag.append(f"limit={MAX_FILMS} foreign_films={len(films)} 429={stats['429']} 403={stats['403']} cache_hits={stats['cache_hits']} cache_misses={stats['cache_misses']} sleep_total={stats['sleep_total']:.1f}")
+        if stats['backoffs']:
+            diag.append("429_backoffs=" + ",".join(f"{d:.1f}s" for d in stats['backoffs']))
         if preview:
             for p in preview:
                 diag.append("PREVIEW " + p)
