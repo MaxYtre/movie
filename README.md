@@ -3,7 +3,6 @@
 A GitHub‑hosted scraper that monitors Perm cinema listings on afisha.ru and generates an ICS calendar of foreign (non‑Russian) films. Runs entirely on GitHub Actions; no local runtime required.
 
 ## Live links
-
 - Site: https://maxytree.github.io/movie/
 - Calendar (raw, direct): https://raw.githubusercontent.com/MaxYtre/movie/main/docs/calendar.ics
 
