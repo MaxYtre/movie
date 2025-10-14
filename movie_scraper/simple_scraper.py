@@ -1,6 +1,10 @@
 """
-SQLite cache + diagnostics: save HTML excerpts when country is missing,
-add raw-regex fallback, detect JS placeholders.
+Afisha parser updated to robust data-test/aria selectors.
+- Country via ITEM-META block link /movie/strana-*
+- Age via table row aria-label="Возраст"
+- Description via OBJECT-DESCRIPTION-CONTENT
+- First available show day via a[data-test="DAY"]:not([disabled]) aria-label
+Diagnostics show which selector path succeeded.
 """
 
 import asyncio
@@ -188,64 +192,62 @@ async def fetch(session: aiohttp.ClientSession, url: str, attempt: int, backoffs
         return None, -1
 
 
-def parse_country_bs(soup: BeautifulSoup) -> Optional[str]:
-    for dt in soup.select('dt'):
-        if 'страна' in dt.get_text(strip=True).lower():
-            dd = dt.find_next('dd')
-            if dd:
-                return dd.get_text(" ", strip=True)
-    for sel in ['.film-info .country', '.movie-info .country', '.film-meta .country', '[data-country]']:
-        el = soup.select_one(sel)
-        if el:
-            return el.get_text(" ", strip=True)
-    el = soup.select_one('[itemprop="countryOfOrigin"]')
+# New selectors based on data-test/aria
+
+def parse_country_new(soup: BeautifulSoup) -> Tuple[Optional[str], str]:
+    el = soup.select_one('[data-test="ITEM-META"] a[href*="/movie/strana-"]')
     if el:
-        return el.get_text(" ", strip=True)
-    return None
-
-
-def parse_country_regex(html: str) -> Optional[str]:
-    # Try simple regex over raw HTML/text
-    # Examples: "Страна: США", "Страна — Франция/Германия"
-    # Capture list up to < or line break
-    m = re.search(r"Страна\s*[—:-]?\s*([^<\n\r]+)", html, re.IGNORECASE)
-    if m:
-        val = re.sub(r"\s+", " ", m.group(1)).strip()
-        # Trim trailing punctuation
-        val = re.sub(r"[\s\|;:,]+$", "", val)
-        return val
-    return None
-
-
-def looks_like_js_placeholder(html: str) -> bool:
-    snippet = html[:600].lower()
-    markers = ["подождите", "loading", "скоро загрузится", "javascript", "enable cookies"]
-    return any(x in snippet for x in markers)
-
-
-def parse_age(soup: BeautifulSoup) -> Optional[str]:
-    txt = soup.get_text(" ", strip=True)
-    m = re.search(r"(\b\d{1,2}\+)\b", txt)
-    return m.group(1) if m else None
-
-
-def parse_rating(soup: BeautifulSoup) -> Optional[str]:
-    txt = soup.get_text(" ", strip=True)
-    for pat in [r"IMDb\s*[:\-]?\s*(\d+\.\d+)", r"Кинопоиск\s*[:\-]?\s*(\d+\.\d+)", r"рейтинг\s*[:\-]?\s*(\d+\.\d+)"]:
-        m = re.search(pat, txt, re.IGNORECASE)
+        return el.get_text(" ", strip=True), "item-meta"
+    # fallback: within ITEM-META plain text up to first comma
+    meta = soup.select_one('[data-test="ITEM-META"]')
+    if meta:
+        txt = meta.get_text(" ", strip=True)
+        # Often looks like: "Фильм Август", then 
+        # country and year in following span; use regex to pick country before comma
+        m = re.search(r"([A-Za-zА-Яа-яЁё\-\s]+)\s*,\s*\d{4}", txt)
         if m:
-            return m.group(1)
-    return None
+            return m.group(1).strip(), "item-meta-text"
+    return None, "miss"
 
 
-def parse_description(soup: BeautifulSoup) -> Optional[str]:
-    for sel in ['.annotation', '.description', '.film-description', '.b-object-lead']:
-        el = soup.select_one(sel)
-        if el:
-            desc = el.get_text(" ", strip=True)
-            return (desc[:300] + '...') if len(desc) > 300 else desc
-    return None
+def parse_age_new(soup: BeautifulSoup) -> Tuple[Optional[str], str]:
+    el = soup.select_one('tr[aria-label="Возраст"] [data-test="META-FIELD-VALUE"]')
+    if el:
+        return el.get_text(" ", strip=True), "table"
+    # fallback regex
+    txt = soup.get_text(" ", strip=True)
+    m = re.search(r"\b(\d{1,2}\+)\b", txt)
+    return (m.group(1) if m else None), ("regex" if m else "miss")
 
+
+def parse_desc_new(soup: BeautifulSoup) -> Tuple[Optional[str], str]:
+    el = soup.select_one('[data-test="OBJECT-DESCRIPTION-CONTENT"]')
+    if el:
+        desc = el.get_text(" ", strip=True)
+        return (desc[:300] + '...') if len(desc) > 300 else desc, "object-desc"
+    return None, "miss"
+
+
+def parse_first_day_new(soup: BeautifulSoup) -> Tuple[Optional[date], str]:
+    day = soup.select_one('a[data-test="DAY"]:not([disabled])')
+    if day and day.has_attr('aria-label'):
+        label = day['aria-label'].strip().lower()  # e.g. "15 октября"
+        m = re.match(r"(\d{1,2})\s+([а-я]+)", label)
+        if m:
+            d = int(m.group(1)); mon_name = m.group(2)
+            mon = MONTHS_RU.get(mon_name)
+            if mon:
+                today = date.today()
+                try:
+                    cand = date(today.year, mon, d)
+                    return cand, "calendar"
+                except Exception:
+                    pass
+    # fallback to existing extractor
+    return parse_next_date(soup), "fallback"
+
+
+# Old helpers kept for fallback
 
 def parse_next_date(soup: BeautifulSoup) -> Optional[date]:
     today = date.today()
@@ -272,8 +274,8 @@ def parse_next_date(soup: BeautifulSoup) -> Optional[date]:
     return None
 
 
-async def scrape() -> Tuple[List[Film], dict]:
-    stats = {"429": 0, "403": 0, "errors": 0, "cache_hits": 0, "cache_misses": 0, "sleep_total": 0.0, "backoffs": [], "miss_samples": []}
+async def scrape() -> Tuple[List['Film'], dict]:
+    stats = {"429": 0, "403": 0, "errors": 0, "cache_hits": 0, "cache_misses": 0, "sleep_total": 0.0, "backoffs": [], "miss_samples": [], "selectors": []}
     logger.info(f"[BOOT] py={os.sys.version.split()[0]} ua={USER_AGENT_BASE[:20]}… proxy={'on' if PROXY_URL else 'off'}")
     films: List[Film] = []
     timeout = aiohttp.ClientTimeout(total=60)
@@ -367,21 +369,28 @@ async def scrape() -> Tuple[List[Film], dict]:
 
             cb_failures = 0
             soup = BeautifulSoup(html, 'lxml')
-            country = parse_country_bs(soup)
+            country, c_via = parse_country_new(soup)
+            age, a_via = parse_age_new(soup)
+            desc, d_via = parse_desc_new(soup)
+            next_dt, n_via = parse_first_day_new(soup)
+
             if not country:
-                country = parse_country_regex(html)
-                if looks_like_js_placeholder(html):
-                    stats["miss_samples"].append((f.slug, "JS_PLACEHOLDER", html[:200].replace('\n', ' ')))
-                else:
-                    stats["miss_samples"].append((f.slug, "NO_COUNTRY", html[:200].replace('\n', ' ')))
+                # record sample from ITEM-META area if exists
+                meta = soup.select_one('[data-test="ITEM-META"]')
+                sample = (meta.get_text(" ", strip=True) if meta else soup.get_text(" ", strip=True)[:120]).replace('\n', ' ')
+                stats["miss_samples"].append((f.slug, f"country:{c_via}", sample[:120]))
+
             f.country = country
-            f.age_limit = parse_age(soup)
-            f.rating = parse_rating(soup)
-            f.description = parse_description(soup)
-            f.next_date = parse_next_date(soup)
+            f.age_limit = age
+            f.rating = None  # rating parsing not stable in new layout; keep None for now
+            f.description = desc
+            f.next_date = next_dt
+            stats["selectors"].append((f.slug, c_via, a_via, d_via, n_via))
+
             logger.info(
-                f"[PARSE] title='{(f.title or '')[:40]}' country='{f.country}' age='{f.age_limit}' rating='{f.rating}' next='{f.next_date}'"
+                f"[PARSE] title='{(f.title or '')[:40]}' country='{f.country}' age='{f.age_limit}' next='{f.next_date}' via={c_via}/{a_via}/{d_via}/{n_via}"
             )
+
             db.upsert_film(f.slug, f.title, f.country, f.rating, f.description, f.age_limit, f.url)
             db.upsert_session(f.slug, f.next_date)
 
@@ -423,7 +432,6 @@ def write_ics(films: List[Film], docs_dir: Path) -> Path:
         ev.add('summary', title)
         desc_parts = []
         if f.country: desc_parts.append("Страна: " + f.country)
-        if f.rating:  desc_parts.append("Рейтинг: " + str(f.rating))
         if f.description: desc_parts.append("\nОписание: " + f.description)
         if f.url: desc_parts.append("\nПодробнее: " + f.url)
         ev.add('description', "\n".join(desc_parts))
@@ -444,6 +452,9 @@ def write_ics(films: List[Film], docs_dir: Path) -> Path:
 
 def write_index(docs_dir: Path, films_count: int, preview: List[str], stats: dict):
     preview_html = "".join(f"<li>{p}</li>" for p in preview)
+    sel_html = "".join(
+        f"<li>{slug}: country={c}, age={a}, desc={d}, date={n}</li>" for slug, c, a, d, n in stats.get('selectors', [])[:5]
+    )
     miss_html = "".join(f"<li>{slug}: {reason} :: {sample}</li>" for slug, reason, sample in stats.get('miss_samples', [])[:3])
     html = (
         f"<!doctype html><html lang=\"ru\"><meta charset=\"utf-8\"><title>Календарь фильмов</title>\n"
@@ -453,6 +464,7 @@ def write_index(docs_dir: Path, films_count: int, preview: List[str], stats: dic
         f"<p><a href=\"calendar.ics\">Скачать календарь (.ics)</a></p>\n"
         f"<h3>Пример событий</h3><ul>{preview_html}</ul>\n"
         f"<p style=\"color:#555\">429: {stats.get('429',0)}, 403: {stats.get('403',0)}, cache_hits: {stats.get('cache_hits',0)}, cache_misses: {stats.get('cache_misses',0)}, total_sleep_s: {stats.get('sleep_total',0.0):.1f}</p>\n"
+        f"<details><summary>Новые селекторы</summary><ul>{sel_html}</ul></details>\n"
         f"<details><summary>Диагностика отсутствия страны</summary><ul>{miss_html}</ul></details>\n"
         f"<hr>\n"
         f"<pre id=\"diag\" style=\"background:#f7f7f7;padding:10px;border:1px solid #ddd;white-space:pre-wrap;\"></pre>\n"
@@ -487,6 +499,8 @@ async def main():
         diag.append(f"limit={MAX_FILMS} foreign_films={len(films)} 429={stats['429']} 403={stats['403']} cache_hits={stats['cache_hits']} cache_misses={stats['cache_misses']} sleep_total={stats['sleep_total']:.1f}")
         if stats['backoffs']:
             diag.append("429_backoffs=" + ",".join(f"{d:.1f}s" for d in stats['backoffs']))
+        for slug, c,a,d,n in stats.get('selectors', [])[:5]:
+            diag.append(f"NEW-SELECTORS {slug} country={c} age={a} desc={d} date={n}")
         for slug, reason, sample in stats.get('miss_samples', [])[:3]:
             diag.append(f"MISS {slug} {reason} :: {sample}")
         if preview:
