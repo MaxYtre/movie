@@ -14,7 +14,7 @@ on:
         required: false
         default: '200'
   push:
-    branches: [ main ]
+    branches: [ test ]
     paths:
       - 'movie_scraper/**'
       - '.github/workflows/**'
