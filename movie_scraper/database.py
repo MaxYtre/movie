@@ -78,24 +78,19 @@ class Database:
     async def _ensure_schema(self) -> None:
         """Create database tables if they don't exist."""
         schema_sql = """
-        -- Films table with comprehensive metadata and enrichment fields
+        -- Films table with comprehensive metadata
         CREATE TABLE IF NOT EXISTS films (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             slug TEXT UNIQUE NOT NULL,
             title TEXT NOT NULL,
-            country TEXT,
+            country TEXT NOT NULL,
             rating TEXT,
             description TEXT,
             poster_url TEXT,
             age_limit TEXT,
             source_url TEXT,
             last_seen TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            -- Enrichment fields
-            imdb_rating REAL,
-            kp_rating REAL,
-            trailer_url TEXT,
-            year INTEGER
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
         
         -- Screening sessions for calculating next showings
@@ -288,80 +283,6 @@ class Database:
             
             logger.info(f"Found {len(films)} foreign films with upcoming sessions")
             return films
-    
-    async def get_film_cache(self, slug: str) -> Optional[tuple]:
-        """Get cached film data by slug."""
-        async with self._get_connection() as conn:
-            cursor = await conn.execute(
-                "SELECT slug, title, country, rating, description, age_limit, source_url, last_seen, imdb_rating, kp_rating, trailer_url, poster_url, year FROM films WHERE slug = ?",
-                (slug,)
-            )
-            return await cursor.fetchone()
-    
-    async def upsert_film_cache(self, slug: str, title: Optional[str], country: Optional[str], rating: Optional[str], description: Optional[str], age_limit: Optional[str], url: str,
-                                imdb_rating: Optional[float] = None, kp_rating: Optional[float] = None, trailer_url: Optional[str] = None, poster_url: Optional[str] = None, year: Optional[int] = None) -> None:
-        """Upsert film data into cache."""
-        now = datetime.utcnow().isoformat()
-        async with self._get_connection() as conn:
-            await conn.execute(
-                """
-                REPLACE INTO films(slug, title, country, rating, description, age_limit, source_url, last_seen, imdb_rating, kp_rating, trailer_url, poster_url, year)
-                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-                """,
-                (slug, title, country, rating, description, age_limit, url, now, imdb_rating, kp_rating, trailer_url, poster_url, year)
-            )
-            await conn.commit()
-    
-    async def get_session_cache(self, slug: str) -> Optional[date]:
-        """Get cached session next_date by film slug."""
-        async with self._get_connection() as conn:
-            cursor = await conn.execute("SELECT MIN(session_datetime) FROM screening_sessions WHERE film_slug = ?", (slug,))
-            row = await cursor.fetchone()
-            if row and row[0]:
-                try:
-                    return datetime.fromisoformat(row[0]).date()
-                except Exception:
-                    return None
-            return None
-    
-    async def upsert_session_cache(self, slug: str, next_date: Optional[date]) -> None:
-        """Upsert session next_date into cache."""
-        # This method is a bit different from simple_scraper's upsert_session because
-        # the Database class manages individual screening sessions.
-        # For compatibility with simple_scraper's logic, we'll ensure a dummy session
-        # exists if a next_date is provided, and remove sessions if next_date is None.
-        async with self._get_connection() as conn:
-            if next_date:
-                # Insert or replace a dummy session for the given next_date
-                # In a real scenario, this would be replaced by actual session data
-                await conn.execute(
-                    """
-                    INSERT OR REPLACE INTO screening_sessions
-                    (film_slug, cinema_name, session_datetime, last_updated)
-                    VALUES (?, ?, ?, ?)
-                    """,
-                    (slug, "cached_cinema", next_date.isoformat(), datetime.now().isoformat())
-                )
-            else:
-                # Remove any existing dummy sessions for this film if next_date is None
-                await conn.execute(
-                    "DELETE FROM screening_sessions WHERE film_slug = ? AND cinema_name = 'cached_cinema'",
-                    (slug,)
-                )
-            await conn.commit()
-    
-    async def is_film_cache_fresh(self, slug: str, ttl_days: int) -> bool:
-        """Check if cached film data is fresh."""
-        async with self._get_connection() as conn:
-            cursor = await conn.execute("SELECT last_seen FROM films WHERE slug = ?", (slug,))
-            row = await cursor.fetchone()
-            if not row or not row[0]:
-                return False
-            try:
-                ts = datetime.fromisoformat(row[0])
-                return datetime.utcnow() - ts < timedelta(days=ttl_days)
-            except Exception:
-                return False
     
     async def is_event_suppressed(self, film_slug: str, event_date: date, days: int = 30) -> bool:
         """

@@ -6,6 +6,7 @@ import asyncio
 import logging
 import os
 import re
+import sqlite3
 import random
 from datetime import date, datetime, timedelta
 from pathlib import Path
@@ -18,7 +19,7 @@ from icalendar import Calendar, Event
 
 from movie_scraper.patches.enrichment import enrich_film, build_description
 from movie_scraper.patches.parse_first_day_new_fix import parse_first_day_new
-from movie_scraper.database import Database
+from movie_scraper.patches.migration import ensure_enrichment_columns
 
 LOG_LEVEL = os.getenv("MOVIE_SCRAPER_LOG_LEVEL", "DEBUG").upper()
 USER_AGENT_BASE = os.getenv("MOVIE_SCRAPER_USER_AGENT", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0 Safari/537.36")
@@ -42,7 +43,77 @@ MONTHS_RU = {
 }
 
 DATA_DIR = Path("data"); DATA_DIR.mkdir(exist_ok=True)
-CACHE_DB_PATH = DATA_DIR / "cache.sqlite" # Renamed to avoid confusion with the class
+CACHE_DB = DATA_DIR / "cache.sqlite"
+
+class CacheDB:
+    def __init__(self, path: Path) -> None:
+        self.conn = sqlite3.connect(path)
+        self.conn.execute("PRAGMA journal_mode=WAL")
+        self.conn.executescript(
+            """
+            CREATE TABLE IF NOT EXISTS films (
+              slug TEXT PRIMARY KEY,
+              title TEXT,
+              country TEXT,
+              rating TEXT,
+              description TEXT,
+              age TEXT,
+              url TEXT,
+              updated_at TEXT,
+              imdb_rating REAL,
+              kp_rating REAL,
+              trailer_url TEXT,
+              poster_url TEXT,
+              year INTEGER
+            );
+            CREATE TABLE IF NOT EXISTS sessions (
+              slug TEXT PRIMARY KEY,
+              next_date TEXT,
+              updated_at TEXT
+            );
+            """
+        )
+        self.conn.commit()
+
+    def get_film_row(self, slug: str):
+        cur = self.conn.execute("SELECT slug,title,country,rating,description,age,url,updated_at,imdb_rating,kp_rating,trailer_url,poster_url,year FROM films WHERE slug=?", (slug,))
+        return cur.fetchone()
+
+    def upsert_film(self, slug: str, title: Optional[str], country: Optional[str], rating: Optional[str], description: Optional[str], age: Optional[str], url: str,
+                    imdb_rating: Optional[float]=None, kp_rating: Optional[float]=None, trailer_url: Optional[str]=None, poster_url: Optional[str]=None, year: Optional[int]=None) -> None:
+        now = datetime.utcnow().isoformat()
+        self.conn.execute(
+            "REPLACE INTO films(slug,title,country,rating,description,age,url,updated_at,imdb_rating,kp_rating,trailer_url,poster_url,year) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)",
+            (slug, title, country, rating, description, age, url, now, imdb_rating, kp_rating, trailer_url, poster_url, year)
+        )
+        self.conn.commit()
+
+    def get_session(self, slug: str) -> Optional[date]:
+        cur = self.conn.execute("SELECT next_date FROM sessions WHERE slug=?", (slug,))
+        row = cur.fetchone()
+        if row and row[0]:
+            try:
+                return datetime.fromisoformat(row[0]).date()
+            except Exception:
+                return None
+        return None
+
+    def upsert_session(self, slug: str, next_date: Optional[date]) -> None:
+        now = datetime.utcnow().isoformat()
+        nd = next_date.isoformat() if next_date else None
+        self.conn.execute("REPLACE INTO sessions(slug,next_date,updated_at) VALUES(?,?,?)", (slug, nd, now))
+        self.conn.commit()
+
+    def is_fresh(self, slug: str, ttl_days: int) -> bool:
+        cur = self.conn.execute("SELECT updated_at FROM films WHERE slug=?", (slug,))
+        row = cur.fetchone()
+        if not row or not row[0]:
+            return False
+        try:
+            ts = datetime.fromisoformat(row[0])
+            return datetime.utcnow() - ts < timedelta(days=ttl_days)
+        except Exception:
+            return False
 
 class Film:
     def __init__(self, title: str, url: str, slug: str):
@@ -167,16 +238,16 @@ async def scrape() -> Tuple[List['Film'], dict]:
             await asyncio.sleep(pause)
 
         processed: List[Film] = []
-        db = Database(CACHE_DB_PATH)
-        await db.initialize()
+        db = CacheDB(CACHE_DB)
+        ensure_enrichment_columns(db.conn)
         for i, f in enumerate(films, 1):
             date_url = urljoin(BASE, f"/prm/schedule_cinema_product/{f.slug}/")
             stats["region"].append((f.slug, date_url))
 
             cached_ok = False
-            if CACHE_TTL_DAYS > 0 and await db.is_film_cache_fresh(f.slug, CACHE_TTL_DAYS):
-                row = await db.get_film_cache(f.slug)
-                next_dt = await db.get_session_cache(f.slug)
+            if CACHE_TTL_DAYS > 0 and db.is_fresh(f.slug, CACHE_TTL_DAYS):
+                row = db.get_film_row(f.slug)
+                next_dt = db.get_session(f.slug)
                 if row:
                     (_, title, country, _, description, age, _, _, imdb_r, kp_r, trl, pst, year_val) = row
                     f.title = title or f.title
@@ -234,9 +305,9 @@ async def scrape() -> Tuple[List['Film'], dict]:
             elif not f.is_foreign: stats["reasons"].append((f.slug, "NOT_FOREIGN"))
             elif not f.next_date: stats["reasons"].append((f.slug, "NO_DATE"))
 
-            await db.upsert_film_cache(f.slug, f.title, f.country, None, f.description, f.age_limit, f.url,
+            db.upsert_film(f.slug, f.title, f.country, None, f.description, f.age_limit, f.url,
                            imdb_rating=f.imdb_rating, kp_rating=f.kp_rating, trailer_url=f.trailer_url, poster_url=f.poster_url, year=f.year)
-            await db.upsert_session_cache(f.slug, f.next_date)
+            db.upsert_session(f.slug, f.next_date)
             if keep: processed.append(f)
 
             pause = RATE_MIN + random.uniform(0.3, 0.9)
