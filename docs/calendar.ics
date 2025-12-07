@@ -11,7 +11,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Крипер
 DTSTART;VALUE=DATE:20251205
 DTEND;VALUE=DATE:20251205
-DTSTAMP:20251207T151722Z
+DTSTAMP:20251207T153012Z
 UID:kriper-308920-2025-12-05@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана США\n\nО фильме Малкольм 
@@ -31,7 +31,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Иллюзия обмана-3
 DTSTART;VALUE=DATE:20251208
 DTEND;VALUE=DATE:20251208
-DTSTAMP:20251207T151722Z
+DTSTAMP:20251207T153012Z
 UID:illyuziya-obmana-3-308835-2025-12-08@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:16+\nСтрана США\nIMDb: 6.3\nКинопоиск: 7.0\n
@@ -53,7 +53,7 @@ SUMMARY:🎬 Человек-бензопила. Фильм: История
   Резе
 DTSTART;VALUE=DATE:20251205
 DTEND;VALUE=DATE:20251205
-DTSTAMP:20251207T151722Z
+DTSTAMP:20251207T153012Z
 UID:chelovek-benzopila-film-istoriya-reze-1001900-2025-12-05@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана Япония\nКинопоиск: 8.3\n\nО 
@@ -74,7 +74,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Астрал: 13 инкарнаций зла
 DTSTART;VALUE=DATE:20251208
 DTEND;VALUE=DATE:20251208
-DTSTAMP:20251207T151722Z
+DTSTAMP:20251207T153012Z
 UID:astral-13-inkarnaciy-zla-308517-2025-12-08@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана Южная Корея\nКинопоиск: 5
@@ -95,7 +95,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Умри\, моя любовь
 DTSTART;VALUE=DATE:20251201
 DTEND;VALUE=DATE:20251201
-DTSTAMP:20251207T151722Z
+DTSTAMP:20251207T153012Z
 UID:umri-moya-lyubov-1000809-2025-12-01@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана Великобритания\nIMDb: 6.6\nК
@@ -115,7 +115,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Два мира\, одно желание
 DTSTART;VALUE=DATE:20251201
 DTEND;VALUE=DATE:20251201
-DTSTAMP:20251207T151722Z
+DTSTAMP:20251207T153012Z
 UID:dva-mira-odno-zhelanie-1002106-2025-12-01@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:16+\nСтрана Турция\n\nО фильме На пер
@@ -136,7 +136,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Метод исключения
 DTSTART;VALUE=DATE:20251204
 DTEND;VALUE=DATE:20251204
-DTSTAMP:20251207T151722Z
+DTSTAMP:20251207T153012Z
 UID:metod-isklyucheniya-1001297-2025-12-04@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана Южная Корея\nКинопоиск: 7
@@ -155,7 +155,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Звук падения
 DTSTART;VALUE=DATE:20251201
 DTEND;VALUE=DATE:20251201
-DTSTAMP:20251207T151722Z
+DTSTAMP:20251207T153012Z
 UID:zvuk-padeniya-1000826-2025-12-01@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана Германия\nКинопоиск: 7.3\n\
@@ -176,7 +176,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Эльф и украденное Рождество
 DTSTART;VALUE=DATE:20251208
 DTEND;VALUE=DATE:20251208
-DTSTAMP:20251207T151722Z
+DTSTAMP:20251207T153012Z
 UID:elf-i-ukradennoe-rozhdestvo-308650-2025-12-08@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:6+\nСтрана США\n\nО фильме Эльф Йо-Йо 
@@ -197,7 +197,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Мышиный переполох
 DTSTART;VALUE=DATE:20251208
 DTEND;VALUE=DATE:20251208
-DTSTAMP:20251207T151722Z
+DTSTAMP:20251207T153012Z
 UID:myshiniy-perepoloh-1000709-2025-12-08@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:6+\nСтрана Норвегия\n\nО фильме Друж
@@ -218,7 +218,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Синистер. Первое проклятие
 DTSTART;VALUE=DATE:20251230
 DTEND;VALUE=DATE:20251230
-DTSTAMP:20251207T151722Z
+DTSTAMP:20251207T153012Z
 UID:sinister-pervoe-proklyatie-1001896-2025-12-30@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана США\nIMDb: 8.5\n\nО фильме Ког
@@ -239,7 +239,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Сентиментальная ценность
 DTSTART;VALUE=DATE:20251202
 DTEND;VALUE=DATE:20251202
-DTSTAMP:20251207T151722Z
+DTSTAMP:20251207T153012Z
 UID:sentimentalnaya-cennost-308186-2025-12-02@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана Норвегия\nКинопоиск: 8.2\n\
@@ -260,7 +260,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Пятый элемент
 DTSTART;VALUE=DATE:20251216
 DTEND;VALUE=DATE:20251216
-DTSTAMP:20251207T151722Z
+DTSTAMP:20251207T153012Z
 UID:pyatiy-element-176299-2025-12-16@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:12+\nСтрана Франция\nIMDb: 7.6\nКинопоис
@@ -281,7 +281,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Бонхеффер: Пастор\, шпион\, убийца
 DTSTART;VALUE=DATE:20251201
 DTEND;VALUE=DATE:20251201
-DTSTAMP:20251207T151722Z
+DTSTAMP:20251207T153012Z
 UID:bonheffer-pastor-shpion-ubiyca-308545-2025-12-01@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:16+\nСтрана Бельгия\nIMDb: 6.2\n\nО фильме
@@ -301,7 +301,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Агент времени: Глава Инду. Фильм
 DTSTART;VALUE=DATE:20251207
 DTEND;VALUE=DATE:20251207
-DTSTAMP:20251207T151722Z
+DTSTAMP:20251207T153012Z
 UID:agent-vremeni-glava-indu-film-1002095-2025-12-07@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана Китай\n\nО фильме Чтобы с
@@ -322,7 +322,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Нуреев: Щелкунчик
 DTSTART;VALUE=DATE:20251201
 DTEND;VALUE=DATE:20251201
-DTSTAMP:20251207T151722Z
+DTSTAMP:20251207T153012Z
 UID:nureev-shchelkunchik-218002-2025-12-01@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:6+\nСтрана Австрия\n\nО фильме Поста
@@ -343,7 +343,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Волчьи дети Амэ и Юки
 DTSTART;VALUE=DATE:20251218
 DTEND;VALUE=DATE:20251218
-DTSTAMP:20251207T151722Z
+DTSTAMP:20251207T153012Z
 UID:volchi-deti-ame-i-yuki-214180-2025-12-18@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:12+\nСтрана Япония\nКинопоиск: 8.0\n\nО 
@@ -364,7 +364,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Сожалею о тебе
 DTSTART;VALUE=DATE:20251210
 DTEND;VALUE=DATE:20251210
-DTSTAMP:20251207T151722Z
+DTSTAMP:20251207T153012Z
 UID:sozhaleyu-o-tebe-1000888-2025-12-10@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:16+\nСтрана США\nIMDb: 6.2\nКинопоиск: 6.2\n
@@ -385,7 +385,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Кинопроба
 DTSTART;VALUE=DATE:20251225
 DTEND;VALUE=DATE:20251225
-DTSTAMP:20251207T151722Z
+DTSTAMP:20251207T153012Z
 UID:kinoproba-168265-2025-12-25@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана Япония\nКинопоиск: 6.3\n\nЯ
@@ -405,7 +405,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Вечность
 DTSTART;VALUE=DATE:20251217
 DTEND;VALUE=DATE:20251217
-DTSTAMP:20251207T151722Z
+DTSTAMP:20251207T153012Z
 UID:vechnost-1001788-2025-12-17@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана США\nIMDb: 7.2\n\nО фильме Пос
@@ -424,7 +424,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Тихая ночь\, смертельная ночь
 DTSTART;VALUE=DATE:20251209
 DTEND;VALUE=DATE:20251209
-DTSTAMP:20251207T151722Z
+DTSTAMP:20251207T153012Z
 UID:tihaya-noch-smertelnaya-noch-1001787-2025-12-09@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана США\n\nО фильме Когда-то р
@@ -445,7 +445,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Отпуск без конца
 DTSTART;VALUE=DATE:20251212
 DTEND;VALUE=DATE:20251212
-DTSTAMP:20251207T151722Z
+DTSTAMP:20251207T153012Z
 UID:otpusk-bez-konca-175679-2025-12-12@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:16+\nСтрана США\nIMDb: 6.1\nКинопоиск: 7.0\n
@@ -465,7 +465,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Дело семейное
 DTSTART;VALUE=DATE:20251209
 DTEND;VALUE=DATE:20251209
-DTSTAMP:20251207T151722Z
+DTSTAMP:20251207T153012Z
 UID:delo-semeynoe-1000899-2025-12-09@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана США\nIMDb: 5.5\nКинопоиск: 5.4\n
@@ -486,7 +486,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 TheatreHD: Дрезден. Щелкунчик
 DTSTART;VALUE=DATE:20251226
 DTEND;VALUE=DATE:20251226
-DTSTAMP:20251207T151722Z
+DTSTAMP:20251207T153012Z
 UID:theatrehd-drezden-shchelkunchik-1002116-2025-12-26@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:6+\nСтрана Герм�ания\n\nО фильме Уют
@@ -507,7 +507,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Мадам Баттерфляй
 DTSTART;VALUE=DATE:20251201
 DTEND;VALUE=DATE:20251201
-DTSTAMP:20251207T151722Z
+DTSTAMP:20251207T153012Z
 UID:madam-batterflyay-210547-2025-12-01@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана Германия\n\nО фильме Драм
@@ -525,30 +525,10 @@ URL:https://www.afisha.ru/prm/schedule_cinema_product/madam-batterflyay-21
  0547/
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:🎬 Фэкхем-Холл
-DTSTART;VALUE=DATE:20251205
-DTEND;VALUE=DATE:20251205
-DTSTAMP:20251207T151722Z
-UID:fekhem-holl-1000197-2025-12-05@perm-cinema
-CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
-DESCRIPTION:18+\nСтрана Великобритания\n\nО филь
- ме Мелкий мошенник Эрик Нун удачно вписа
- лся в штат лакеев богатого английского д
- ома Дэвенпорт\, сразу положив глаз на хоз
- яйскую дочку Роуз. Его беззаботная жизнь
-  продолжается до тех пор\, пока внезапное
-  убийство не делает его главным подозрев
- аемым. Отныне\, чтобы выбраться сухим из 
- воды\, ему пред...\n\nТрейлер: https://www.youtube.com/w
- atch?v=xYq20qwi2iE\n\nПодробнее: https://www.afisha.ru/prm/schedu
- le_cinema_product/fekhem-holl-1000197/
-URL:https://www.afisha.ru/prm/schedule_cinema_product/fekhem-holl-1000197/
-END:VEVENT
-BEGIN:VEVENT
 SUMMARY:🎬 Риголетто
 DTSTART;VALUE=DATE:20251228
 DTEND;VALUE=DATE:20251228
-DTSTAMP:20251207T151722Z
+DTSTAMP:20251207T153012Z
 UID:rigoletto-201168-2025-12-28@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана Германия\nIMDb: 6.5\n\nО фильм
@@ -565,10 +545,30 @@ DESCRIPTION:18+\nСтрана Германия\nIMDb: 6.5\n\nО фильм
 URL:https://www.afisha.ru/prm/schedule_cinema_product/rigoletto-201168/
 END:VEVENT
 BEGIN:VEVENT
+SUMMARY:🎬 Фэкхем-Холл
+DTSTART;VALUE=DATE:20251205
+DTEND;VALUE=DATE:20251205
+DTSTAMP:20251207T153012Z
+UID:fekhem-holl-1000197-2025-12-05@perm-cinema
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+DESCRIPTION:18+\nСтрана Великобритания\n\nО филь
+ ме Мелкий мошенник Эрик Нун удачно вписа
+ лся в штат лакеев богатого английского д
+ ома Дэвенпорт\, сразу положив глаз на хоз
+ яйскую дочку Роуз. Его беззаботная жизнь
+  продолжается до тех пор\, пока внезапное
+  убийство не делает его главным подозрев
+ аемым. Отныне\, чтобы выбраться сухим из 
+ воды\, ему пред...\n\nТрейлер: https://www.youtube.com/w
+ atch?v=xYq20qwi2iE\n\nПодробнее: https://www.afisha.ru/prm/schedu
+ le_cinema_product/fekhem-holl-1000197/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/fekhem-holl-1000197/
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:🎬 TheatreHD: Арена ди Верона. Набукко
 DTSTART;VALUE=DATE:20251221
 DTEND;VALUE=DATE:20251221
-DTSTAMP:20251207T151722Z
+DTSTAMP:20251207T153012Z
 UID:theatrehd-arena-di-verona-nabukko-1002377-2025-12-21@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:12+\nСтрана Италия\n\nО фильме «Дюна»
@@ -590,7 +590,7 @@ SUMMARY:🎬 Арт-лекторий: Ван Эйк. Искусство р
  еальности
 DTSTART;VALUE=DATE:20251213
 DTEND;VALUE=DATE:20251213
-DTSTAMP:20251207T151722Z
+DTSTAMP:20251207T153012Z
 UID:art-lektoriy-van-eyk-iskusstvo-realnosti-1001182-2025-12-13@perm-cinem
  a
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
@@ -612,7 +612,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Травиата
 DTSTART;VALUE=DATE:20251217
 DTEND;VALUE=DATE:20251217
-DTSTAMP:20251207T151722Z
+DTSTAMP:20251207T153012Z
 UID:traviata-167708-2025-12-17@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:12+\nСтрана Италия\nIMDb: 7.6\n\nО фильме 
@@ -632,7 +632,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Кофе и сигареты
 DTSTART;VALUE=DATE:20251228
 DTEND;VALUE=DATE:20251228
-DTSTAMP:20251207T151722Z
+DTSTAMP:20251207T153012Z
 UID:kofe-i-sigarety-173214-2025-12-28@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:16+\nСтрана США\nIMDb: 7.0\nКинопоиск: 7.6\n
@@ -652,7 +652,7 @@ SUMMARY:🎬 TheatreHD: Оперный фестиваль в Санкт-М
  аргаретен. Аида
 DTSTART;VALUE=DATE:20251214
 DTEND;VALUE=DATE:20251214
-DTSTAMP:20251207T151722Z
+DTSTAMP:20251207T153012Z
 UID:theatrehd-operniy-festival-v-sankt-margareten-aida-1001543-2025-12-14@
  perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
