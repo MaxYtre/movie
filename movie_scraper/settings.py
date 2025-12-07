@@ -42,7 +42,7 @@ class Settings(BaseSettings):
     
     # Core application settings
     log_level: str = Field(
-        default="INFO",
+        default="DEBUG",
         description="Logging level (DEBUG, INFO, WARNING, ERROR, CRITICAL)"
     )
     
