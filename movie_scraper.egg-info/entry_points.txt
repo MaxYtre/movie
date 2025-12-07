@@ -1,0 +1,2 @@
+[console_scripts]
+movie-scraper = movie_scraper.main:cli
