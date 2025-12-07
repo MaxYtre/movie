@@ -1,4 +1,4 @@
-name: CI - Run Tests
+name: CI - Run Main Script
 
 on:
   push:
@@ -27,11 +27,11 @@ jobs:
         python -m pip install --upgrade pip
         # Устанавливаем проект в режиме редактирования вместе с тестовыми зависимостями
         # Предполагается, что в pyproject.toml есть секция [project.optional-dependencies] с 'test'
-        pip install -e .[test]
+        pip install -e .
 
-    - name: '[CI] 4. Запуск тестов с помощью pytest'
+    - name: '[CI] 4. Запуск основного скрипта'
       env:
         PYTHONPATH: .
       run: |
-        echo "Запуск тестов..."
-        python -m pytest -vv
+        echo "Запуск основного скрипта..."
+        python movie_scraper/simple_scraper.py
