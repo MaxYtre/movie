@@ -11,7 +11,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Иллюзия обмана-3
 DTSTART;VALUE=DATE:20260112
 DTEND;VALUE=DATE:20260112
-DTSTAMP:20260107T065159Z
+DTSTAMP:20260108T064643Z
 UID:illyuziya-obmana-3-308835-2026-01-12@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:16+\nСтрана США\nIMDb: 6.0\nКинопоиск: 6.8\n
@@ -29,31 +29,10 @@ URL:https://www.afisha.ru/prm/schedule_cinema_product/illyuziya-obmana-3-3
  08835/
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:🎬 Пункт назначения: Новый аттракци
- он
-DTSTART;VALUE=DATE:20260112
-DTEND;VALUE=DATE:20260112
-DTSTAMP:20260107T065159Z
-UID:punkt-naznacheniya-noviy-attrakcion-1002489-2026-01-12@perm-cinema
-CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
-DESCRIPTION:18+\nСтрана США\nСредняя цена: 721 ₽\n\n
- О фильме Веселая компания отправляется 
- на поиски заброшенного парка развлечени
- й\, с которым связана жуткая история — 15 
- лет назад он был закрыт из-за постоянных 
- проблем с аттракцио�нами: они калечили 
- и даже убивали посетителей...\n\nТрейлер: ht
- tps://www.youtube.com/watch?v=z7RC_XikHD0\n\nПодробнее: https://w
- ww.afisha.ru/prm/schedule_cinema_product/punkt-naznacheniya-noviy-attrakci
- on-1002489/
-URL:https://www.afisha.ru/prm/schedule_cinema_product/punkt-naznacheniya-n
- oviy-attrakcion-1002489/
-END:VEVENT
-BEGIN:VEVENT
 SUMMARY:🎬 Горничная
 DTSTART;VALUE=DATE:20260112
 DTEND;VALUE=DATE:20260112
-DTSTAMP:20260107T065159Z
+DTSTAMP:20260108T064643Z
 UID:gornichnaya-1001795-2026-01-12@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана США\nIMDb: 6.9\nКинопоиск: 6.8\n
@@ -70,10 +49,30 @@ DESCRIPTION:18+\nСтрана США\nIMDb: 6.9\nКинопоиск: 6.8\n
 URL:https://www.afisha.ru/prm/schedule_cinema_product/gornichnaya-1001795/
 END:VEVENT
 BEGIN:VEVENT
+SUMMARY:🎬 Пункт назначения: Новый аттракци
+ он
+DTSTART;VALUE=DATE:20260112
+DTEND;VALUE=DATE:20260112
+DTSTAMP:20260108T064643Z
+UID:punkt-naznacheniya-noviy-attrakcion-1002489-2026-01-12@perm-cinema
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+DESCRIPTION:18+\nСтрана США\n\nО фильме Веселая к
+ омпания отправляется на поиски заброшен
+ ного парка развлечений\, с которым связа
+ на жуткая история — 15 лет назад он был за
+ крыт из-за постоянных проблем с аттракци
+ о�нами: они калечили и даже убивали посе
+ тителей...\n\nТрейлер: https://www.youtube.com/watch?v=z7RC_
+ XikHD0\n\nПодробнее: https://www.afisha.ru/prm/schedule_cinema_pr
+ oduct/punkt-naznacheniya-noviy-attrakcion-1002489/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/punkt-naznacheniya-n
+ oviy-attrakcion-1002489/
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:🎬 Синистер. Первое проклятие
 DTSTART;VALUE=DATE:20260108
 DTEND;VALUE=DATE:20260108
-DTSTAMP:20260107T065159Z
+DTSTAMP:20260108T064643Z
 UID:sinister-pervoe-proklyatie-1001896-2026-01-08@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана СШ�А\nIMDb: 8.5\n\nО фильме Ко
@@ -92,30 +91,53 @@ URL:https://www.afisha.ru/prm/schedule_cinema_product/sinister-pervoe-prok
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:🎬 Гринч. Ужасающий новый год
-DTSTART;VALUE=DATE:20251228
-DTEND;VALUE=DATE:20251228
-DTSTAMP:20260107T065159Z
-UID:grinch-uzhasayushchiy-noviy-god-1002490-2025-12-28@perm-cinema
+DTSTART;VALUE=DATE:20260112
+DTEND;VALUE=DATE:20260112
+DTSTAMP:20260108T064643Z
+UID:grinch-uzhasayushchiy-noviy-god-1002490-2026-01-12@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана США\nIMDb: 3.9\nКинопоиск: 4.5\n
- \nО фильме Каждый год жители Ньювилля не 
- празднуют Рождество. Дело в том\, что в эт
- у праздничную ночь в городке правит бал 
- Гринч — зловещее кровожадное существо. 
- Те\, кто будет веселиться в Рождество\, по
- платятся головой и другими частями тела
- …\n\nТрейлер: https://www.youtube.com/watch?v=XiFAtqmnXxU\n\nПо
- дробнее: https://www.afisha.ru/prm/schedule_cinema_product/grinch-u
- zhasayushchiy-noviy-god-1002490/
+ Средняя цена: 750 ₽\n\nО фильме 20 лет назад 
+ в канун Рождества Гринч убил маму Синди. 
+ Повзрослев\, она возвращается в родной д
+ ом на праздники. В этот раз Гринч нападае
+ т на ее отца и хочет не просто похитить Р
+ ождество\, а всех убить. Синди готовится 
+ остановить зеленого монстра.\n\nТрейлер: h
+ ttps://www.youtube.com/watch?v=XiFAtqmnXxU\n\nПодробнее: https://
+ www.afisha.ru/prm/schedule_cinema_product/grinch-uzhasayushchiy-noviy-god-
+ 1002490/
 URL:https://www.afisha.ru/prm/schedule_cinema_product/grinch-uzhasayushchi
  y-noviy-god-1002490/
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:🎬 История дельфина: Каникулы на Баг
+ амах
+DTSTART;VALUE=DATE:20260112
+DTEND;VALUE=DATE:20260112
+DTSTAMP:20260108T064643Z
+UID:istoriya-delfina-kanikuly-na-bagamah-1002565-2026-01-12@perm-cinema
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+DESCRIPTION:6+\nСтрана США\n\nО фильме Юная Сара 
+ мечтает стать морским биологом. Ей очень
+  хочется приносить пользу\, изучая морск
+ их животных. Первым шагом к ее работе меч
+ ты становится стажировка на Абако\, одно
+ м из Багамских островов\, где находится м
+ орской заповедник. В разгар обучения нач
+ альник биостанции заболевает\, и власть 
+ пер...\n\nТрейлер: https://www.youtube.com/watch?v=TzsetIVuCZs\n
+ \nПодробнее: https://www.afisha.ru/prm/schedule_cinema_product/is
+ toriya-delfina-kanikuly-na-bagamah-1002565/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/istoriya-delfina-kan
+ ikuly-na-bagamah-1002565/
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:🎬 TheatreHD: Пупелль из города дымоходо
  в
 DTSTART;VALUE=DATE:20260127
 DTEND;VALUE=DATE:20260127
-DTSTAMP:20260107T065159Z
+DTSTAMP:20260108T064643Z
 UID:theatrehd-pupell-iz-goroda-dymohodov-1002117-2026-01-27@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:6+\nСтрана Япония\n\nО фильме В гостя
@@ -133,33 +155,11 @@ URL:https://www.afisha.ru/prm/schedule_cinema_product/theatrehd-pupell-iz-
  goroda-dymohodov-1002117/
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:🎬 Брегенцский фестиваль: Вольный с
- трелок
-DTSTART;VALUE=DATE:20260110
-DTEND;VALUE=DATE:20260110
-DTSTAMP:20260107T065159Z
-UID:bregencskiy-festival-volniy-strelok-307947-2026-01-10@perm-cinema
-CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
-DESCRIPTION:12+\nСтрана Австрия\n\nО фильме Фанта
- смагорическая сказка на уникальной водн
- ой сцене Боденского озера.\n«Вольный стр
- елок» — леденящая душу мрачная фантасти
- ческая история с оттенком сказок братье
- в Гримм — впервые ставится на масштабно
- й сцене Боденского озера в невероятных д
- екорациях Филиппа Штельцля.\n«В яблочко!
- » — гордо на...\n\nТрейлер: https://www.youtube.com/watch
- ?v=T0SfSo9_kdE\n\nПодробнее: https://www.afisha.ru/prm/schedule_c
- inema_product/bregencskiy-festival-volniy-strelok-307947/
-URL:https://www.afisha.ru/prm/schedule_cinema_product/bregencskiy-festival
- -volniy-strelok-307947/
-END:VEVENT
-BEGIN:VEVENT
 SUMMARY:🎬 TheatreHD: Берлинская государственна
  я опера. Щелкунчик
 DTSTART;VALUE=DATE:20260114
 DTEND;VALUE=DATE:20260114
-DTSTAMP:20260107T065159Z
+DTSTAMP:20260108T064643Z
 UID:theatrehd-berlinskaya-gosudarstvennaya-opera-shchelkunchik-1002492-202
  6-01-14@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
@@ -178,11 +178,31 @@ URL:https://www.afisha.ru/prm/schedule_cinema_product/theatrehd-berlinskay
  a-gosudarstvennaya-opera-shchelkunchik-1002492/
 END:VEVENT
 BEGIN:VEVENT
+SUMMARY:🎬 Океан чудес
+DTSTART;VALUE=DATE:20260111
+DTEND;VALUE=DATE:20260111
+DTSTAMP:20260108T064643Z
+UID:okean-chudes-294821-2026-01-11@perm-cinema
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+DESCRIPTION:12+\nСтрана Китай\nКинопоиск: 7.3\n\nО ф
+ ильме Шэн очень скучает по маме\, но отец 
+ и мачеха полностью поглощены заботами о 
+ младшем ребенке. В день рождения девочки
+  семейство отправляется в морской круиз.
+  Вечером поднимается сильный шторм\, и Шэ
+ н смывает за борт\, где она встречает заг
+ адочное существо\, о котором ей когда-то 
+ рассказывала мам...\n\nТрейлер: https://www.youtube.
+ com/watch?v=j24wDE4YsS8\n\nПодробнее: https://www.afisha.ru/prm/s
+ chedule_cinema_product/okean-chudes-294821/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/okean-chudes-294821/
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:🎬 Арт-лекторий: Мурильо. Путь худож
  ника
 DTSTART;VALUE=DATE:20260118
 DTEND;VALUE=DATE:20260118
-DTSTAMP:20260107T065159Z
+DTSTAMP:20260108T064643Z
 UID:art-lektoriy-murilo-put-hudozhnika-1001960-2026-01-18@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:12+\nСтрана Испания\n\nО фильме Из Лу
@@ -203,7 +223,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Другие
 DTSTART;VALUE=DATE:20260116
 DTEND;VALUE=DATE:20260116
-DTSTAMP:20260107T065159Z
+DTSTAMP:20260108T064643Z
 UID:drugie-169369-2026-01-16@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана Франция\nIMDb: 7.6\nКинопоис
@@ -220,32 +240,33 @@ DESCRIPTION:18+\nСтрана Франция\nIMDb: 7.6\nКинопоис
 URL:https://www.afisha.ru/prm/schedule_cinema_product/drugie-169369/
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:🎬 Океан чудес
-DTSTART;VALUE=DATE:20260111
-DTEND;VALUE=DATE:20260111
-DTSTAMP:20260107T065159Z
-UID:okean-chudes-294821-2026-01-11@perm-cinema
+SUMMARY:🎬 Брегенцский фестиваль: Вольный с
+ трелок
+DTSTART;VALUE=DATE:20260110
+DTEND;VALUE=DATE:20260110
+DTSTAMP:20260108T064643Z
+UID:bregencskiy-festival-volniy-strelok-307947-2026-01-10@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
-DESCRIPTION:12+\nСтрана Китай\nКинопоиск: 7.3\nСре
- дняя цена: 750 ₽\n\nО фильме Шэн очень скуча
- ет по маме\, но отец и мачеха полностью по
- глощены заботами о младшем ребенке. В де
- нь рождения девочки семейство отправляе
- тся в морской круиз. Вечером поднимается
-  сильный шторм\, и Шэн смывает за борт\, гд
- е она встречает загадочное существо\, о к
- отором ей когда-то рассказывала мам...\n\nТ
- рейлер: https://www.youtube.com/watch?v=j24wDE4YsS8\n\nПодроб
- нее: https://www.afisha.ru/prm/schedule_cinema_product/okean-chudes-294
- 821/
-URL:https://www.afisha.ru/prm/schedule_cinema_product/okean-chudes-294821/
+DESCRIPTION:12+\nСтрана Австрия\n\nО фильме Фанта
+ смагорическая сказка на уникальной водн
+ ой сцене Боденского озера.\n«Вольный стр
+ елок» — леденящая душу мрачная фантасти
+ ческая история с оттенком сказок братье
+ в Гримм — впервые ставится на масштабно
+ й сцене Боденского озера в невероятных д
+ екорациях Филиппа Штельцля.\n«В яблочко!
+ » — гордо на...\n\nТрейлер: https://www.youtube.com/watch
+ ?v=T0SfSo9_kdE\n\nПодробнее: https://www.afisha.ru/prm/schedule_c
+ inema_product/bregencskiy-festival-volniy-strelok-307947/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/bregencskiy-festival
+ -volniy-strelok-307947/
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:🎬 TheatreHD: Курентзис и Саша Вальц. Бет
  ховен Симфония №7
 DTSTART;VALUE=DATE:20260124
 DTEND;VALUE=DATE:20260124
-DTSTAMP:20260107T065159Z
+DTSTAMP:20260108T064643Z
 UID:theatrehd-kurentzis-i-sasha-valc-bethoven-simfoniya-7-308419-2026-01-2
  4@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
@@ -264,54 +285,32 @@ URL:https://www.afisha.ru/prm/schedule_cinema_product/theatrehd-kurentzis-
  i-sasha-valc-bethoven-simfoniya-7-308419/
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:🎬 История дельфина: Каникулы на Баг
- амах
-DTSTART;VALUE=DATE:20260112
-DTEND;VALUE=DATE:20260112
-DTSTAMP:20260107T065159Z
-UID:istoriya-delfina-kanikuly-na-bagamah-1002565-2026-01-12@perm-cinema
+SUMMARY:🎬 TheatreHD: Йонас Кауфман. Музыка кино
+DTSTART;VALUE=DATE:20260118
+DTEND;VALUE=DATE:20260118
+DTSTAMP:20260108T064643Z
+UID:theatrehd-yonas-kaufman-muzyka-kino-1002133-2026-01-18@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
-DESCRIPTION:6+\nСтрана США\n\nО фильме Юная Сара 
- мечтает стать морским биологом. Ей очень
-  хочется приносить пользу\, изучая морск
- их животных. Первым шагом к ее работе меч
- ты становится стажировка на Абако\, одно
- м из Багамских островов\, где находится м
- орской заповедник. В разгар обучения нач
- альник биостанции заболевает\, и власть 
- пер...\n\nТрейлер: https://www.youtube.com/watch?v=TzsetIVuCZs\n
- \nПодробнее: https://www.afisha.ru/prm/schedule_cinema_product/is
- toriya-delfina-kanikuly-na-bagamah-1002565/
-URL:https://www.afisha.ru/prm/schedule_cinema_product/istoriya-delfina-kan
- ikuly-na-bagamah-1002565/
-END:VEVENT
-BEGIN:VEVENT
-SUMMARY:🎬 Зальцбург: Макбет
-DTSTART;VALUE=DATE:20260130
-DTEND;VALUE=DATE:20260130
-DTSTAMP:20260107T065159Z
-UID:zalcburg-makbet-307291-2026-01-30@perm-cinema
-CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
-DESCRIPTION:18+\nСтрана А�встрия\n\nО фильме Сам
- ая коварная пара Макбетов — Асмик Григо
- рян и Владислав Сулимский — в настоящем 
- оперном мистическом триллере.\nКшиштоф В
- арликовский и Филипп Жордан создают зах
- ватывающий спектакль\, где музыкальная р
- оскошь идеально дополняет психологичес
- кую глубину интерпретации. В главных рол
- ях — Владислав...\n\nТрейлер: https://www.youtube.com/
- watch?v=H6a_RnVhydE\n\nПодробнее: https://www.afisha.ru/prm/sched
- ule_cinema_product/zalcburg-makbet-307291/
-URL:https://www.afisha.ru/prm/schedule_cinema_product/zalcburg-makbet-3072
- 91/
+DESCRIPTION:6+\nСтрана Чехия\n\nО фильме «Поющие 
+ под дождем»\, «Вестсайдская история» и «
+ Гладиатор» — в новой программе киномузы
+ кальных шедевров в исполнении Йонаса Ка
+ уфмана.\nПесни из классических кинофильм
+ ов — страсть Йонаса Кауфмана на протяже
+ нии всей его жизни: «Я\, естественно\, оче
+ нь восприимчив ко всем вокальным номера
+ м\, которы...\n\nТрейлер: https://www.youtube.com/watch?v=pT
+ WQ5Ko8j3A\n\nПодробнее: https://www.afisha.ru/prm/schedule_cinema
+ _product/theatrehd-yonas-kaufman-muzyka-kino-1002133/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/theatrehd-yonas-kauf
+ man-muzyka-kino-1002133/
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:🎬 TheatreHD: Теодор Курентзис. Бунтарь о
  т классики
 DTSTART;VALUE=DATE:20260111
 DTEND;VALUE=DATE:20260111
-DTSTAMP:20260107T065159Z
+DTSTAMP:20260108T064643Z
 UID:theatrehd-teodor-kurentzis-buntar-ot-klassiki-1001863-2026-01-11@perm-
  cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
@@ -330,24 +329,24 @@ URL:https://www.afisha.ru/prm/schedule_cinema_product/theatrehd-teodor-kur
  entzis-buntar-ot-klassiki-1001863/
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:🎬 TheatreHD: Йонас Кауфман. Музыка кино
-DTSTART;VALUE=DATE:20260118
-DTEND;VALUE=DATE:20260118
-DTSTAMP:20260107T065159Z
-UID:theatrehd-yonas-kaufman-muzyka-kino-1002133-2026-01-18@perm-cinema
+SUMMARY:🎬 Зальцбург: Макбет
+DTSTART;VALUE=DATE:20260130
+DTEND;VALUE=DATE:20260130
+DTSTAMP:20260108T064643Z
+UID:zalcburg-makbet-307291-2026-01-30@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
-DESCRIPTION:6+\nСтрана Чехия\n\nО фильме «Поющие 
- под дождем»\, «Вестсайдская история» и «
- Гладиатор» — в новой программе киномузы
- кальных шедевров в исполнении Йонаса Ка
- уфмана.\nПесни из классических кинофильм
- ов — страсть Йонаса Кауфмана на протяже
- нии всей его жизни: «Я\, естественно\, оче
- нь восприимчив ко всем вокальным номера
- м\, которы...\n\nТрейлер: https://www.youtube.com/watch?v=pT
- WQ5Ko8j3A\n\nПодробнее: https://www.afisha.ru/prm/schedule_cinema
- _product/theatrehd-yonas-kaufman-muzyka-kino-1002133/
-URL:https://www.afisha.ru/prm/schedule_cinema_product/theatrehd-yonas-kauf
- man-muzyka-kino-1002133/
+DESCRIPTION:18+\nСтрана А�встрия\n\nО фильме Сам
+ ая коварная пара Макбетов — Асмик Григо
+ рян и Владислав Сулимский — в настоящем 
+ оперном мистическом триллере.\nКшиштоф В
+ арликовский и Филипп Жордан создают зах
+ ватывающий спектакль\, где музыкальная р
+ оскошь идеально дополняет психологичес
+ кую глубину интерпретации. В главных рол
+ ях — Владислав...\n\nТрейлер: https://www.youtube.com/
+ watch?v=H6a_RnVhydE\n\nПодробнее: https://www.afisha.ru/prm/sched
+ ule_cinema_product/zalcburg-makbet-307291/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/zalcburg-makbet-3072
+ 91/
 END:VEVENT
 END:VCALENDAR
