@@ -11,7 +11,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Горничная
 DTSTART;VALUE=DATE:20260112
 DTEND;VALUE=DATE:20260112
-DTSTAMP:20260116T064755Z
+DTSTAMP:20260117T064402Z
 UID:gornichnaya-1001795-2026-01-12@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана США\nIMDb: 6.9\nКинопоиск: 6.8\n
@@ -31,7 +31,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Марти Великолепный
 DTSTART;VALUE=DATE:20260116
 DTEND;VALUE=DATE:20260116
-DTSTAMP:20260116T064755Z
+DTSTAMP:20260117T064402Z
 UID:marti-velikolepniy-1001684-2026-01-16@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана США\nIMDb: 8.3\n\nО фильме Мар
@@ -52,7 +52,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Иллюзия обмана-3
 DTSTART;VALUE=DATE:20260112
 DTEND;VALUE=DATE:20260112
-DTSTAMP:20260116T064755Z
+DTSTAMP:20260117T064402Z
 UID:illyuziya-obmana-3-308835-2026-01-12@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:16+\nСтрана США\nIMDb: 6.0\nКинопоиск: 6.8\n
@@ -73,7 +73,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Синистер. Первое проклятие
 DTSTART;VALUE=DATE:20260108
 DTEND;VALUE=DATE:20260108
-DTSTAMP:20260116T064755Z
+DTSTAMP:20260117T064402Z
 UID:sinister-pervoe-proklyatie-1001896-2026-01-08@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана СШ�А\nIMDb: 8.5\n\nО фильме Ко
@@ -91,31 +91,10 @@ URL:https://www.afisha.ru/prm/schedule_cinema_product/sinister-pervoe-prok
  lyatie-1001896/
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:🎬 Отец мать сестра брат
-DTSTART;VALUE=DATE:20260112
-DTEND;VALUE=DATE:20260112
-DTSTAMP:20260116T064755Z
-UID:otec-mat-sestra-brat-1001686-2026-01-12@perm-cinema
-CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
-DESCRIPTION:18+\nСтрана США\nIMDb: 6.8\n\nО фильме Три 
- остроумные и трогательные истории о том\
- , как взрослые дети пытаются понять свои
- х родителей и друг друга. Сын и дочь отпр
- авляются к одинокому отцу\, живущему в ам
- ериканской глубинке\, надеясь наконец-то
-  поговорить по-душам. Две сестры приезжа
- ют в Дублин к матери-писательнице\, чья в
- нутрення...\n\nТрейлер: https://www.youtube.com/watch?v=cEj
- 38JEdxsQ\n\nПодробнее: https://www.afisha.ru/prm/schedule_cinema_
- product/otec-mat-sestra-brat-1001686/
-URL:https://www.afisha.ru/prm/schedule_cinema_product/otec-mat-sestra-brat
- -1001686/
-END:VEVENT
-BEGIN:VEVENT
 SUMMARY:🎬 Убойная суббота
 DTSTART;VALUE=DATE:20260116
 DTEND;VALUE=DATE:20260116
-DTSTAMP:20260116T064755Z
+DTSTAMP:20260117T064402Z
 UID:uboynaya-subbota-1001907-2026-01-16@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:16+\nСтрана США\nIMDb: 5.5\nКинопоиск: 5.6\n
@@ -133,10 +112,31 @@ URL:https://www.afisha.ru/prm/schedule_cinema_product/uboynaya-subbota-100
  1907/
 END:VEVENT
 BEGIN:VEVENT
+SUMMARY:🎬 Отец мать сестра брат
+DTSTART;VALUE=DATE:20260112
+DTEND;VALUE=DATE:20260112
+DTSTAMP:20260117T064402Z
+UID:otec-mat-sestra-brat-1001686-2026-01-12@perm-cinema
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+DESCRIPTION:18+\nСтрана США\nIMDb: 6.8\n\nО фильме Три 
+ остроумные и трогательные истории о том\
+ , как взрослые дети пытаются понять свои
+ х родителей и друг друга. Сын и дочь отпр
+ авляются к одинокому отцу\, живущему в ам
+ ериканской глубинке\, надеясь наконец-то
+  поговорить по-душам. Две сестры приезжа
+ ют в Дублин к матери-писательнице\, чья в
+ нутрення...\n\nТрейлер: https://www.youtube.com/watch?v=cEj
+ 38JEdxsQ\n\nПодробнее: https://www.afisha.ru/prm/schedule_cinema_
+ product/otec-mat-sestra-brat-1001686/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/otec-mat-sestra-brat
+ -1001686/
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:🎬 Оно. Первое пришествие
 DTSTART;VALUE=DATE:20260112
 DTEND;VALUE=DATE:20260112
-DTSTAMP:20260116T064755Z
+DTSTAMP:20260117T064402Z
 UID:ono-pervoe-prishestvie-1000102-2026-01-12@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана Австралия\n\nО фильме Мол
@@ -154,10 +154,31 @@ URL:https://www.afisha.ru/prm/schedule_cinema_product/ono-pervoe-prishestv
  ie-1000102/
 END:VEVENT
 BEGIN:VEVENT
+SUMMARY:🎬 Возвращение в Сайлент-Хилл
+DTSTART;VALUE=DATE:20260123
+DTEND;VALUE=DATE:20260123
+DTSTAMP:20260117T064402Z
+UID:vozvrashchenie-v-saylent-hill-1001791-2026-01-23@perm-cinema
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+DESCRIPTION:18+\nСтрана Франция\n\nО фильме Получ
+ ив загадочное письмо\, Джеймс отправляет
+ ся в Сайлент-Хилл на поиски своей возлюб
+ ленной. Однако некогда знакомый город ны
+ не окутан густым туманом\, в котором скры
+ ваются порождения самых жутких кошмаров
+ . Сомневаясь в собственном рассудке\, Дже
+ ймс должен любой ценой остаться в живых\,
+  чтобы с...\n\nТрейлер: https://www.youtube.com/watch?v=n4Zfh
+ MKssys\n\nПодробнее: https://www.afisha.ru/prm/schedule_cinema_pr
+ oduct/vozvrashchenie-v-saylent-hill-1001791/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/vozvrashchenie-v-say
+ lent-hill-1001791/
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:🎬 Безумное свидание
 DTSTART;VALUE=DATE:20260112
 DTEND;VALUE=DATE:20260112
-DTSTAMP:20260116T064755Z
+DTSTAMP:20260117T064402Z
 UID:bezumnoe-svidanie-1002072-2026-01-12@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана Италия\nКинопоиск: 7.0\n\nО 
@@ -178,7 +199,7 @@ SUMMARY:🎬 Пункт назначения: Новый аттракци
  он
 DTSTART;VALUE=DATE:20260112
 DTEND;VALUE=DATE:20260112
-DTSTAMP:20260116T064755Z
+DTSTAMP:20260117T064402Z
 UID:punkt-naznacheniya-noviy-attrakcion-1002489-2026-01-12@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана США\n\nО фильме Веселая к
@@ -194,31 +215,10 @@ URL:https://www.afisha.ru/prm/schedule_cinema_product/punkt-naznacheniya-n
  oviy-attrakcion-1002489/
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:🎬 Возвращение в Сайлент-Хилл
-DTSTART;VALUE=DATE:20260123
-DTEND;VALUE=DATE:20260123
-DTSTAMP:20260116T064755Z
-UID:vozvrashchenie-v-saylent-hill-1001791-2026-01-23@perm-cinema
-CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
-DESCRIPTION:18+\nСтрана Франция\n\nО фильме Получ
- ив загадочное письмо\, Джеймс отправляет
- ся в Сайлент-Хилл на поиски своей возлюб
- ленной. Однако некогда знакомый город ны
- не окутан густым туманом\, в котором скры
- ваются порождения самых жутких кошмаров
- . Сомневаясь в собственном рассудке\, Дже
- ймс должен любой ценой остаться в живых\,
-  чтобы с...\n\nТрейлер: https://www.youtube.com/watch?v=n4Zfh
- MKssys\n\nПодробнее: https://www.afisha.ru/prm/schedule_cinema_pr
- oduct/vozvrashchenie-v-saylent-hill-1001791/
-URL:https://www.afisha.ru/prm/schedule_cinema_product/vozvrashchenie-v-say
- lent-hill-1001791/
-END:VEVENT
-BEGIN:VEVENT
 SUMMARY:🎬 Океан чудес
 DTSTART;VALUE=DATE:20260111
 DTEND;VALUE=DATE:20260111
-DTSTAMP:20260116T064755Z
+DTSTAMP:20260117T064402Z
 UID:okean-chudes-294821-2026-01-11@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:12+\nСтрана Китай\nКинопоиск: 7.3\n\nО ф
@@ -235,32 +235,11 @@ DESCRIPTION:12+\nСтрана Китай\nКинопоиск: 7.3\n\nО ф
 URL:https://www.afisha.ru/prm/schedule_cinema_product/okean-chudes-294821/
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:🎬 Уиджа. Шепоты мертвых
-DTSTART;VALUE=DATE:20260116
-DTEND;VALUE=DATE:20260116
-DTSTAMP:20260116T064755Z
-UID:uidzha-shepoty-mertvyh-1002654-2026-01-16@perm-cinema
-CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
-DESCRIPTION:18+\nСтрана Филипп�ины\n\nО фильме П
- оклонницы страшных историй Карен и Эшли 
- узнают\, что в их колледже когда-то погиб
- ла ученица по имени Мэри Черри Чуа. Говор
- ят\, что с тех пор неупокоенный призрак М
- эри бродит по классам и пугает учеников. 
- Карен и Эшли начинают свое расследовани
- е. Чем больше девушки погружаются в разг
- адку убий...\n\nТрейлер: https://www.youtube.com/watch?v=Uw
- 4lXUWoHAY\n\nПодробнее: https://www.afisha.ru/prm/schedule_cinema
- _product/uidzha-shepoty-mertvyh-1002654/
-URL:https://www.afisha.ru/prm/schedule_cinema_product/uidzha-shepoty-mertv
- yh-1002654/
-END:VEVENT
-BEGIN:VEVENT
 SUMMARY:🎬 Italian Best Shorts-8: Искусство быть вмест
  е
 DTSTART;VALUE=DATE:20260116
 DTEND;VALUE=DATE:20260116
-DTSTAMP:20260116T064755Z
+DTSTAMP:20260117T064402Z
 UID:italian-best-shorts-8-iskusstvo-byt-vmeste-1002147-2026-01-16@perm-cin
  ema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
@@ -278,52 +257,31 @@ URL:https://www.afisha.ru/prm/schedule_cinema_product/italian-best-shorts-
  8-iskusstvo-byt-vmeste-1002147/
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:🎬 Гренландия: Миграция
-DTSTART;VALUE=DATE:20260130
-DTEND;VALUE=DATE:20260130
-DTSTAMP:20260116T064755Z
-UID:grenlandiya-migraciya-1001933-2026-01-30@perm-cinema
+SUMMARY:🎬 Уиджа. Шепоты мертвых
+DTSTART;VALUE=DATE:20260116
+DTEND;VALUE=DATE:20260116
+DTSTAMP:20260117T064402Z
+UID:uidzha-shepoty-mertvyh-1002654-2026-01-16@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
-DESCRIPTION:16+\nСтрана Великобритания\nСредняя
-  цена: 431 ₽\n\nО фильме Отголоски катастро
- фы\, которая обрушилась на Землю пять лет
-  назад\, нависли над человечеством. Остав
- аться в Гренландии больше нельзя: тем не
- многим\, кто сумел выжить\, угрожает пост
- оянный шквал осколков астероида. Челове
- чес�тво\, а точнее то\, что от него остало
- сь\, должно совершить самую важную и...\n\nТ
- рейлер: https://www.youtube.com/watch?v=hiD3zk0ZRFg\n\nПодроб
- нее: https://www.afisha.ru/prm/schedule_cinema_product/grenlandiya-migr
- aciya-1001933/
-URL:https://www.afisha.ru/prm/schedule_cinema_product/grenlandiya-migraciy
- a-1001933/
-END:VEVENT
-BEGIN:VEVENT
-SUMMARY:🎬 Кинопроба
-DTSTART;VALUE=DATE:20260120
-DTEND;VALUE=DATE:20260120
-DTSTAMP:20260116T064755Z
-UID:kinoproba-168265-2026-01-20@perm-cinema
-CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
-DESCRIPTION:18+\nСтрана Япония\nКинопоиск: 6.3\n\nЯ
- понский ужастик о вдовце\, который решае
- т начать новые отношения Приятель пригл
- ашает вдовца Аояму посмотреть на девуше
- к\, проходящих кинопробы. Аояма назначае
- т свидание одной из них\, однако девушка 
- оказывается совсем не той\, за кого себя 
- выдает\, и события неожиданно принимают 
- кровавый оборот.\n\nТрейлер: https://www.youtube.com/
- watch?v=EBQHp2__AVQ\n\nПодробнее: https://www.afisha.ru/prm/sched
- ule_cinema_product/kinoproba-168265/
-URL:https://www.afisha.ru/prm/schedule_cinema_product/kinoproba-168265/
+DESCRIPTION:18+\nСтрана Филипп�ины\n\nО фильме П
+ оклонницы страшных историй Карен и Эшли 
+ узнают\, что в их колледже когда-то погиб
+ ла ученица по имени Мэри Черри Чуа. Говор
+ ят\, что с тех пор неупокоенный призрак М
+ эри бродит по классам и пугает учеников. 
+ Карен и Эшли начинают свое расследовани
+ е. Чем больше девушки погружаются в разг
+ адку убий...\n\nТрейлер: https://www.youtube.com/watch?v=Uw
+ 4lXUWoHAY\n\nПодробнее: https://www.afisha.ru/prm/schedule_cinema
+ _product/uidzha-shepoty-mertvyh-1002654/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/uidzha-shepoty-mertv
+ yh-1002654/
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:🎬 Воскрешение
 DTSTART;VALUE=DATE:20260119
 DTEND;VALUE=DATE:20260119
-DTSTAMP:20260116T064755Z
+DTSTAMP:20260117T064402Z
 UID:voskreshenie-1000829-2026-01-19@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана Китай\nIMDb: 6.8\nКинопоиск: 6
@@ -341,32 +299,11 @@ URL:https://www.afisha.ru/prm/schedule_cinema_product/voskreshenie-1000829
  /
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:🎬 TheatreHD: Арена ди Верона. Набукко
-DTSTART;VALUE=DATE:20260121
-DTEND;VALUE=DATE:20260121
-DTSTAMP:20260116T064755Z
-UID:theatrehd-arena-di-verona-nabukko-1002377-2026-01-21@perm-cinema
-CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
-DESCRIPTION:12+\nСтрана Италия\n\nО фильме «Дюна»
- \, «Звездные войны»\, «Стартрек»? — Ультр
- асовременный «Набукко» с Анной Нетребко
- .\nСветовые эффекты\, самая современная с
- ценическая техника\, «пасхалки» для покл
- онников «далеких-далеких галактик» вкуп
- е с шармом классической оперы — великол
- епная футуристическая постановка Стефа
- но Поды стала...\n\nТрейлер: https://www.youtube.com/wat
- ch?v=ov41pdu6OWU\n\nПодробнее: https://www.afisha.ru/prm/schedule
- _cinema_product/theatrehd-arena-di-verona-nabukko-1002377/
-URL:https://www.afisha.ru/prm/schedule_cinema_product/theatrehd-arena-di-v
- erona-nabukko-1002377/
-END:VEVENT
-BEGIN:VEVENT
 SUMMARY:🎬 История дельфина: Каникулы на Баг
  амах
 DTSTART;VALUE=DATE:20260112
 DTEND;VALUE=DATE:20260112
-DTSTAMP:20260116T064755Z
+DTSTAMP:20260117T064402Z
 UID:istoriya-delfina-kanikuly-na-bagamah-1002565-2026-01-12@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:6+\nСтрана США\n\nО фильме Юная Сара 
@@ -384,10 +321,71 @@ URL:https://www.afisha.ru/prm/schedule_cinema_product/istoriya-delfina-kan
  ikuly-na-bagamah-1002565/
 END:VEVENT
 BEGIN:VEVENT
+SUMMARY:🎬 Гренландия: Миграция
+DTSTART;VALUE=DATE:20260130
+DTEND;VALUE=DATE:20260130
+DTSTAMP:20260117T064402Z
+UID:grenlandiya-migraciya-1001933-2026-01-30@perm-cinema
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+DESCRIPTION:16+\nСтрана Великобритания\n\nО филь
+ ме Отголоски катастрофы\, которая обруши
+ лась на Землю пять лет назад\, нависли на
+ д человечеством. Оставаться в Гренланди
+ и больше нельзя: тем немногим\, кто сумел 
+ выжить\, угрожает постоянный шквал оскол
+ ков астероида. Человечес�тво\, а точнее 
+ то\, что от него осталось\, должно соверши
+ ть самую важную и...\n\nТрейлер: https://www.youtube.
+ com/watch?v=hiD3zk0ZRFg\n\nПодробнее: https://www.afisha.ru/prm/s
+ chedule_cinema_product/grenlandiya-migraciya-1001933/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/grenlandiya-migraciy
+ a-1001933/
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:🎬 Кинопроба
+DTSTART;VALUE=DATE:20260120
+DTEND;VALUE=DATE:20260120
+DTSTAMP:20260117T064402Z
+UID:kinoproba-168265-2026-01-20@perm-cinema
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+DESCRIPTION:18+\nСтрана Япония\nКинопоиск: 6.3\n\nЯ
+ понский ужастик о вдовце\, который решае
+ т начать новые отношения Приятель пригл
+ ашает вдовца Аояму посмотреть на девуше
+ к\, проходящих кинопробы. Аояма назначае
+ т свидание одной из них\, однако девушка 
+ оказывается совсем не той\, за кого себя 
+ выдает\, и события неожиданно принимают 
+ кровавый оборот.\n\nТрейлер: https://www.youtube.com/
+ watch?v=EBQHp2__AVQ\n\nПодробнее: https://www.afisha.ru/prm/sched
+ ule_cinema_product/kinoproba-168265/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/kinoproba-168265/
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:🎬 Убежище
+DTSTART;VALUE=DATE:20260206
+DTEND;VALUE=DATE:20260206
+DTSTAMP:20260117T064402Z
+UID:ubezhishche-1002536-2026-02-06@perm-cinema
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+DESCRIPTION:16+\nСтрана США\nКинопоиск: 6.9\n\nО фил
+ ьме После спасения девочки во время штор
+ ма жизнь одинокого островитянина рушитс
+ я. Ребенок оказывается мишенью\, а прошло
+ е\, от которого затворник бежал многие го
+ ды\, наконец настигает его. Теперь им дво
+ им предстоит бегство сквозь стихию и угр
+ озы\, где каждый шаг — выбор между борьбо
+ й и попыткой вно...\n\nТрейлер: https://www.youtube.co
+ m/watch?v=dH5WmaIWEdk\n\nПодробнее: https://www.afisha.ru/prm/sch
+ edule_cinema_product/ubezhishche-1002536/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/ubezhishche-1002536/
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:🎬 Другие
 DTSTART;VALUE=DATE:20260116
 DTEND;VALUE=DATE:20260116
-DTSTAMP:20260116T064755Z
+DTSTAMP:20260117T064402Z
 UID:drugie-169369-2026-01-16@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана Франция\nIMDb: 7.6\nКинопоис
@@ -404,11 +402,33 @@ DESCRIPTION:18+\nСтрана Франция\nIMDb: 7.6\nКинопоис
 URL:https://www.afisha.ru/prm/schedule_cinema_product/drugie-169369/
 END:VEVENT
 BEGIN:VEVENT
+SUMMARY:🎬 TheatreHD: Пупелль из города дымоходо
+ в
+DTSTART;VALUE=DATE:20260127
+DTEND;VALUE=DATE:20260127
+DTSTAMP:20260117T064402Z
+UID:theatrehd-pupell-iz-goroda-dymohodov-1002117-2026-01-27@perm-cinema
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+DESCRIPTION:6+\nСтрана Япония\n\nО фильме В гостя
+ х у японской сказки: очаровательный союз
+  аниме и классического балета.\nВпервые н
+ а большом экране балет\, поставленный по 
+ мотивам знаменитого аниме\, — трогатель
+ ная\, мудрая сказка «Пупелль из города ды
+ моходов».\n\nИсторию о мальчике\, живущем 
+ в городе\, где трубы дымят так сильно\, чт
+ о за ни...\n\nТрейлер: https://www.youtube.com/watch?v=RrQNij8
+ wdrg\n\nПодробнее: https://www.afisha.ru/prm/schedule_cinema_prod
+ uct/theatrehd-pupell-iz-goroda-dymohodov-1002117/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/theatrehd-pupell-iz-
+ goroda-dymohodov-1002117/
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:🎬 TheatreHD: Оперный фестиваль в Санкт-М
  аргаретен. Аида
 DTSTART;VALUE=DATE:20260125
 DTEND;VALUE=DATE:20260125
-DTSTAMP:20260116T064755Z
+DTSTAMP:20260117T064402Z
 UID:theatrehd-operniy-festival-v-sankt-margareten-aida-1001543-2026-01-25@
  perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
@@ -427,33 +447,11 @@ URL:https://www.afisha.ru/prm/schedule_cinema_product/theatrehd-operniy-fe
  stival-v-sankt-margareten-aida-1001543/
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:🎬 TheatreHD: Пупелль из города дымоходо
- в
-DTSTART;VALUE=DATE:20260127
-DTEND;VALUE=DATE:20260127
-DTSTAMP:20260116T064755Z
-UID:theatrehd-pupell-iz-goroda-dymohodov-1002117-2026-01-27@perm-cinema
-CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
-DESCRIPTION:6+\nСтрана Япония\n\nО фильме В гостя
- х у японской сказки: очаровательный союз
-  аниме и классического балета.\nВпервые н
- а большом экране балет\, поставленный по 
- мотивам знаменитого аниме\, — трогатель
- ная\, мудрая сказка «Пупелль из города ды
- моходов».\n\nИсторию о мальчике\, живущем 
- в городе\, где трубы дымят так сильно\, чт
- о за ни...\n\nТрейлер: https://www.youtube.com/watch?v=RrQNij8
- wdrg\n\nПодробнее: https://www.afisha.ru/prm/schedule_cinema_prod
- uct/theatrehd-pupell-iz-goroda-dymohodov-1002117/
-URL:https://www.afisha.ru/prm/schedule_cinema_product/theatrehd-pupell-iz-
- goroda-dymohodov-1002117/
-END:VEVENT
-BEGIN:VEVENT
 SUMMARY:🎬 TheatreHD: Курентзис и Саша Вальц. Бет
  ховен Симфония №7
 DTSTART;VALUE=DATE:20260124
 DTEND;VALUE=DATE:20260124
-DTSTAMP:20260116T064755Z
+DTSTAMP:20260117T064402Z
 UID:theatrehd-kurentzis-i-sasha-valc-bethoven-simfoniya-7-308419-2026-01-2
  4@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
@@ -476,7 +474,7 @@ SUMMARY:🎬 Рыбка унывака. Подводное приключ
  ение
 DTSTART;VALUE=DATE:20260201
 DTEND;VALUE=DATE:20260201
-DTSTAMP:20260116T064755Z
+DTSTAMP:20260117T064402Z
 UID:rybka-unyvaka-podvodnoe-priklyuchenie-1000109-2026-02-01@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:6+\nСтрана США\n\nО фильме Нелюдимый 
@@ -498,7 +496,7 @@ SUMMARY:🎬 Арт-лекторий: Мурильо. Путь худож
  ника
 DTSTART;VALUE=DATE:20260118
 DTEND;VALUE=DATE:20260118
-DTSTAMP:20260116T064755Z
+DTSTAMP:20260117T064402Z
 UID:art-lektoriy-murilo-put-hudozhnika-1001960-2026-01-18@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:12+\nСтрана Испания\n\nО фильме Из Лу
@@ -516,31 +514,10 @@ URL:https://www.afisha.ru/prm/schedule_cinema_product/art-lektoriy-murilo-
  put-hudozhnika-1001960/
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:🎬 Убежище
-DTSTART;VALUE=DATE:20260206
-DTEND;VALUE=DATE:20260206
-DTSTAMP:20260116T064755Z
-UID:ubezhishche-1002536-2026-02-06@perm-cinema
-CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
-DESCRIPTION:16+\nСтрана США\nКинопоиск: 6.9\nСредн
- яя цена: 570 ₽\n\nО фильме После спасения де
- вочки во время шторма жизнь одинокого ос
- тровитянина рушится. Ребенок оказываетс
- я мишенью\, а прошлое\, от которого затвор
- ник бежал многие годы\, наконец настигае
- т его. Теперь им двоим предстоит бегство 
- сквозь стихию и угрозы\, где каждый шаг —
-  выбор между борьбой и попыткой вно...\n\nТ
- рейлер: https://www.youtube.com/watch?v=dH5WmaIWEdk\n\nПодроб
- нее: https://www.afisha.ru/prm/schedule_cinema_product/ubezhishche-1002
- 536/
-URL:https://www.afisha.ru/prm/schedule_cinema_product/ubezhishche-1002536/
-END:VEVENT
-BEGIN:VEVENT
 SUMMARY:🎬 Чарли Чудо-пес
 DTSTART;VALUE=DATE:20260116
 DTEND;VALUE=DATE:20260116
-DTSTAMP:20260116T064755Z
+DTSTAMP:20260117T064402Z
 UID:charli-chudo-pes-1002092-2026-01-16@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:6+\nСтрана Канада\n\nО фильме Дружел
@@ -558,10 +535,31 @@ URL:https://www.afisha.ru/prm/schedule_cinema_product/charli-chudo-pes-100
  2092/
 END:VEVENT
 BEGIN:VEVENT
+SUMMARY:🎬 TheatreHD: Арена ди Верона. Набукко
+DTSTART;VALUE=DATE:20260121
+DTEND;VALUE=DATE:20260121
+DTSTAMP:20260117T064402Z
+UID:theatrehd-arena-di-verona-nabukko-1002377-2026-01-21@perm-cinema
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+DESCRIPTION:12+\nСтрана Италия\n\nО фильме «Дюна»
+ \, «Звездные войны»\, «Стартрек»? — Ультр
+ асовременный «Набукко» с Анной Нетребко
+ .\nСветовые эффекты\, самая современная с
+ ценическая техника\, «пасхалки» для покл
+ онников «далеких-далеких галактик» вкуп
+ е с шармом классической оперы — великол
+ епная футуристическая постановка Стефа
+ но Поды стала...\n\nТрейлер: https://www.youtube.com/wat
+ ch?v=ov41pdu6OWU\n\nПодробнее: https://www.afisha.ru/prm/schedule
+ _cinema_product/theatrehd-arena-di-verona-nabukko-1002377/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/theatrehd-arena-di-v
+ erona-nabukko-1002377/
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:🎬 Отражения №3
 DTSTART;VALUE=DATE:20260202
 DTEND;VALUE=DATE:20260202
-DTSTAMP:20260116T064755Z
+DTSTAMP:20260117T064402Z
 UID:otrazheniya-3-1000949-2026-02-02@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана Германия\nIMDb: 7.2\nКинопои
@@ -578,31 +576,10 @@ URL:https://www.afisha.ru/prm/schedule_cinema_product/otrazheniya-3-100094
  9/
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:🎬 TheatreHD: Йонас Кауфман. Музыка кино
-DTSTART;VALUE=DATE:20260118
-DTEND;VALUE=DATE:20260118
-DTSTAMP:20260116T064755Z
-UID:theatrehd-yonas-kaufman-muzyka-kino-1002133-2026-01-18@perm-cinema
-CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
-DESCRIPTION:6+\nСтрана Чехия\n\nО фильме «Поющие 
- под дождем»\, «Вестсайдская история» и «
- Гладиатор» — в новой программе киномузы
- кальных шедевров в исполнении Йонаса Ка
- уфмана.\nПесни из классических кинофильм
- ов — страсть Йонаса Кауфмана на протяже
- нии всей его жизни: «Я\, естественно\, оче
- нь восприимчив ко всем вокальным номера
- м\, которы...\n\nТрейлер: https://www.youtube.com/watch?v=pT
- WQ5Ko8j3A\n\nПодробнее: https://www.afisha.ru/prm/schedule_cinema
- _product/theatrehd-yonas-kaufman-muzyka-kino-1002133/
-URL:https://www.afisha.ru/prm/schedule_cinema_product/theatrehd-yonas-kauf
- man-muzyka-kino-1002133/
-END:VEVENT
-BEGIN:VEVENT
 SUMMARY:🎬 Сезон охоты
 DTSTART;VALUE=DATE:20260122
 DTEND;VALUE=DATE:20260122
-DTSTAMP:20260116T064755Z
+DTSTAMP:20260117T064402Z
 UID:sezon-ohoty-1000577-2026-01-22@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана США\nIMDb: 5.7\nКинопоиск: 5.6\n
@@ -617,11 +594,54 @@ DESCRIPTION:18+\nСтрана США\nIMDb: 5.7\nКинопоиск: 5.6\n
 URL:https://www.afisha.ru/prm/schedule_cinema_product/sezon-ohoty-1000577/
 END:VEVENT
 BEGIN:VEVENT
+SUMMARY:🎬 Простая история
+DTSTART;VALUE=DATE:20260216
+DTEND;VALUE=DATE:20260216
+DTSTAMP:20260117T064402Z
+UID:prostaya-istoriya-165618-2026-02-16@perm-cinema
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+DESCRIPTION:12+\nСтрана США\nIMDb: 8.0\nКинопоиск: 7.8\n
+ Средняя цена: 570 ₽\n\nСамая простая истори
+ я Дэвида Линча: старик из Айовы отправля
+ ется в путешествие на газонокосилке Элв
+ ин Стрейт узнает о том\, что его старший б
+ рат\, с которым он не разговаривал больше
+  10 лет\, тяжело болен. Бросив все\, семидес
+ ятитрехлетний фермер садится на свой ми
+ ни-трактор\, чтобы преодолеть 350 киломе...\
+ n\nТрейлер: https://www.youtube.com/watch?v=BauhJIjn9Uk\n\nПодр
+ обнее: https://www.afisha.ru/prm/schedule_cinema_product/prostaya-ist
+ oriya-165618/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/prostaya-istoriya-16
+ 5618/
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:🎬 Зальцбург: Макбет
+DTSTART;VALUE=DATE:20260130
+DTEND;VALUE=DATE:20260130
+DTSTAMP:20260117T064402Z
+UID:zalcburg-makbet-307291-2026-01-30@perm-cinema
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+DESCRIPTION:18+\nСтрана А�встрия\n\nО фильме Сам
+ ая коварная пара Макбетов — Асмик Григо
+ рян и Владислав Сулимский — в настоящем 
+ оперном мистическом триллере.\nКшиштоф В
+ арликовский и Филипп Жордан создают зах
+ ватывающий спектакль\, где музыкальная р
+ оскошь идеально дополняет психологичес
+ кую глубину интерпретации. В главных рол
+ ях — Владислав...\n\nТрейлер: https://www.youtube.com/
+ watch?v=H6a_RnVhydE\n\nПодробнее: https://www.afisha.ru/prm/sched
+ ule_cinema_product/zalcburg-makbet-307291/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/zalcburg-makbet-3072
+ 91/
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:🎬 Арт-лекторий: Критика мертва. Да з
  дравствует критика!
 DTSTART;VALUE=DATE:20260125
 DTEND;VALUE=DATE:20260125
-DTSTAMP:20260116T064755Z
+DTSTAMP:20260117T064402Z
 UID:art-lektoriy-kritika-mertva-da-zdravstvuet-kritika-308158-2026-01-25@p
  erm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
@@ -640,24 +660,24 @@ URL:https://www.afisha.ru/prm/schedule_cinema_product/art-lektoriy-kritika
  -mertva-da-zdravstvuet-kritika-308158/
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:🎬 Зальцбург: Макбет
-DTSTART;VALUE=DATE:20260130
-DTEND;VALUE=DATE:20260130
-DTSTAMP:20260116T064755Z
-UID:zalcburg-makbet-307291-2026-01-30@perm-cinema
+SUMMARY:🎬 TheatreHD: Йонас Кауфман. Музыка кино
+DTSTART;VALUE=DATE:20260118
+DTEND;VALUE=DATE:20260118
+DTSTAMP:20260117T064402Z
+UID:theatrehd-yonas-kaufman-muzyka-kino-1002133-2026-01-18@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
-DESCRIPTION:18+\nСтрана А�встрия\n\nО фильме Сам
- ая коварная пара Макбетов — Асмик Григо
- рян и Владислав Сулимский — в настоящем 
- оперном мистическом триллере.\nКшиштоф В
- арликовский и Филипп Жордан создают зах
- ватывающий спектакль\, где музыкальная р
- оскошь идеально дополняет психологичес
- кую глубину интерпретации. В главных рол
- ях — Владислав...\n\nТрейлер: https://www.youtube.com/
- watch?v=H6a_RnVhydE\n\nПодробнее: https://www.afisha.ru/prm/sched
- ule_cinema_product/zalcburg-makbet-307291/
-URL:https://www.afisha.ru/prm/schedule_cinema_product/zalcburg-makbet-3072
- 91/
+DESCRIPTION:6+\nСтрана Чехия\n\nО фильме «Поющие 
+ под дождем»\, «Вестсайдская история» и «
+ Гладиатор» — в новой программе киномузы
+ кальных шедевров в исполнении Йонаса Ка
+ уфмана.\nПесни из классических кинофильм
+ ов — страсть Йонаса Кауфмана на протяже
+ нии всей его жизни: «Я\, естественно\, оче
+ нь восприимчив ко всем вокальным номера
+ м\, которы...\n\nТрейлер: https://www.youtube.com/watch?v=pT
+ WQ5Ko8j3A\n\nПодробнее: https://www.afisha.ru/prm/schedule_cinema
+ _product/theatrehd-yonas-kaufman-muzyka-kino-1002133/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/theatrehd-yonas-kauf
+ man-muzyka-kino-1002133/
 END:VEVENT
 END:VCALENDAR
