@@ -11,7 +11,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Вверх по волшебному дереву
 DTSTART;VALUE=DATE:20260508
 DTEND;VALUE=DATE:20260508
-DTSTAMP:20260516T081530Z
+DTSTAMP:20260517T083128Z
 UID:vverh-po-volshebnomu-derevu-1001844-2026-05-08@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:6+\nСтрана Великобритания\nIMDb: 6.8\n\nО
@@ -32,7 +32,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Несси. Чудище из Лохх-Несс
 DTSTART;VALUE=DATE:20260512
 DTEND;VALUE=DATE:20260512
-DTSTAMP:20260516T081530Z
+DTSTAMP:20260517T083128Z
 UID:nessi-chudishche-iz-lohh-ness-1001945-2026-05-12@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:6+\nСтрана Норвегия\n\nО фильме Несс
@@ -53,7 +53,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Опасные отношения
 DTSTART;VALUE=DATE:20260513
 DTEND;VALUE=DATE:20260513
-DTSTAMP:20260516T081530Z
+DTSTAMP:20260517T083128Z
 UID:opasnye-otnosheniya-1003090-2026-05-13@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана США\nIMDb: 7.1\nКинопоиск: 5.9\n
@@ -74,7 +74,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Вот это драма!
 DTSTART;VALUE=DATE:20260508
 DTEND;VALUE=DATE:20260508
-DTSTAMP:20260516T081530Z
+DTSTAMP:20260517T083128Z
 UID:vot-eto-drama-1002618-2026-05-08@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана США\nIMDb: 7.5\nКинопоиск: 7.1\n
@@ -92,31 +92,10 @@ URL:https://www.afisha.ru/prm/schedule_cinema_product/vot-eto-drama-100261
  8/
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:🎬 Проект «Конец света»
-DTSTART;VALUE=DATE:20260514
-DTEND;VALUE=DATE:20260514
-DTSTAMP:20260516T081530Z
-UID:proekt-konec-sveta-1002688-2026-05-14@perm-cinema
-CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
-DESCRIPTION:18+\nСтрана США\nIMDb: 8.4\nКинопоиск: 8.4\n
- \nРайан Гослинг: через вселенную Приключ
- енческая фантастика по роману Энди Вейе
- ра («Марсианин») стала первой режиссерск
- ой работой Фила Лорда и Кристофера Милле
- ра со времен второй части «Мачо и ботана
- » и «Лего. Фильма»\, вышедших в 2014 году. Ра
- йан Гослинг играет мужчину\, который при
- ходит в себя на борт...\n\nТрейлер: https://www.you
- tube.com/watch?v=P0XN3-n-2Lo\n\nПодробнее: https://www.afisha.ru/
- prm/schedule_cinema_product/proekt-konec-sveta-1002688/
-URL:https://www.afisha.ru/prm/schedule_cinema_product/proekt-konec-sveta-1
- 002688/
-END:VEVENT
-BEGIN:VEVENT
 SUMMARY:🎬 Грязные деньги
 DTSTART;VALUE=DATE:20260522
 DTEND;VALUE=DATE:20260522
-DTSTAMP:20260516T081530Z
+DTSTAMP:20260517T083128Z
 UID:gryaznye-dengi-307106-2026-05-22@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана Великобритания\nIMDb: 8.3\n\n
@@ -134,10 +113,31 @@ URL:https://www.afisha.ru/prm/schedule_cinema_product/gryaznye-dengi-30710
  6/
 END:VEVENT
 BEGIN:VEVENT
+SUMMARY:🎬 Проект «Конец света»
+DTSTART;VALUE=DATE:20260514
+DTEND;VALUE=DATE:20260514
+DTSTAMP:20260517T083128Z
+UID:proekt-konec-sveta-1002688-2026-05-14@perm-cinema
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+DESCRIPTION:18+\nСтрана США\nIMDb: 8.4\nКинопоиск: 8.4\n
+ \nРайан Гослинг: через вселенную Приключ
+ енческая фантастика по роману Энди Вейе
+ ра («Марсианин») стала первой режиссерск
+ ой работой Фила Лорда и Кристофера Милле
+ ра со времен второй части «Мачо и ботана
+ » и «Лего. Фильма»\, вышедших в 2014 году. Ра
+ йан Гослинг играет мужчину\, который при
+ ходит в себя на борт...\n\nТрейлер: https://www.you
+ tube.com/watch?v=P0XN3-n-2Lo\n\nПодробнее: https://www.afisha.ru/
+ prm/schedule_cinema_product/proekt-konec-sveta-1002688/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/proekt-konec-sveta-1
+ 002688/
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:🎬 Хокум
 DTSTART;VALUE=DATE:20260508
 DTEND;VALUE=DATE:20260508
-DTSTAMP:20260516T081530Z
+DTSTAMP:20260517T083128Z
 UID:hokum-1002617-2026-05-08@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана Ирландия\nIMDb: 7.5\n\nО фильм
@@ -156,7 +156,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Грация
 DTSTART;VALUE=DATE:20260508
 DTEND;VALUE=DATE:20260508
-DTSTAMP:20260516T081530Z
+DTSTAMP:20260517T083128Z
 UID:graciya-1001140-2026-05-08@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана Италия\nКинопоиск: 7.3\n\nО 
@@ -176,7 +176,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Полутон
 DTSTART;VALUE=DATE:20260512
 DTEND;VALUE=DATE:20260512
-DTSTAMP:20260516T081530Z
+DTSTAMP:20260517T083128Z
 UID:poluton-1003089-2026-05-12@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана Канада\nКинопоиск: 5.8\n\nО 
@@ -192,7 +192,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Черный Двор в кино
 DTSTART;VALUE=DATE:20260512
 DTEND;VALUE=DATE:20260512
-DTSTAMP:20260516T081530Z
+DTSTAMP:20260517T083128Z
 UID:cherniy-dvor-v-kino-1002987-2026-05-12@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана Киргизия\nКинопоиск: 6.9\n\
@@ -213,7 +213,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Майкл
 DTSTART;VALUE=DATE:20260529
 DTEND;VALUE=DATE:20260529
-DTSTAMP:20260516T081530Z
+DTSTAMP:20260517T083128Z
 UID:maykl-1002691-2026-05-29@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:16+\nСтрана США\nIMDb: 7.7\nКинопоиск: 7.6\n
@@ -233,7 +233,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Наследник
 DTSTART;VALUE=DATE:20260505
 DTEND;VALUE=DATE:20260505
-DTSTAMP:20260516T081530Z
+DTSTAMP:20260517T083128Z
 UID:naslednik-1000452-2026-05-05@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана США\nIMDb: 6.5\nКинопоиск: 6.9\n
@@ -253,7 +253,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Пункт назначения. Новая кровь
 DTSTART;VALUE=DATE:20260515
 DTEND;VALUE=DATE:20260515
-DTSTAMP:20260516T081530Z
+DTSTAMP:20260517T083128Z
 UID:punkt-naznacheniya-novaya-krov-1003140-2026-05-15@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана Индонезия\nКинопоиск: 5.3\
@@ -271,10 +271,28 @@ URL:https://www.afisha.ru/prm/schedule_cinema_product/punkt-naznacheniya-n
  ovaya-krov-1003140/
 END:VEVENT
 BEGIN:VEVENT
+SUMMARY:🎬 Паранормальное явление. Сеул
+DTSTART;VALUE=DATE:20260512
+DTEND;VALUE=DATE:20260512
+DTSTAMP:20260517T083128Z
+UID:paranormalnoe-yavlenie-seul-1003374-2026-05-12@perm-cinema
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+DESCRIPTION:18+\nСтрана Южная Корея\nКинопоиск: 5
+ .5\n\nО фильме Мать-одиночка Сон-хи работае
+ т и воспитывает ребенка. Она устанавлива
+ ет по всему дому камеры видеонаблюдения 
+ для своей маленькой дочери…\n\nТрейлер: ht
+ tps://www.youtube.com/watch?v=O89bfnk9TQc\n\nПодробнее: https://w
+ ww.afisha.ru/prm/schedule_cinema_product/paranormalnoe-yavlenie-seul-10033
+ 74/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/paranormalnoe-yavlen
+ ie-seul-1003374/
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:🎬 Как стать миллиардером
 DTSTART;VALUE=DATE:20260508
 DTEND;VALUE=DATE:20260508
-DTSTAMP:20260516T081530Z
+DTSTAMP:20260517T083128Z
 UID:kak-stat-milliarderom-307317-2026-05-08@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана США\n\nО фильме Парень по 
@@ -292,48 +310,10 @@ URL:https://www.afisha.ru/prm/schedule_cinema_product/kak-stat-milliardero
  m-307317/
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:🎬 Паранормальное явление. Сеул
-DTSTART;VALUE=DATE:20260512
-DTEND;VALUE=DATE:20260512
-DTSTAMP:20260516T081530Z
-UID:paranormalnoe-yavlenie-seul-1003374-2026-05-12@perm-cinema
-CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
-DESCRIPTION:18+\nСтрана Южная Корея\nКинопоиск: 5
- .5\n\nО фильме Мать-одиночка Сон-хи работае
- т и воспитывает ребенка. Она устанавлива
- ет по всему дому камеры видеонаблюдения 
- для своей маленькой дочери…\n\nТрейлер: ht
- tps://www.youtube.com/watch?v=O89bfnk9TQc\n\nПодробнее: https://w
- ww.afisha.ru/prm/schedule_cinema_product/paranormalnoe-yavlenie-seul-10033
- 74/
-URL:https://www.afisha.ru/prm/schedule_cinema_product/paranormalnoe-yavlen
- ie-seul-1003374/
-END:VEVENT
-BEGIN:VEVENT
-SUMMARY:🎬 Прыгуны
-DTSTART;VALUE=DATE:20260514
-DTEND;VALUE=DATE:20260514
-DTSTAMP:20260516T081530Z
-UID:pryguny-1003051-2026-05-14@perm-cinema
-CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
-DESCRIPTION:6+\nСтрана США\nIMDb: 7.4\nКинопоиск: 7.6\n\
- nЗвериная братва от Pixar Самый успешный ор
- игинальный мультфильм Pixar за долгие годы
- . Его главная героиня\, юная экоактивистк
- а Мейбл\, хочет спасти лес от посягательс
- тв жадного мэра Джерри и случайно обнару
- живает\, что местные ученые создали техн
- ологию переселения сознания в робоживот
- ных. Тогда Мейбл у...\n\nТрейлер: https://www.youtube
- .com/watch?v=PypDSyIRRSs\n\nПодробнее: https://www.afisha.ru/prm/
- schedule_cinema_product/pryguny-1003051/
-URL:https://www.afisha.ru/prm/schedule_cinema_product/pryguny-1003051/
-END:VEVENT
-BEGIN:VEVENT
 SUMMARY:🎬 Обсессия
 DTSTART;VALUE=DATE:20260521
 DTEND;VALUE=DATE:20260521
-DTSTAMP:20260516T081530Z
+DTSTAMP:20260517T083128Z
 UID:obsessiya-1002649-2026-05-21@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана США\n\nО фильме Безнадежн
@@ -350,10 +330,30 @@ DESCRIPTION:18+\nСтрана США\n\nО фильме Безнадежн
 URL:https://www.afisha.ru/prm/schedule_cinema_product/obsessiya-1002649/
 END:VEVENT
 BEGIN:VEVENT
+SUMMARY:🎬 Прыгуны
+DTSTART;VALUE=DATE:20260514
+DTEND;VALUE=DATE:20260514
+DTSTAMP:20260517T083128Z
+UID:pryguny-1003051-2026-05-14@perm-cinema
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+DESCRIPTION:6+\nСтрана США\nIMDb: 7.4\nКинопоиск: 7.6\n\
+ nЗвериная братва от Pixar Самый успешный ор
+ игинальный мультфильм Pixar за долгие годы
+ . Его главная героиня\, юная экоактивистк
+ а Мейбл\, хочет спасти лес от посягательс
+ тв жадного мэра Джерри и случайно обнару
+ живает\, что местные ученые создали техн
+ ологию переселения сознания в робоживот
+ ных. Тогда Мейбл у...\n\nТрейлер: https://www.youtube
+ .com/watch?v=PypDSyIRRSs\n\nПодробнее: https://www.afisha.ru/prm/
+ schedule_cinema_product/pryguny-1003051/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/pryguny-1003051/
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:🎬 Закулисье реальности
 DTSTART;VALUE=DATE:20260604
 DTEND;VALUE=DATE:20260604
-DTSTAMP:20260516T081530Z
+DTSTAMP:20260517T083128Z
 UID:zakulise-realnosti-1002921-2026-06-04@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана США\n\nО фильме Есть мест
@@ -374,7 +374,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Разговор
 DTSTART;VALUE=DATE:20260518
 DTEND;VALUE=DATE:20260518
-DTSTAMP:20260516T081530Z
+DTSTAMP:20260517T083128Z
 UID:razgovor-167217-2026-05-18@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:16+\nСтрана США\nIMDb: 7.7\nКинопоиск: 7.6\n
@@ -393,7 +393,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Холостяк в Италии
 DTSTART;VALUE=DATE:20260508
 DTEND;VALUE=DATE:20260508
-DTSTAMP:20260516T081530Z
+DTSTAMP:20260517T083128Z
 UID:holostyak-v-italii-1002871-2026-05-08@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана США\nIMDb: 6.8\nКинопоиск: 5.8\n
@@ -411,10 +411,27 @@ URL:https://www.afisha.ru/prm/schedule_cinema_product/holostyak-v-italii-1
  002871/
 END:VEVENT
 BEGIN:VEVENT
+SUMMARY:🎬 Колония
+DTSTART;VALUE=DATE:20260528
+DTEND;VALUE=DATE:20260528
+DTSTAMP:20260517T083128Z
+UID:koloniya-1002558-2026-05-28@perm-cinema
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+DESCRIPTION:18+\nСтрана Южная Корея\nКинопоиск: 5
+ .5\n\nО фильме В мире разгорается эпидемия 
+ нового вируса\, и люди оказываются забло
+ кированы в огромном выставочном центре\,
+  где начинается самый настоящий эпическ
+ ий зомби-кошмар.\n\nТрейлер: https://www.youtube.com/w
+ atch?v=xQAXT17Jz18\n\nПодробнее: https://www.afisha.ru/prm/schedu
+ le_cinema_product/koloniya-1002558/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/koloniya-1002558/
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:🎬 Ус�кользающая красота
 DTSTART;VALUE=DATE:20260519
 DTEND;VALUE=DATE:20260519
-DTSTAMP:20260516T081530Z
+DTSTAMP:20260517T083128Z
 UID:uskolzayushchaya-krasota-166920-2026-05-19@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана Италия\nIMDb: 6.5\nКинопоиск:
@@ -430,27 +447,10 @@ URL:https://www.afisha.ru/prm/schedule_cinema_product/uskolzayushchaya-kra
  sota-166920/
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:🎬 Колония
-DTSTART;VALUE=DATE:20260528
-DTEND;VALUE=DATE:20260528
-DTSTAMP:20260516T081530Z
-UID:koloniya-1002558-2026-05-28@perm-cinema
-CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
-DESCRIPTION:18+\nСтрана Южная Корея\nКинопоиск: 5
- .5\n\nО фильме В мире разгорается эпидемия 
- нового вируса\, и люди оказываются забло
- кированы в огромном выставочном центре\,
-  где начинается самый настоящий эпическ
- ий зомби-кошмар.\n\nТрейлер: https://www.youtube.com/w
- atch?v=xQAXT17Jz18\n\nПодробнее: https://www.afisha.ru/prm/schedu
- le_cinema_product/koloniya-1002558/
-URL:https://www.afisha.ru/prm/schedule_cinema_product/koloniya-1002558/
-END:VEVENT
-BEGIN:VEVENT
 SUMMARY:🎬 Пропала собака
 DTSTART;VALUE=DATE:20260515
 DTEND;VALUE=DATE:20260515
-DTSTAMP:20260516T081530Z
+DTSTAMP:20260517T083128Z
 UID:propala-sobaka-1003350-2026-05-15@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:12+\nСтрана Италия\n\nО фильме Фило и 
@@ -472,7 +472,7 @@ SUMMARY:🎬 Убить Билла: Кровавое дело целико
  м
 DTSTART;VALUE=DATE:20260523
 DTEND;VALUE=DATE:20260523
-DTSTAMP:20260516T081530Z
+DTSTAMP:20260517T083128Z
 UID:ubit-billa-krovavoe-delo-celikom-1002865-2026-05-23@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана США\nКинопоиск: 7.7\n\nКвен
@@ -493,7 +493,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Тень
 DTSTART;VALUE=DATE:20260509
 DTEND;VALUE=DATE:20260509
-DTSTAMP:20260516T081530Z
+DTSTAMP:20260517T083128Z
 UID:ten-1003433-2026-05-09@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:6+\nСтрана Германия\nКинопоиск: 7.3\n\n
@@ -512,7 +512,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Проклятый рыцарь
 DTSTART;VALUE=DATE:20260509
 DTEND;VALUE=DATE:20260509
-DTSTAMP:20260516T081530Z
+DTSTAMP:20260517T083128Z
 UID:proklyatiy-rycar-1002796-2026-05-09@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:16+\nСтрана Великобритания\nКинопои
@@ -533,7 +533,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Чао
 DTSTART;VALUE=DATE:20260524
 DTEND;VALUE=DATE:20260524
-DTSTAMP:20260516T081530Z
+DTSTAMP:20260517T083128Z
 UID:chao-1002031-2026-05-24@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана Япония\n\nО фильме В обще
@@ -554,7 +554,7 @@ SUMMARY:🎬 TheatreHD: Йохан Ингер. Лебединое озер
  о
 DTSTART;VALUE=DATE:20260526
 DTEND;VALUE=DATE:20260526
-DTSTAMP:20260516T081530Z
+DTSTAMP:20260517T083128Z
 UID:theatrehd-yohan-inger-lebedinoe-ozero-1002789-2026-05-26@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана Германия\n\nО фильме Поте
@@ -576,7 +576,7 @@ SUMMARY:🎬 TheatreHD: Оперный фестиваль в Санкт-
  Маргаретен. Травиата
 DTSTART;VALUE=DATE:20260509
 DTEND;VALUE=DATE:20260509
-DTSTAMP:20260516T081530Z
+DTSTAMP:20260517T083128Z
 UID:theatrehd-operniy-festival-v-sankt-margareten-traviata-1003021-2026-05
  -09@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
@@ -599,7 +599,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 TheatreHD: Джоконда
 DTSTART;VALUE=DATE:20260531
 DTEND;VALUE=DATE:20260531
-DTSTAMP:20260516T081530Z
+DTSTAMP:20260517T083128Z
 UID:theatrehd-dzhokonda-1001919-2026-05-31@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана Италия\n\nО фильме Анна Н
@@ -620,7 +620,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Обитель зла: Мутация
 DTSTART;VALUE=DATE:20260526
 DTEND;VALUE=DATE:20260526
-DTSTAMP:20260516T081530Z
+DTSTAMP:20260517T083128Z
 UID:obitel-zla-mutaciya-1002441-2026-05-26@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:18+\nСтрана США\nКинопоиск: 4.9\n\nО фил
@@ -637,10 +637,33 @@ URL:https://www.afisha.ru/prm/schedule_cinema_product/obitel-zla-mutaciya-
  1002441/
 END:VEVENT
 BEGIN:VEVENT
+SUMMARY:🎬 Помпоко: Война тануки в период Хэ
+ йсэй
+DTSTART;VALUE=DATE:20260520
+DTEND;VALUE=DATE:20260520
+DTSTAMP:20260517T083128Z
+UID:pompoko-voyna-tanuki-v-period-heysey-220158-2026-05-20@perm-cinema
+CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
+DESCRIPTION:12+\nСтрана Япония\nКинопоиск: 7.7\n\nО 
+ фильме Современная Япония\, западные окр
+ аины Токио. Люди застраивают леса и холм
+ ы\, которые раньше принадлежали тануки —
+  енотовидным собакам. Тануки начинают ге
+ роическую\, но обреченную войну за выжив
+ ание. Для этого они возрождают древнее и
+ скусство превращения — с его помощью он
+ и могут превраща�ться ...\n\nТрейлер: https://w
+ ww.youtube.com/watch?v=_7cowIHjCD4\n\nПодробнее: https://www.afis
+ ha.ru/prm/schedule_cinema_product/pompoko-voyna-tanuki-v-period-heysey-220
+ 158/
+URL:https://www.afisha.ru/prm/schedule_cinema_product/pompoko-voyna-tanuki
+ -v-period-heysey-220158/
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:🎬 В мастерской Ренцо Пиано
 DTSTART;VALUE=DATE:20260519
 DTEND;VALUE=DATE:20260519
-DTSTAMP:20260516T081530Z
+DTSTAMP:20260517T083128Z
 UID:v-masterskoy-renco-piano-1001163-2026-05-19@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:12+\nСтрана Италия\n\nО фильме Внутри
@@ -658,55 +681,10 @@ URL:https://www.afisha.ru/prm/schedule_cinema_product/v-masterskoy-renco-p
  iano-1001163/
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:🎬 Помпоко: Война тануки в период Хэ
- йсэй
-DTSTART;VALUE=DATE:20260520
-DTEND;VALUE=DATE:20260520
-DTSTAMP:20260516T081530Z
-UID:pompoko-voyna-tanuki-v-period-heysey-220158-2026-05-20@perm-cinema
-CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
-DESCRIPTION:12+\nСтрана Япония\nКинопоиск: 7.7\nСр
- едняя цена: 420 ₽\n\nО фильме Современная Я
- пония\, западные окраины Токио. Люди заст
- раивают леса и холмы\, которые раньше при
- надлежали тануки — енотовидным собакам.
-  Тануки начинают героическую\, но обрече
- нную войну за выживание. Для этого они во
- зрождают древнее искусство превращения 
- — с его помощью они могут превраща�ться
-  ...\n\nТрейлер: https://www.youtube.com/watch?v=_7cowIHjCD4\n\nП
- одробнее: https://www.afisha.ru/prm/schedule_cinema_product/pompok
- o-voyna-tanuki-v-period-heysey-220158/
-URL:https://www.afisha.ru/prm/schedule_cinema_product/pompoko-voyna-tanuki
- -v-period-heysey-220158/
-END:VEVENT
-BEGIN:VEVENT
-SUMMARY:🎬 Globe: Доктор Фауст
-DTSTART;VALUE=DATE:20260516
-DTEND;VALUE=DATE:20260516
-DTSTAMP:20260516T081530Z
-UID:globe-doktor-faust-219087-2026-05-16@perm-cinema
-CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
-DESCRIPTION:16+\nСтрана Великобритания\nIMDb: 4.4\nК
- инопоиск: 6.9\n\nО фильме Доктор Фауст\, охв
- аченный жаждой знания\, бросает учебу ра
- ди занятий магией и заключает сделку с д
- ьяволом: если Мефистофель будет служить 
- Фаусту при жизни\, доктор отдаст свою душ
- у дьяволу после смерти. На время этого те
- атрального представления сцена «Глобус
- а» превратится в поле битвы между Лю...\n\n
- Трейлер: https://www.youtube.com/watch?v=K256zYBqugg\n\nПодро
- бнее: https://www.afisha.ru/prm/schedule_cinema_product/globe-doktor-f
- aust-219087/
-URL:https://www.afisha.ru/prm/schedule_cinema_product/globe-doktor-faust-2
- 19087/
-END:VEVENT
-BEGIN:VEVENT
 SUMMARY:🎬 TheatreHD: Курентзис. Реквием. Верди
 DTSTART;VALUE=DATE:20260527
 DTEND;VALUE=DATE:20260527
-DTSTAMP:20260516T081530Z
+DTSTAMP:20260517T083128Z
 UID:theatrehd-kurentzis-rekviem-verdi-308894-2026-05-27@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:12+\nСтрана Италия\n\nО фильме В испо
@@ -727,7 +705,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Алфавит Манджаротти
 DTSTART;VALUE=DATE:20260530
 DTEND;VALUE=DATE:20260530
-DTSTAMP:20260516T081530Z
+DTSTAMP:20260517T083128Z
 UID:alfavit-mandzharotti-1001175-2026-05-30@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:12+\nСтрана Италия\n\nО фильме Одинок
@@ -747,7 +725,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Globe: Сон в летнюю ночь
 DTSTART;VALUE=DATE:20260522
 DTEND;VALUE=DATE:20260522
-DTSTAMP:20260516T081530Z
+DTSTAMP:20260517T083128Z
 UID:globe-son-v-letnyuyu-noch-223084-2026-05-22@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:16+\nСтрана Великобритания\nIMDb: 7.2\nК
@@ -770,7 +748,7 @@ SUMMARY:🎬 TheatreHD: Оперный фестиваль Россини.
  Моисей и фараон
 DTSTART;VALUE=DATE:20260529
 DTEND;VALUE=DATE:20260529
-DTSTAMP:20260516T081530Z
+DTSTAMP:20260517T083128Z
 UID:theatrehd-operniy-festival-rossini-moisiy-i-faraon-1002022-2026-05-29@
  perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
@@ -792,7 +770,7 @@ BEGIN:VEVENT
 SUMMARY:🎬 Арена ди Верона: Турандот
 DTSTART;VALUE=DATE:20260517
 DTEND;VALUE=DATE:20260517
-DTSTAMP:20260516T081530Z
+DTSTAMP:20260517T083128Z
 UID:arena-di-verona-turandot-295858-2026-05-17@perm-cinema
 CATEGORIES:ЗАРУБЕЖНЫЕ-ФИЛЬМЫ,КИНО,ПЕРМЬ
 DESCRIPTION:16+\nСтрана Италия\n\nО фильме Легенд
