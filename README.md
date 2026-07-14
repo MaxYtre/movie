@@ -38,7 +38,7 @@
 
 1. **Клонируйте репозиторий:**
    ```bash
-   git clone https://github.com/your-username/movie.git
+   git clone https://github.com/MaxYtre/movie.git
    cd movie
    ```
 
