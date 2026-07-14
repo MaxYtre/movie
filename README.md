@@ -38,8 +38,8 @@
 
 1. **Клонируйте репозиторий:**
    ```bash
-   git clone https://github.com/MaxYtre/movie.git
-   cd movie
+   git clone https://github.com/MaxYtre/afisha-scraper-ics.git
+   cd afisha-scraper-ics
    ```
 
 2. **Установите зависимости:**
